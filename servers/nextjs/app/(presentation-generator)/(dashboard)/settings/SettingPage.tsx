@@ -306,64 +306,6 @@ const SettingsPage = () => {
       : "No image provider";
 
 
-  useEffect(() => {
-
-
-
-      const currentUrl = window.location.href;
-
-      const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-        console.log("beforeunload");
-        e.preventDefault();
-        e.returnValue = "";
-      };
-
-      const handleClick = (e: MouseEvent) => {
-
-
-        const target = e.target as HTMLElement | null;
-        const link = target?.closest("a");
-
-        if (!link) return;
-
-        const href = link.getAttribute("href");
-        const targetAttr = link.getAttribute("target");
-
-        if (
-          href &&
-          href !== "#" &&
-          !href.startsWith("javascript:") &&
-          targetAttr !== "_blank"
-        ) {
-
-          // notify.error("Cannot save settings", "Please select a model for the selected provider");
-          e.preventDefault();
-          window.history.pushState(null, "", pathname);
-        }
-      };
-
-      const handlePopState = () => {
-        console.log("popstate");
-        window.history.pushState(null, "", pathname);
-      };
-
-      window.addEventListener("beforeunload", handleBeforeUnload);
-      window.addEventListener("popstate", handlePopState);
-      document.addEventListener("click", handleClick, true);
-
-      // keep current page in history
-      window.history.pushState(null, "", currentUrl);
-
-      return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-        window.removeEventListener("popstate", handlePopState);
-        document.removeEventListener("click", handleClick, true);
-      };
-
-  }, [llmConfig, pathname]);
-
-
-
   return (
     <div className="h-screen font-syne flex flex-col overflow-hidden relative">
       <div

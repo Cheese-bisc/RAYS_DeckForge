@@ -103,6 +103,7 @@ export const checkIfSelectedOllamaModelIsPulled = async (ollamaModel: string) =>
     const response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/available'));
     const models = await response.json();
     const pulledModels = models.map((model: any) => model.name);
+    console.log("[checkIfSelectedOllamaModelIsPulled] checking:", ollamaModel, "against:", pulledModels);
     return pulledModels.includes(ollamaModel);
   } catch (error) {
     console.error('Error checking if selected Ollama model is pulled:', error);

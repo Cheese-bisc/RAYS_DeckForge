@@ -16,15 +16,18 @@ def get_database_url_env():
 
 
 def get_app_data_directory_env():
-    return os.getenv("APP_DATA_DIRECTORY")
+    path = os.getenv("APP_DATA_DIRECTORY") or "app_data"
+    return os.path.abspath(path)
 
 
 def get_temp_directory_env():
-    return os.getenv("TEMP_DIRECTORY")
+    path = os.getenv("TEMP_DIRECTORY") or "app_data/temp"
+    return os.path.abspath(path)
 
 
 def get_user_config_path_env():
-    return os.getenv("USER_CONFIG_PATH")
+    path = os.getenv("USER_CONFIG_PATH") or "app_data/userConfig.json"
+    return os.path.abspath(path)
 
 
 def get_disable_auth_env():
@@ -48,7 +51,7 @@ def get_anthropic_model_env():
 
 
 def get_ollama_url_env():
-    return os.getenv("OLLAMA_URL")
+    return os.getenv("OLLAMA_URL") or "http://127.0.0.1:11434"
 
 
 def get_custom_llm_url_env():

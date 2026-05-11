@@ -48,6 +48,7 @@ fi
 
 FASTAPI_PORT=${FASTAPI_PORT:-8000}
 NEXTJS_PORT=${NEXTJS_PORT:-3000}
+export NEXT_PUBLIC_URL="http://localhost:${NEXTJS_PORT}"
 
 echo -e "${CYAN}▸${RESET} FastAPI backend  → http://localhost:${FASTAPI_PORT}"
 echo -e "${CYAN}▸${RESET} Next.js frontend → http://localhost:${NEXTJS_PORT}"

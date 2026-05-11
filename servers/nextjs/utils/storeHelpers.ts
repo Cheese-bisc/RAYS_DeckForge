@@ -10,7 +10,8 @@ function isProvided(value: unknown): boolean {
  * Returns a user-facing validation message, or null when the config is valid.
  */
 export const getLLMConfigValidationError = (
-  llmConfig: LLMConfig
+  llmConfig: LLMConfig,
+  options: { skipImages?: boolean } = {}
 ): string | null => {
   if (!llmConfig.LLM) {
     return "Select a text provider.";
@@ -91,6 +92,10 @@ export const getLLMConfigValidationError = (
     return "Unsupported or unknown text provider.";
   }
 
+  if (options.skipImages) {
+    return null;
+  }
+
   if (!llmConfig.DISABLE_IMAGE_GENERATION) {
     switch (llmConfig.IMAGE_PROVIDER) {
       case "pexels":
@@ -143,9 +148,13 @@ export const getLLMConfigValidationError = (
 
 
 
-export const handleSaveLLMConfig = async (llmConfig: LLMConfig) => {
-  const validationError = getLLMConfigValidationError(llmConfig);
+export const handleSaveLLMConfig = async (
+  llmConfig: LLMConfig,
+  options: { skipImages?: boolean } = {}
+) => {
+  const validationError = getLLMConfigValidationError(llmConfig, options);
   if (validationError) {
+    console.error("[handleSaveLLMConfig] Validation failed:", validationError);
     throw new Error(validationError);
   }
 
@@ -162,5 +171,10 @@ export const handleSaveLLMConfig = async (llmConfig: LLMConfig) => {
   store.dispatch(setLLMConfig(llmConfig));
 };
 
-export const hasValidLLMConfig = (llmConfig: LLMConfig) =>
-  getLLMConfigValidationError(llmConfig) === null;
+export const hasValidLLMConfig = (llmConfig: LLMConfig, options: { skipImages?: boolean } = {}) => {
+  const error = getLLMConfigValidationError(llmConfig, options);
+  if (error) {
+    console.warn("[Config Validation Failure]:", error, llmConfig);
+  }
+  return error === null;
+};

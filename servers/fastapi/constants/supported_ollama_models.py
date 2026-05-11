@@ -17,6 +17,11 @@ SUPPORTED_OLLAMA_MODELS = {
         value="llama3.1:8b",
         size="4.9GB",
     ),
+    "llama3.1:latest": OllamaModelMetadata(
+        label="Llama 3.1:Latest (8b)",
+        value="llama3.1:latest",
+        size="4.9GB",
+    ),
     "llama3.1:70b": OllamaModelMetadata(
         label="Llama 3.1:70b",
         value="llama3.1:70b",

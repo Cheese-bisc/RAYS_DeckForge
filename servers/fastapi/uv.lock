@@ -2136,6 +2136,7 @@ dependencies = [
     { name = "pathvalidate" },
     { name = "pdfplumber" },
     { name = "psycopg", extra = ["binary"] },
+    { name = "python-dotenv" },
     { name = "sqlmodel" },
 ]
 
@@ -2166,6 +2167,7 @@ requires-dist = [
     { name = "pathvalidate", specifier = ">=3.3.1" },
     { name = "pdfplumber", specifier = ">=0.11.7" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "sqlmodel", specifier = ">=0.0.24" },
 ]
 

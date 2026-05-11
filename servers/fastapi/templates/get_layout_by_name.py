@@ -1,4 +1,5 @@
 import logging
+import os
 import aiohttp
 from urllib.parse import urlencode
 from typing import Any
@@ -22,7 +23,8 @@ def _preview_detail(text: str, limit: int = _MAX_LOG_DETAIL) -> str:
 
 async def get_layout_by_name(layout_name: str) -> PresentationLayoutModel:
     query = urlencode({"group": layout_name})
-    url = f"http://localhost/schema?{query}"
+    next_public_url = (os.getenv("NEXT_PUBLIC_URL") or "http://localhost:3000").rstrip("/")
+    url = f"{next_public_url}/schema?{query}"
 
     LOGGER.info(
         "[template_layout] resolving template=%r primary_schema_url=%s",
@@ -55,7 +57,7 @@ async def get_layout_by_name(layout_name: str) -> PresentationLayoutModel:
 
     if schema_payload is None:
         fallback_error = None
-        fallback_url = f"http://localhost/api/template?group={layout_name}"
+        fallback_url = f"{next_public_url}/api/template?group={layout_name}"
         LOGGER.info(
             "[template_layout] trying HTTP fallback template=%r url=%s",
             layout_name,

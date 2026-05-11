@@ -12,15 +12,15 @@ To ensure a positive and inclusive environment for everyone, we ask all communit
 
 ## Where This Applies
 
-This Code of Conduct applies to all spaces managed by the **Presenton project**, including but not limited to:
+This Code of Conduct applies to all spaces managed by the **RAYS project**, including but not limited to:
 
 - GitHub repositories (issues, pull requests, discussions)
 - Official documentation
 - Discord community
 - Social media interactions
-- Events, meetups, or presentations related to Presenton
+- Events, meetups, or presentations related to RAYS
 
-Violations of this code outside these spaces may also affect a person’s ability to participate in the Presenton community.
+Violations of this code outside these spaces may also affect a person’s ability to participate in the RAYS community.
 
 ---
 
@@ -50,13 +50,13 @@ This includes, but is not limited to:
 - Education level
 - Socioeconomic background
 
-Everyone should feel safe and respected when participating in the Presenton community.
+Everyone should feel safe and respected when participating in the RAYS community.
 
 ---
 
 ### 🧠 Be Considerate
 
-Your work and decisions may impact others who rely on Presenton. Think about how your contributions affect:
+Your work and decisions may impact others who rely on RAYS. Think about how your contributions affect:
 
 - users
 - contributors
@@ -140,7 +140,7 @@ Our goal is to maintain a safe and productive environment for everyone.
 
 ## Acknowledgements
 
-This Code of Conduct is inspired by guidelines from open-source communities and the **Speak Up! project**, adapted for the Presenton community.
+This Code of Conduct is inspired by guidelines from open-source communities and the **Speak Up! project**, adapted for the RAYS community.
 
 ---
 
@@ -150,4 +150,4 @@ If you have questions about this Code of Conduct, feel free to contact us:
 
 📧 **suraj@rays.deckforge.local**
 
-Thank you for helping make **Presenton a welcoming and collaborative open-source project.**
+Thank you for helping make **RAYS a welcoming and collaborative open-source project.**

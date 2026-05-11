@@ -29,6 +29,7 @@ import { RootState } from "@/store/store";
 import { ImagesApi } from "../../services/api/images";
 import CurrentConfig from "./CurrentConfig";
 import { LLMConfig } from "@/types/llm_config";
+import { hasValidLLMConfig, getLLMConfigValidationError } from "@/utils/storeHelpers";
 
 const STOCK_IMAGE_PROVIDERS = new Set(["pexels", "pixabay"]);
 const FILE_TYPE_WORD = new Set([".doc", ".docx", ".docm", ".odt", ".rtf"]);
@@ -200,6 +201,15 @@ const UploadPage = () => {
    * @returns boolean indicating if the configuration is valid
    */
   const validateConfiguration = (): boolean => {
+    const llmError = getLLMConfigValidationError(llmConfig);
+    if (llmError) {
+      trackUploadValidationFailure("llm_config_invalid");
+      toast.error("Incomplete Configuration", {
+        description: `${llmError} (Current: ${llmConfig.LLM} + ${llmConfig.IMAGE_PROVIDER || 'no image provider'})`
+      });
+      return false;
+    }
+
     if (!config.language) {
       trackUploadValidationFailure("language_missing");
       toast.error("Please select language");
@@ -224,10 +234,15 @@ const UploadPage = () => {
    * Handles the presentation generation process
    */
   const handleGeneratePresentation = async () => {
-    if (!validateConfiguration()) return;
+    console.log("[handleGeneratePresentation] Current llmConfig:", llmConfig);
+    if (!validateConfiguration()) {
+      console.warn("[handleGeneratePresentation] Configuration validation failed.");
+      return;
+    }
 
 
     const isStockProviderReady = await ensureStockImageProviderReady();
+    console.log("[handleGeneratePresentation] isStockProviderReady:", isStockProviderReady);
     if (!isStockProviderReady) {
       trackUploadValidationFailure("stock_image_provider_unreachable");
       return;

@@ -31,10 +31,13 @@ class PresentationLayoutModel(BaseModel):
             slides=[index for index in range(len(self.slides))]
         )
 
-    def to_string(self) -> str:
+    def to_string(self, with_schema: bool = False) -> str:
         message = "## Presentation Layout\n\n"
         for index, slide in enumerate(self.slides):
             message += f"### Slide Layout: {index}\n"
             message += f"- Name: {slide.name or slide.json_schema.get('title')}\n"
-            message += f"- Description: {slide.description}\n\n"
+            message += f"- Description: {slide.description}\n"
+            if with_schema:
+                message += f"- Schema: {slide.json_schema}\n"
+            message += "\n"
         return message

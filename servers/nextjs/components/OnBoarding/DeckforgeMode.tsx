@@ -329,6 +329,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
         }
     };
     const handleSaveConfig = async () => {
+        console.log("[handleSaveConfig] Starting save with config:", llmConfig);
         try {
             if (llmConfig.LLM === 'codex') {
                 const isAuthenticated = await checkCurrentAuthStatus();
@@ -339,29 +340,25 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
             }
             setSavingConfig(true);
 
-            await handleSaveLLMConfig(llmConfig);
+            console.log("[handleSaveConfig] Calling handleSaveLLMConfig...");
+            await handleSaveLLMConfig(llmConfig, { skipImages: true });
 
             if (llmConfig.LLM === "ollama" && llmConfig.OLLAMA_MODEL) {
+                console.log("[handleSaveConfig] Checking Ollama model:", llmConfig.OLLAMA_MODEL);
                 const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
+                console.log("[handleSaveConfig] isPulled:", isPulled);
                 if (!isPulled) {
                     setShowDownloadModal(true);
                     await handleModelDownload();
                 }
             }
 
-            const textProvider = llmConfig.LLM || '';
-            const textModel = getSelectedTextModel(llmConfig);
-            const imageGenerationEnabled = !llmConfig.DISABLE_IMAGE_GENERATION;
-            const imageProvider = imageGenerationEnabled ? (llmConfig.IMAGE_PROVIDER || '') : 'disabled';
-
-
-
+            console.log("[handleSaveConfig] Save successful, moving to Step 3");
             toast.info("Configuration saved successfully");
             setStep(3)
-            // router.push("/upload");
         } catch (error) {
+            console.error("[handleSaveConfig] Error during save:", error);
             toast.error(error instanceof Error ? error.message : "Failed to save configuration");
-
         }
         finally {
             setSavingConfig(false);

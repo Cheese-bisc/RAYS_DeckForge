@@ -141,5 +141,17 @@ export function resolveBackendAssetUrl(path?: string): string {
     return `${getFastAPIUrl()}${normalizedPath}`;
   }
 
+  // Handle absolute filesystem paths (e.g. /home/user/project/app_data/exports/file.pdf)
+  // by extracting the relative part after app_data or static.
+  const appDataMatch = trimmedPath.match(/[\/\\]app_data[\/\\](.+)$/);
+  if (appDataMatch) {
+    return `${getFastAPIUrl()}/app_data/${appDataMatch[1].replace(/\\/g, "/")}`;
+  }
+
+  const staticMatch = trimmedPath.match(/[\/\\]static[\/\\](.+)$/);
+  if (staticMatch) {
+    return `${getFastAPIUrl()}/static/${staticMatch[1].replace(/\\/g, "/")}`;
+  }
+
   return trimmedPath;
 }

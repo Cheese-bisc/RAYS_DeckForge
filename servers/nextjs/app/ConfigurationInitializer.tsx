@@ -73,16 +73,15 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
       }
 
       dispatch(setLLMConfig(llmConfig));
-      const isValid = hasValidLLMConfig(llmConfig);
-      if (route.startsWith('/pdf-maker')) {
-        setIsLoading(false);
-        return;
-      }
+      const isValid = hasValidLLMConfig(llmConfig, { skipImages: true });
+      console.log("[ConfigurationInitializer] isValid (text only):", isValid, "route:", route);
+
       if (isValid) {
         // Check if the selected Ollama model is pulled
         if (llmConfig.LLM === 'ollama' && llmConfig.OLLAMA_MODEL) {
           const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
           if (!isPulled) {
+            console.log("[ConfigurationInitializer] Ollama model not pulled, redirecting to /");
             router.push('/');
             setLoadingToFalseAfterNavigatingTo('/');
             return;
@@ -91,18 +90,21 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
         if (llmConfig.LLM === 'custom') {
           const isAvailable = await checkIfSelectedCustomModelIsAvailable(llmConfig);
           if (!isAvailable) {
+            console.log("[ConfigurationInitializer] Custom model not available, redirecting to /");
             router.push('/');
             setLoadingToFalseAfterNavigatingTo('/');
             return;
           }
         }
         if (route === '/') {
+          console.log("[ConfigurationInitializer] Config valid, moving from / to /upload");
           router.push('/upload');
           setLoadingToFalseAfterNavigatingTo('/upload');
         } else {
           setIsLoading(false);
         }
       } else if (route !== '/') {
+        console.log("[ConfigurationInitializer] Config invalid, redirecting to / from", route);
         router.push('/');
         setLoadingToFalseAfterNavigatingTo('/');
       } else {

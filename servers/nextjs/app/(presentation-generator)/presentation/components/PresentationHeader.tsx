@@ -20,6 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { PresentationGenerationApi } from "../../services/api/presentation-generation";
+import { resolveBackendAssetUrl } from "@/utils/api";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -290,7 +291,7 @@ const PresentationHeader = ({
   };
   const downloadLink = (path: string, fileName: string) => {
     const link = document.createElement("a");
-    link.href = path;
+    link.href = resolveBackendAssetUrl(path);
     link.download = fileName;
     link.rel = "noopener";
     document.body.appendChild(link);
