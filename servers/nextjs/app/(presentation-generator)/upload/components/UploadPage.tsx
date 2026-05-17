@@ -353,55 +353,57 @@ const UploadPage = () => {
   };
 
   return (
-    <Wrapper className="pb-10 lg:max-w-[65%] xl:max-w-[60%]">
-      <OverlayLoader
-        show={loadingState.isLoading}
-        text={loadingState.message}
-        showProgress={loadingState.showProgress}
-        duration={loadingState.duration}
-        extra_info={loadingState.extra_info}
-      />
-      <div className="rounded-2xl " >
-        <div className="flex flex-col gap-4 md:items-center md:flex-row justify-between px-4 ">
-          <CurrentConfig />
-          <ConfigurationSelects
-            config={config}
-            onConfigChange={handleConfigChange}
-          />
-        </div>
-
-        <div className="p-4 ">
-
-          <div className="relative">
-            <PromptInput
-              value={config.prompt}
-              onChange={(value) => handleConfigChange("prompt", value)}
-
+    <div style={{ background: '#000000', fontFamily: "'Space Mono', monospace", minHeight: '100vh', width: '100%' }}>
+      <Wrapper className="pb-10 lg:max-w-[65%] xl:max-w-[60%]">
+        <OverlayLoader
+          show={loadingState.isLoading}
+          text={loadingState.message}
+          showProgress={loadingState.showProgress}
+          duration={loadingState.duration}
+          extra_info={loadingState.extra_info}
+        />
+        <div className="rounded-2xl " style={{ background: '#000000', color: '#ffffff' }}>
+          <div className="flex flex-col gap-4 md:items-center md:flex-row justify-between px-4 ">
+            <CurrentConfig />
+            <ConfigurationSelects
+              config={config}
+              onConfigChange={handleConfigChange}
             />
           </div>
-        </div>
-        <div className="p-4 ">
-          <h3 className="text-sm font-medium text-foreground mb-2">Attachments (optional)</h3>
-          <SupportingDoc
-            files={[...files]}
-            onFilesChange={setFiles}
-          />
-        </div>
 
-        <div className="p-4">
-          <Button
-            onClick={handleGeneratePresentation}
-            style={{
-              background: "#ffffff", color: "#000000"
-            }}
-            className="w-fit mr-0 ml-auto rounded-[10px] flex items-center justify-center py-5 px-4 font-semibold text-xs"
-          >
-            <span>Get Started</span>
-            <ChevronRight className="!w-5 !h-5 " />
-          </Button>
+          <div className="p-4 ">
+
+            <div className="relative">
+              <PromptInput
+                value={config.prompt}
+                onChange={(value) => handleConfigChange("prompt", value)}
+
+              />
+            </div>
+          </div>
+          <div className="p-4 ">
+            <h3 className="text-sm font-medium mb-2" style={{ color: '#ffffff' }}>Attachments (optional)</h3>
+            <SupportingDoc
+              files={[...files]}
+              onFilesChange={setFiles}
+            />
+          </div>
+
+          <div className="p-4">
+            <Button
+              onClick={handleGeneratePresentation}
+              style={{
+                background: "#ffffff", color: "#000000"
+              }}
+              className="w-fit mr-0 ml-auto rounded-[10px] flex items-center justify-center py-5 px-4 font-semibold text-xs"
+            >
+              <span>Get Started</span>
+              <ChevronRight className="!w-5 !h-5 " />
+            </Button>
+          </div>
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </div>
   );
 };
 

@@ -61,7 +61,7 @@ const Timer = ({ duration }: TimerProps) => {
           className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-100 ease-out"
           style={{
             width: `${progressValue * 100}%`,
-            background: 'linear-gradient(90deg, #7A5AF8, #9B8AFB, #7A5AF8)',
+            background: '#ffffff',
             backgroundSize: '200% 100%',
             animation: 'shimmer 2s linear infinite',
           }}
@@ -70,7 +70,7 @@ const Timer = ({ duration }: TimerProps) => {
           <div
             className="absolute inset-0 opacity-30"
             style={{
-              backgroundImage: 'linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.4) 75%, transparent 75%, transparent)',
+              backgroundImage: 'none',
               backgroundSize: '12px 12px',
               animation: 'stripes 0.8s linear infinite',
             }}

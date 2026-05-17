@@ -63,17 +63,17 @@ const OutlinePage: React.FC = () => {
             <div className="h-[4.75rem] shrink-0 sm:h-[5rem]" aria-hidden />
             <div className="fixed top-26 left-0 right-0 z-50  pb-2">
               <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-10 lg:px-20">
-                <TabsList className="my-4 h-auto w-fit rounded-full border border-[#EDEEEF] bg-card p-1.5">
+                <TabsList className="my-4 h-auto w-fit rounded-full border border-[#383838] bg-[#1d1d1d] p-1.5">
                   <TabsTrigger
                     value={TABS.OUTLINE}
-                    className="rounded-full px-5 py-2  text-xs font-medium text-[#2D2D2D] shadow-none data-[state=active]:bg-[#F4F3FF] data-[state=active]:text-[#7E3AF2] data-[state=active]:shadow-none"
+                    className="rounded-full px-5 py-2  text-xs font-medium text-[#888888] shadow-none data-[state=active]:bg-[#383838] data-[state=active]:text-[#ffffff] data-[state=active]:shadow-none"
                   >
                     Outline & Content
                   </TabsTrigger>
-                  <Separator orientation="vertical" className="h-6 mx-1" />
+                  <Separator orientation="vertical" className="h-6 mx-1 bg-[#383838]" />
                   <TabsTrigger
                     value={TABS.LAYOUTS}
-                    className="relative rounded-full px-5  py-2 text-xs font-medium text-[#2D2D2D] shadow-none  data-[state=active]:bg-[#F4F3FF] data-[state=active]:text-[#7E3AF2] data-[state=active]:shadow-none"
+                    className="relative rounded-full px-5  py-2 text-xs font-medium text-[#888888] shadow-none  data-[state=active]:bg-[#383838] data-[state=active]:text-[#ffffff] data-[state=active]:shadow-none"
                   >
                     Select Template
                   </TabsTrigger>
@@ -94,7 +94,7 @@ const OutlinePage: React.FC = () => {
                 />
               </TabsContent>
 
-              <TabsContent value={TABS.LAYOUTS} className="mt-0 bg-card">
+              <TabsContent value={TABS.LAYOUTS} className="mt-0">
                 <TemplateSelection
                   selectedTemplate={selectedTemplate}
                   onSelectTemplate={setSelectedTemplate}

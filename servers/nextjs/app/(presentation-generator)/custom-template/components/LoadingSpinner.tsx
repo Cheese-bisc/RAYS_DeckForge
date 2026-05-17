@@ -8,12 +8,12 @@ interface LoadingSpinnerProps {
 
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ message }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-muted to-card">
+    <div className="min-h-screen bg-[#000000]">
       <Header />
       <div className="flex items-center justify-center aspect-video mx-auto px-6">
-        <div className="text-center space-y-2 my-6 bg-card p-6 rounded-lg shadow-md">
-          <Loader2 className="w-6 h-6 animate-spin text-blue-600 mx-auto" />
-          <p>{message}</p>
+        <div className="text-center space-y-2 my-6 bg-[#1d1d1d] p-6 rounded-[10px] border border-[#383838]">
+          <Loader2 className="w-6 h-6 animate-spin text-[#ffffff] mx-auto" />
+          <p className="text-[#ffffff]">{message}</p>
         </div>
       </div>
     </div>

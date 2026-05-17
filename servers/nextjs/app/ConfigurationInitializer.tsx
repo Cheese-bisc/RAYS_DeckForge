@@ -44,86 +44,85 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
 
     setIsLoading(true);
 
-    let canChangeKeys = false;
     try {
-      if (window.electron?.getCanChangeKeys) {
-        canChangeKeys = await window.electron.getCanChangeKeys();
-      } else {
-        const res = await fetch('/api/can-change-keys');
-        const data = await res.json();
-        canChangeKeys = data.canChange ?? false;
-      }
-    } catch (e) {
-      console.error('Failed to fetch can-change-keys:', e);
-      canChangeKeys = false;
-    }
-    dispatch(setCanChangeKeys(canChangeKeys));
-
-    if (canChangeKeys) {
-      let llmConfig: LLMConfig = {};
+      let canChangeKeys = false;
       try {
-        if (window.electron?.getUserConfig) {
-          llmConfig = await window.electron.getUserConfig();
+        if (window.electron?.getCanChangeKeys) {
+          canChangeKeys = await window.electron.getCanChangeKeys();
         } else {
-          const res = await fetch('/api/user-config');
-          llmConfig = await res.json();
+          const res = await fetch('/api/can-change-keys');
+          const data = await res.json();
+          canChangeKeys = data.canChange ?? false;
         }
       } catch (e) {
-        console.error('Failed to fetch user config:', e);
-        llmConfig = {};
+        console.error('Failed to fetch can-change-keys:', e);
+        canChangeKeys = false;
       }
-      if (!llmConfig.LLM) {
-        llmConfig.LLM = 'openai';
-      }
+      dispatch(setCanChangeKeys(canChangeKeys));
 
-      dispatch(setLLMConfig(llmConfig));
-      const isValid = hasValidLLMConfig(llmConfig, { skipImages: true });
-      console.log("[ConfigurationInitializer] isValid (text only):", isValid, "route:", route);
+      if (canChangeKeys) {
+        let llmConfig: LLMConfig = {};
+        try {
+          if (window.electron?.getUserConfig) {
+            llmConfig = await window.electron.getUserConfig();
+          } else {
+            const res = await fetch('/api/user-config');
+            llmConfig = await res.json();
+          }
+        } catch (e) {
+          console.error('Failed to fetch user config:', e);
+          llmConfig = {};
+        }
+        if (!llmConfig.LLM) {
+          llmConfig.LLM = 'openai';
+        }
 
-      if (isValid) {
-        // Check if the selected Ollama model is pulled
-        if (llmConfig.LLM === 'ollama' && llmConfig.OLLAMA_MODEL) {
-          try {
-            const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
-            if (!isPulled) {
-              console.log("[ConfigurationInitializer] Ollama model not pulled, redirecting to /");
-              router.push('/');
-              setIsLoading(false);
-              return;
+        dispatch(setLLMConfig(llmConfig));
+        const isValid = hasValidLLMConfig(llmConfig, { skipImages: true });
+        console.log("[ConfigurationInitializer] isValid (text only):", isValid, "route:", route);
+
+        if (isValid) {
+          // Check if the selected Ollama model is pulled
+          if (llmConfig.LLM === 'ollama' && llmConfig.OLLAMA_MODEL) {
+            try {
+              const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
+              if (!isPulled) {
+                console.log("[ConfigurationInitializer] Ollama model not pulled, redirecting to /");
+                router.push('/');
+                return;
+              }
+            } catch {
+              // If check fails, proceed anyway
             }
-          } catch {
-            // If check fails, proceed anyway
           }
-        }
-        if (llmConfig.LLM === 'custom') {
-          try {
-            const isAvailable = await checkIfSelectedCustomModelIsAvailable(llmConfig);
-            if (!isAvailable) {
-              console.log("[ConfigurationInitializer] Custom model not available, redirecting to /");
-              router.push('/');
-              setIsLoading(false);
-              return;
+          if (llmConfig.LLM === 'custom') {
+            try {
+              const isAvailable = await checkIfSelectedCustomModelIsAvailable(llmConfig);
+              if (!isAvailable) {
+                console.log("[ConfigurationInitializer] Custom model not available, redirecting to /");
+                router.push('/');
+                return;
+              }
+            } catch {
+              // If check fails, proceed anyway
             }
-          } catch {
-            // If check fails, proceed anyway
           }
+          if (route === '/') {
+            console.log("[ConfigurationInitializer] Config valid, moving from / to /upload");
+            router.push('/upload');
+          }
+        } else if (route !== '/') {
+          console.log("[ConfigurationInitializer] Config invalid, redirecting to / from", route);
+          router.push('/');
         }
+      } else {
         if (route === '/') {
-          console.log("[ConfigurationInitializer] Config valid, moving from / to /upload");
           router.push('/upload');
         }
-        setIsLoading(false);
-      } else if (route !== '/') {
-        console.log("[ConfigurationInitializer] Config invalid, redirecting to / from", route);
-        router.push('/');
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
       }
-    } else {
-      if (route === '/') {
-        router.push('/upload');
-      }
+    } catch (e) {
+      console.error('[ConfigurationInitializer] Unexpected error during initialization:', e);
+    } finally {
       setIsLoading(false);
     }
   }

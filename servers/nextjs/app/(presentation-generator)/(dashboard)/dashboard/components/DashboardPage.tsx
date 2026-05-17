@@ -51,7 +51,7 @@ const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen  w-full px-6 pb-10 relative">
+    <div className="min-h-screen w-full px-6 pb-10 relative" style={{ background: '#000000', fontFamily: "'Space Mono', monospace" }}>
       <div className="sticky top-0 right-0 z-50 py-[28px]   backdrop-blur mb-4 ">
         <div className="flex xl:flex-row flex-col gap-6 xl:gap-0 items-center justify-between">
           <h3 className="text-[28px] tracking-[-0.84px] font-normal flex items-center gap-2" style={{ color: '#ffffff' }}>

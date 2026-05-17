@@ -179,6 +179,15 @@ if [ "$SKIP_INSTALL" = false ]; then
     fi
   fi
 
+  # Liteparse dependencies
+  if [ -d "$SCRIPT_DIR/electron/resources/document-extraction" ]; then
+    if [ ! -d "$SCRIPT_DIR/electron/resources/document-extraction/node_modules" ]; then
+      echo -e "  ${CYAN}▸${RESET} Installing document-extraction npm packages..."
+      (cd "$SCRIPT_DIR/electron/resources/document-extraction" && npm install --no-audit --no-fund 2>&1 | tail -1)
+      echo -e "  ${GREEN}✓${RESET} document-extraction npm packages installed"
+    fi
+  fi
+
   # Check for Puppeteer Chrome in common cache locations
   PUPPETEER_CHROME_FOUND=false
   for dir in "$HOME/.cache/puppeteer" "$SCRIPT_DIR/node_modules/puppeteer" "$SCRIPT_DIR/servers/nextjs/node_modules/puppeteer"; do
@@ -213,6 +222,7 @@ cd "$SCRIPT_DIR/servers/fastapi"
 export APP_DATA_DIRECTORY="${APP_DATA_DIRECTORY:-$SCRIPT_DIR/app_data}"
 export TEMP_DIRECTORY="${TEMP_DIRECTORY:-$SCRIPT_DIR/app_data/temp}"
 export USER_CONFIG_PATH="${USER_CONFIG_PATH:-$SCRIPT_DIR/app_data/userConfig.json}"
+export LITEPARSE_RUNNER_PATH="$SCRIPT_DIR/electron/resources/document-extraction/liteparse_runner.mjs"
 mkdir -p "$APP_DATA_DIRECTORY" "$TEMP_DIRECTORY"
 
 uv run uvicorn server:app --host 0.0.0.0 --port "$FASTAPI_PORT" --reload &

@@ -32,7 +32,7 @@ export const CustomTemplateCard = React.memo(function CustomTemplateCard({ templ
 
     return (
         <Card
-            className="cursor-pointer flex flex-col shadow-none sm:shadow-none relative hover:shadow-sm transition-all duration-200 group overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-card"
+            className="cursor-pointer flex flex-col shadow-none sm:shadow-none relative hover:shadow-sm transition-all duration-200 group overflow-hidden rounded-[22px] border border-[#383838] bg-[#1d1d1d]"
             onClick={handleOpen}
         >
             <TemplatePreviewStage>
@@ -43,9 +43,9 @@ export const CustomTemplateCard = React.memo(function CustomTemplateCard({ templ
                     templateId={template.id}
                 />
             </TemplatePreviewStage>
-            <div className="relative z-40 flex items-center justify-between border-t border-[#EDEEEF] bg-card px-6 py-5">
-                <h3 className="max-w-[min(191px,65%)] text-base font-bold text-foreground">{template.name}</h3>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-purple-600" />
+            <div className="relative z-40 flex items-center justify-between border-t border-[#383838] bg-transparent px-6 py-5">
+                <h3 className="max-w-[min(191px,65%)] text-base font-bold text-[#ffffff]">{template.name}</h3>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#888888] transition-colors group-hover:text-[#ffffff]" />
             </div>
         </Card>
     );
@@ -69,19 +69,19 @@ const InbuiltTemplateCard = React.memo(function InbuiltTemplateCard({
     return (
         <Card
             key={template.id}
-            className="group relative cursor-pointer overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-card shadow-none sm:shadow-none transition-all duration-200 hover:shadow-sm"
+            className="group relative cursor-pointer overflow-hidden rounded-[22px] border border-[#383838] bg-[#1d1d1d] shadow-none sm:shadow-none transition-all duration-200 hover:shadow-sm"
             onClick={handleOpen}
         >
             <TemplatePreviewStage>
                 <LayoutsBadge count={template.layouts.length} />
                 <InbuiltTemplatePreview layouts={template.layouts} templateId={template.id} />
             </TemplatePreviewStage>
-            <div className="relative z-40 flex items-center justify-between gap-4 border-t border-[#EDEEEF] bg-card px-6 py-5">
+            <div className="relative z-40 flex items-center justify-between gap-4 border-t border-[#383838] bg-transparent px-6 py-5">
                 <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-bold capitalize text-foreground">{template.name}</h3>
-                    <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{template.description}</p>
+                    <h3 className="text-base font-bold capitalize text-[#ffffff]">{template.name}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm text-[#888888]">{template.description}</p>
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-blue-600" />
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#888888] transition-colors group-hover:text-[#ffffff]" />
             </div>
         </Card>
     );
@@ -122,28 +122,21 @@ const LayoutPreview = () => {
     );
 
     return (
-        <div className="min-h-screen  relative font-syne">
-            <div
-                className='fixed z-0 -bottom-[16.5rem] left-0 w-full h-full'
-                style={{
-                    height: "341px",
-                    borderRadius: '1440px',
-                    background: 'radial-gradient(5.92% 104.69% at 50% 100%, rgba(122, 90, 248, 0.00) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(50% 50% at 50% 50%, rgba(122, 90, 248, 0.80) 0%, rgba(122, 90, 248, 0.00) 100%)',
-                }}
-            />
-            <div className="sticky top-0 right-0 z-50 py-[28px] px-6   backdrop-blur ">
+        <div className="min-h-screen relative font-mono" style={{ background: '#000000', fontFamily: "'Space Mono', monospace", color: '#ffffff' }}>
+            <div className="sticky top-0 right-0 z-50 py-[28px] px-6 backdrop-blur">
                 <div className="flex xl:flex-row flex-col gap-6 xl:gap-0 items-center justify-between">
-                    <h3 className=" text-[28px] tracking-[-0.84px] font-unbounded font-normal text-[#101828] flex items-center gap-2">
+                    <h3 className="text-[28px] tracking-[-0.84px] font-normal text-[#ffffff] flex items-center gap-2">
                         Templates
                     </h3>
-                    <div className="flex  gap-2.5 max-sm:w-full max-md:justify-center max-sm:flex-wrap">
+                    <div className="flex gap-2.5 max-sm:w-full max-md:justify-center max-sm:flex-wrap">
                         <Link
                             href="/custom-template"
-                            className="inline-flex items-center font-syne font-semibold gap-2 rounded-xl px-4 py-2.5 text-foreground text-sm  shadow-sm hover:shadow-md"
+                            className="inline-flex items-center font-semibold gap-2 px-4 py-2.5 text-sm shadow-sm hover:shadow-md"
                             aria-label="Create new template"
                             style={{
-                                borderRadius: "48px",
-                                background: "linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)",
+                                borderRadius: "10px",
+                                background: "#ffffff",
+                                color: "#000000",
                             }}
                         >
                             <span className="hidden md:inline">New Template</span>
@@ -155,21 +148,21 @@ const LayoutPreview = () => {
                 </div>
             </div>
 
-            <div className="l mx-auto px-6 py-8">
-                <div className='p-1 rounded-[40px] bg-[#ffffff] w-fit border border-[#EDEEEF] flex items-center justify-center '>
-                    <button className='px-5  py-2 text-xs font-medium text-[#3A3A3A] rounded-[70px]'
+            <div className="mx-auto px-6 py-8">
+                <div className='p-1 rounded-[10px] bg-[#1d1d1d] w-fit border border-[#383838] flex items-center justify-center'>
+                    <button onClick={() => setTab('custom')} className='px-5 py-2 text-xs font-medium rounded-[8px]'
                         style={{
-                            background: tab === 'custom' ? '#F4F3FF' : 'transparent',
-                            color: tab === 'custom' ? '#5146E5' : '#3A3A3A'
+                            background: tab === 'custom' ? '#ffffff' : 'transparent',
+                            color: tab === 'custom' ? '#000000' : '#888888'
                         }}
                     >Custom</button>
                     <svg xmlns="http://www.w3.org/2000/svg" className='mx-1' width="2" height="17" viewBox="0 0 2 17" fill="none">
-                        <path d="M1 0V16.5" stroke="#EDECEC" strokeWidth="2" />
+                        <path d="M1 0V16.5" stroke="#383838" strokeWidth="2" />
                     </svg>
-                    <button className='px-5  py-2 text-xs font-medium text-[#3A3A3A] rounded-[70px]'
+                    <button onClick={() => setTab('default')} className='px-5 py-2 text-xs font-medium rounded-[8px]'
                         style={{
-                            background: tab === 'default' ? '#F4F3FF' : 'transparent',
-                            color: tab === 'default' ? '#5146E5' : '#3A3A3A'
+                            background: tab === 'default' ? '#ffffff' : 'transparent',
+                            color: tab === 'default' ? '#000000' : '#888888'
                         }}
                     >Built-in</button>
                 </div>
@@ -188,7 +181,7 @@ const LayoutPreview = () => {
                         </div>
                         {neoInbuilt.length > 0 && (
                             <div>
-                                <h4 className="text-base font-semibold text-[#101828] mb-6 font-syne tracking-tight">
+                                <h4 className="text-base font-semibold text-[#ffffff] mb-6 tracking-tight">
                                     Report
                                 </h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -210,7 +203,7 @@ const LayoutPreview = () => {
                     {customLoading ? (
                         <div className="flex items-center justify-center py-12">
                             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-                            <span className="ml-3 text-foreground">Loading custom templates...</span>
+                            <span className="ml-3 text-[#888888]">Loading custom templates...</span>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center lg:grid-cols-4 gap-6">

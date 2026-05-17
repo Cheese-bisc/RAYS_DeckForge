@@ -210,7 +210,7 @@ const DocumentsPreviewPage: React.FC = () => {
             {downloadingDocuments.includes(selectedDocument) ? (
               <Skeleton className="w-full h-full" />
             ) : (
-              <div className="whitespace-pre-wrap break-words text-sm leading-7 text-[#2E2E2E]">
+              <div className="whitespace-pre-wrap break-words text-sm leading-7 text-[#ffffff]">
                 {textContents[selectedDocument] || ""}
               </div>
             )}
@@ -234,21 +234,21 @@ const DocumentsPreviewPage: React.FC = () => {
 
         {documentKeys.length > 0 && (
           <div className="mt-8">
-            <p className="text-xs mt-2 text-[#2E2E2E] opacity-70">DOCUMENTS</p>
+            <p className="text-xs mt-2 text-[#888888] opacity-70">DOCUMENTS</p>
             <div className="flex flex-col gap-2 mt-6">
               {documentKeys.map((key: string) => (
                 <div
                   key={key}
                   onClick={() => updateSelectedDocument(key)}
-                  className={`${selectedDocument === key ? "border border-blue-500" : ""
+                  className={`${selectedDocument === key ? "border border-[#ffffff]" : ""
                     } flex p-2 rounded-sm gap-2 items-center cursor-pointer`}
                 >
                   <img
-                    className="h-6 w-6 border border-border"
+                    className="h-6 w-6 border border-[#383838]"
                     src={getIconFromFile(key)}
                     alt="Document icon"
                   />
-                  <span className="text-sm h-6 text-[#2E2E2E] overflow-hidden">
+                  <span className="text-sm h-6 text-[#ffffff] overflow-hidden">
                     {key.split("/").pop() ?? "file.txt"}
                   </span>
                 </div>
@@ -275,9 +275,9 @@ const DocumentsPreviewPage: React.FC = () => {
             <ToolTip content="Open Panel">
               <Button
                 onClick={() => setIsOpen(true)}
-                className="bg-[#5146E5] text-foreground p-3 shadow-lg"
+                className="bg-[#ffffff] text-[#000000] p-3 shadow-lg hover:bg-[#e0e0e0]"
               >
-                <PanelRightOpen className="text-foreground" size={20} />
+                <PanelRightOpen className="text-[#000000]" size={20} />
               </Button>
             </ToolTip>
           </div>
@@ -292,10 +292,10 @@ const DocumentsPreviewPage: React.FC = () => {
         <div className="fixed bottom-5 right-5">
           <Button
             onClick={handleCreatePresentation}
-            className="flex items-center gap-2 px-8 py-6 rounded-sm text-md bg-[#5146E5] hover:bg-[#5146E5]/90"
+            className="flex items-center gap-2 px-8 py-6 rounded-[10px] text-md bg-[#ffffff] hover:bg-[#e0e0e0]"
           >
-            <span className="text-foreground font-semibold">Next</span>
-            <ChevronRight />
+            <span className="text-[#000000] font-semibold">Next</span>
+            <ChevronRight className="text-[#000000]" />
           </Button>
         </div>
       </div>

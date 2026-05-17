@@ -54,6 +54,7 @@ const Header = () => {
             {showHeaderBack ? (
               <Link
                 href={backHref}
+                prefetch={true}
                 className="text-foreground text-xs font-syne font-semibold flex items-center gap-2"
               >
                 <ArrowLeft className="w-4 h-4 shrink-0 text-foreground" aria-hidden />

@@ -485,7 +485,7 @@ const ThemePanel: React.FC = () => {
         paddingInline: step === 1 ? '20px' : '10px'
       }}
     >
-      <Label className="flex text-xl font-medium text-[#191919] items-center gap-2 pb-5">
+      <Label className="flex text-xl font-medium text-[#ffffff] items-center gap-2 pb-5">
 
         {step === 1 ? 'Brand Colors' : 'Palette'}
         <RefreshCcw onClick={() => refeshTheme(step === 1 ? {
@@ -493,18 +493,18 @@ const ThemePanel: React.FC = () => {
         } : {
           primary: customColors['primary'],
           background: customColors['background'],
-        })} className='w-5 h-5 text-[#808080] hover:text-[#191919] duration-300 transition-all cursor-pointer' />
+        })} className='w-5 h-5 text-[#888888] hover:text-[#ffffff] duration-300 transition-all cursor-pointer' />
       </Label>
       <div className="space-y-4">
 
 
         <div>
 
-          {step === 2 && <p className="text-xs text-[#4C4C4C] font-medium rounded-lg text-end pb-1.5">Brand Colors</p>}
+          {step === 2 && <p className="text-xs text-[#888888] font-medium rounded-lg text-end pb-1.5">Brand Colors</p>}
           <div className="space-y-4"
             style={{
               padding: step === 2 ? '10px' : '0px',
-              backgroundColor: step === 2 ? '#F9FAFB' : 'transparent'
+              backgroundColor: step === 2 ? '#1d1d1d' : 'transparent'
             }}
           >
             <ColorPickerComponent
@@ -526,11 +526,11 @@ const ThemePanel: React.FC = () => {
           </div>
         </div>
         {step === 2 && <div>
-          <p className="text-xs text-[#4C4C4C] font-medium text-end pb-1.5">Text Colors</p>
+          <p className="text-xs text-[#888888] font-medium text-end pb-1.5">Text Colors</p>
           <div className="space-y-4"
             style={{
               padding: step === 2 ? '10px' : '0px',
-              backgroundColor: step === 2 ? '#F9FAFB' : 'transparent'
+              backgroundColor: step === 2 ? '#1d1d1d' : 'transparent'
             }}
           >
             <ColorPickerComponent
@@ -562,11 +562,11 @@ const ThemePanel: React.FC = () => {
           />
         </div>}
         {step === 2 && <div>
-          <p className="text-xs text-[#4C4C4C] font-medium text-end pb-1.5">Graph/Chart Colors</p>
+          <p className="text-xs text-[#888888] font-medium text-end pb-1.5">Graph/Chart Colors</p>
           <div className="space-y-4"
             style={{
               padding: step === 2 ? '10px' : '0px',
-              backgroundColor: step === 2 ? '#F9FAFB' : 'transparent'
+              backgroundColor: step === 2 ? '#1d1d1d' : 'transparent'
             }}
           >
             <ColorPickerComponent
@@ -664,7 +664,7 @@ const ThemePanel: React.FC = () => {
         paddingInline: '10px'
       }}
     >
-      <Label className="flex text-xl font-medium text-[#191919] items-center gap-2 px-2.5">
+      <Label className="flex text-xl font-medium text-[#ffffff] items-center gap-2 px-2.5">
         Typography
       </Label>
 
@@ -673,12 +673,12 @@ const ThemePanel: React.FC = () => {
 
       {/* Upload Custom Font */}
       <div className="px-2.5">
-        <p className='text-xs text-[#4C4C4C] font-medium text-end pb-1.5'>Upload Custom Font</p>
+        <p className='text-xs text-[#888888] font-medium text-end pb-1.5'>Upload Custom Font</p>
         <div
           className={`p-3 rounded-xl border-2 border-dashed transition-all duration-200 cursor-pointer group
             ${isFontUploading
-              ? 'bg-[#F8F7FF] border-[#7A5AF8]'
-              : 'bg-[#F9FAFB] border-[#E0E0E0] '
+              ? 'bg-[#1d1d1d] border-[#ffffff]'
+              : 'bg-[#1d1d1d] border-[#383838] '
             }`}
           onClick={() => {
             if (!isFontUploading) {
@@ -690,24 +690,24 @@ const ThemePanel: React.FC = () => {
         >
           {isFontUploading ? (
             <div className='flex items-center gap-3'>
-              <div className='w-10 h-10 rounded-lg bg-[#EBE9FE] flex items-center justify-center'>
-                <Loader2 className='w-5 h-5 text-[#7A5AF8] animate-spin' />
+              <div className='w-10 h-10 rounded-lg bg-[#1d1d1d] flex items-center justify-center'>
+                <Loader2 className='w-5 h-5 text-[#ffffff] animate-spin' />
               </div>
               <div className='flex-1'>
-                <p className='text-sm font-medium text-[#7A5AF8]'>Uploading font...</p>
-                <p className='text-xs text-[#888]'>Please wait</p>
+                <p className='text-sm font-medium text-[#ffffff]'>Uploading font...</p>
+                <p className='text-xs text-[#888888]'>Please wait</p>
               </div>
             </div>
           ) : (
             <div className='flex items-center gap-3'>
-              <div className='w-10 h-10 rounded-lg bg-[#EBE9FE] flex items-center justify-center group-hover:bg-[#DDD8FD] transition-colors'>
-                <Plus className='w-5 h-5 text-[#7A5AF8]' />
+              <div className='w-10 h-10 rounded-lg bg-[#1d1d1d] flex items-center justify-center group-hover:bg-[#383838] transition-colors'>
+                <Plus className='w-5 h-5 text-[#ffffff]' />
               </div>
               <div className='flex-1'>
-                <p className='text-sm font-medium text-[#151515]'>Upload Font File</p>
-                <p className='text-xs text-[#888]'>.ttf, .otf, .woff, .woff2</p>
+                <p className='text-sm font-medium text-[#ffffff]'>Upload Font File</p>
+                <p className='text-xs text-[#888888]'>.ttf, .otf, .woff, .woff2</p>
               </div>
-              <ChevronRight className='w-4 h-4 text-[#999] group-hover:text-[#7A5AF8] transition-colors' />
+              <ChevronRight className='w-4 h-4 text-[#888888] group-hover:text-[#ffffff] transition-colors' />
             </div>
           )}
         </div>
@@ -728,7 +728,7 @@ const ThemePanel: React.FC = () => {
       {/* User's Uploaded Fonts */}
       {userFonts.fonts.length > 0 && (
         <div className="px-2.5">
-          <p className='text-xs text-[#4C4C4C] font-medium text-end pb-1.5'>Your Uploaded Fonts</p>
+          <p className='text-xs text-[#888888] font-medium text-end pb-1.5'>Your Uploaded Fonts</p>
           <div className='grid grid-cols-2 gap-2'>
             {userFonts.fonts?.map((font) => (
               <FontCard
@@ -747,7 +747,7 @@ const ThemePanel: React.FC = () => {
 
       {/* Preset Fonts */}
       <div className='px-2.5'>
-        <p className='text-xs text-[#4C4C4C] font-medium text-end pb-1.5'>Pre-Sets</p>
+        <p className='text-xs text-[#888888] font-medium text-end pb-1.5'>Pre-Sets</p>
         <div className="grid grid-cols-2 gap-2 overflow-y-auto custom_scrollbar">
           {FONT_OPTIONS.map((font) => (
             <FontCard
@@ -764,10 +764,10 @@ const ThemePanel: React.FC = () => {
 
   const renderLogoStep = () => (
     <div className="space-y-4 px-5">
-      <Label className="flex text-xl font-medium text-[#191919] items-center gap-2">
+      <Label className="flex text-xl font-medium text-[#ffffff] items-center gap-2">
 
         Logo
-        {/* <RefreshCcw className='w-5 h-5 text-[#808080] hover:text-[#191919] duration-300 transition-all cursor-pointer' /> */}
+        {/* <RefreshCcw className='w-5 h-5 text-[#888888] hover:text-[#ffffff] duration-300 transition-all cursor-pointer' /> */}
       </Label>
       <div className="space-y-2">
         <Label className="flex text-base items-center gap-2">
@@ -785,7 +785,7 @@ const ThemePanel: React.FC = () => {
         Brand Logo
       </Label>
 
-      <div className="space-y-2 bg-[#F6F6F9] rounded-md p-1 cursor-pointer"
+      <div className="space-y-2 bg-[#1d1d1d] rounded-md p-1 cursor-pointer"
         onClick={(e) => {
 
           e.stopPropagation()
@@ -796,9 +796,9 @@ const ThemePanel: React.FC = () => {
         tabIndex={0}
       >
 
-        <div className="border-2 border-dashed  border-border rounded-lg p-6 text-center">
+        <div className="border-2 border-dashed  border-[#383838] rounded-[10px] p-6 text-center">
           {isLogoUploading ? (
-            <div className="flex flex-col items-center justify-center py-6 text-muted-foreground">
+            <div className="flex flex-col items-center justify-center py-6 text-[#888888]">
               <Loader2 className="h-6 w-6 animate-spin mb-2" />
               <p className="text-sm">Uploading logo...</p>
             </div>
@@ -823,15 +823,15 @@ const ThemePanel: React.FC = () => {
             </div>
           ) : (
             <>
-              <div className='w-[42px] h-[42px] mx-auto flex justify-center items-center rounded-full bg-[#EBE9FE]' >
-                <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-foreground'>
+              <div className='w-[42px] h-[42px] mx-auto flex justify-center items-center rounded-full bg-[#1d1d1d]' >
+                <div className='w-[22px] h-[22px] rounded-full bg-[#ffffff] flex items-center justify-center text-[#000000]'>
                   <Plus className='w-3 h-3' />
                 </div>
               </div>
               <div className="mt-2">
                 <label htmlFor="logo-upload" className="cursor-pointer">
-                  <span className="text-blue-600 hover:text-blue-500">Click to upload</span>
-                  <span className="text-muted-foreground"> or drag and drop</span>
+                  <span className="text-[#ffffff] hover:text-[#888888]">Click to upload</span>
+                  <span className="text-[#888888]"> or drag and drop</span>
                 </label>
                 <input
                   id="logo-upload"
@@ -866,20 +866,21 @@ const ThemePanel: React.FC = () => {
 
 
   return (
-    <div className="space-y-6 px-6 font-syne">
+    <div className="space-y-6 px-6 font-mono" style={{ fontFamily: "'Space Mono', monospace" }}>
       <div className='py-[28px] flex justify-between'>
 
-        <h3 className=" text-[28px]  tracking-[-0.84px] font-unbounded font-normal text-[#101828] flex items-center gap-2">
+        <h3 className="text-[28px] tracking-[-0.84px] font-normal text-[#ffffff] flex items-center gap-2">
           Themes
         </h3>
         <Link
           href="/theme?tab=new-theme"
           onClick={() => {}}
-          className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-foreground text-sm font-semibold font-syne shadow-sm hover:shadow-md"
+          className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold shadow-sm hover:shadow-md"
           aria-label="Create new theme"
           style={{
-            borderRadius: "48px",
-            background: "linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)",
+            borderRadius: "10px",
+            background: "#ffffff",
+            color: "#000000",
           }}
         >
 
@@ -889,24 +890,26 @@ const ThemePanel: React.FC = () => {
         </Link>
       </div>
       {/* Tabs */}
-      <div className='p-1 rounded-[40px] bg-[#F7F6F9] w-fit border border-[#F4F4F4] flex items-center justify-center '>
-        <button className='px-5  py-2 text-xs font-medium text-[#3A3A3A] rounded-[70px]'
+      <div className='p-1 rounded-[10px] bg-[#1d1d1d] w-fit border border-[#383838] flex items-center justify-center '>
+        <button className='px-5 py-2 text-xs font-medium rounded-[8px]'
           onClick={() => {
             setTab('custom')
           }}
           style={{
-            background: tab === 'custom' ? 'linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)' : 'transparent'
+            background: tab === 'custom' ? '#ffffff' : 'transparent',
+            color: tab === 'custom' ? '#000000' : '#888888'
           }}
         >Custom</button>
         <svg xmlns="http://www.w3.org/2000/svg" className='mx-1' width="2" height="17" viewBox="0 0 2 17" fill="none">
-          <path d="M1 0V16.5" stroke="#EDECEC" strokeWidth="2" />
+          <path d="M1 0V16.5" stroke="#383838" strokeWidth="2" />
         </svg>
-        <button className='px-5  py-2 text-xs font-medium text-[#3A3A3A] rounded-[70px]'
+        <button className='px-5 py-2 text-xs font-medium rounded-[8px]'
           onClick={() => {
             setTab('default')
           }}
           style={{
-            background: tab === 'default' ? 'linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)' : 'transparent'
+            background: tab === 'default' ? '#ffffff' : 'transparent',
+            color: tab === 'default' ? '#000000' : '#888888'
           }}
         >Built-in</button>
       </div>
@@ -956,16 +959,16 @@ const ThemePanel: React.FC = () => {
             {/* Left side - Editor */}
             <div
               onClick={handleClickOutside}
-              className="min-w-[530px]   border-r border-[#EDEEEF]">
-              <div className="flex items-center justify-between px-5 rounded-md py-3 mx-2.5 my-2.5 bg-[#F6F6F9]  ">
-                <input id="theme-name" name="theme-name" className="text-lg font-semibold text-[#4C4D50] bg-transparent w-full outline-none border-none px-2  rounded" autoFocus={false} defaultValue={selectedTheme.name} onBlur={(e) => setSelectedTheme({ ...selectedTheme, name: e.target.value })}>
+              className="min-w-[530px]   border-r border-[#383838]">
+              <div className="flex items-center justify-between px-5 rounded-md py-3 mx-2.5 my-2.5 bg-[#1d1d1d]  ">
+                <input id="theme-name" name="theme-name" className="text-lg font-semibold text-[#ffffff] bg-transparent w-full outline-none border-none px-2  rounded" autoFocus={false} defaultValue={selectedTheme.name} onBlur={(e) => setSelectedTheme({ ...selectedTheme, name: e.target.value })}>
 
                 </input>
-                <SquarePen className='w-4 h-4  text-[#808080] hover:text-[#4C4D50] cursor-pointer' onClick={() => {
+                <SquarePen className='w-4 h-4  text-[#888888] hover:text-[#ffffff] cursor-pointer' onClick={() => {
                   document.getElementById('theme-name')?.focus()
                 }} />
               </div>
-              <div className='flex h-full   border-t border-[#EDEEEF] '>
+              <div className='flex h-full   border-t border-[#383838] '>
                 <StepIndicator currentStep={currentStep} />
                 <div className='pt-7  w-full  h-[calc(90vh-120px)] flex flex-col justify-between  '>
                   {currentStep === 1 && renderColorStep(currentStep)}
@@ -974,15 +977,15 @@ const ThemePanel: React.FC = () => {
                   {currentStep === 4 && renderLogoStep()}
 
 
-                  <div className='border-t border-[#EDEEEF] py-6 '>
+                  <div className='border-t border-[#383838] py-6 '>
                     <div className='flex justify-end px-5 gap-2'>
                       {currentStep > 1 && <button
 
-                        className='px-3.5 py-2.5 bg-[#F7F6F9] rounded-[48px] text-xs font-semibold text-[#101323]'
+                        className='px-3.5 py-2.5 bg-[#1d1d1d] rounded-[10px] text-xs font-semibold text-[#ffffff] border border-[#383838]'
                         onClick={() => setCurrentStep(currentStep - 1)}
                       >Back</button>}
 
-                      <button className='px-7 py-2.5 flex items-center gap-1 rounded-[48px] text-xs font-semibold text-[#101323] '
+                      <button className='px-7 py-2.5 flex items-center gap-1 rounded-[10px] text-xs font-semibold text-[#000000] '
 
                         onClick={() => {
                           if (currentStep === 4) {
@@ -1003,7 +1006,7 @@ const ThemePanel: React.FC = () => {
                           }
                         }}
                         style={{
-                          background: 'linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)'
+                          background: '#ffffff'
                         }}
                       >
                         {currentStep === 1 ? 'Generate theme palette' : currentStep === 2 ? 'Continue to Fonts' : currentStep === 3 ? 'Continue to Design' : 'Save as Custom Theme'}
@@ -1040,12 +1043,12 @@ const ThemePanel: React.FC = () => {
                 }
               }}
               // ref={previewContainerRef}
-              className=" w-full p-3 bg-muted">
+              className=" w-full p-3 bg-[#000000]">
               <div className="space-y-4">
                 <div
                   ref={slideContainerRef}
                   style={{ backgroundColor: 'var(--page-background-color)' }}
-                  className="overflow-y-auto overflow-x-hidden custom_scrollbar space-y-4 h-[90vh] rounded-lg shadow-lg border bg-card"
+                  className="overflow-y-auto overflow-x-hidden custom_scrollbar space-y-4 h-[90vh] rounded-[10px] shadow-lg border border-[#383838] bg-[#1d1d1d]"
                 >
                   {template && template.map((layout) => {
                     const {

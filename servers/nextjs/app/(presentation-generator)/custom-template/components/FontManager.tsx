@@ -54,12 +54,12 @@ const FontManager: React.FC<FontManagerProps> = ({
 
   return (
     <div className="my-8 max-w-[900px] mx-auto">
-      <div className="bg-card rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden">
+      <div className="bg-card rounded-2xl border border-[#383838] shadow-sm overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-[#F3F4F6] bg-[#FAFAFA]">
+        <div className="px-6 py-5 border-b border-[#383838] bg-[#1d1d1d]">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#EBE9FE] flex items-center justify-center">
-              <Type className="w-6 h-6 text-[#7A5AF8]" />
+            <div className="w-12 h-12 rounded-xl bg-[#383838] flex items-center justify-center">
+              <Type className="w-6 h-6 text-[#ffffff]" />
             </div>
             <div>
               <h2 className="text-xl font-semibold text-[#111827]">Font Management</h2>
@@ -78,7 +78,7 @@ const FontManager: React.FC<FontManagerProps> = ({
             <div className="p-4 bg-[#F0FDF4] rounded-xl border border-[#BBF7D0]">
               <div className="flex items-center gap-2 mb-3">
                 <CheckCircle2 className="w-5 h-5 text-[#16A34A]" />
-                <h4 className="text-sm font-semibold text-[#166534]">
+                <h4 className="text-sm font-semibold text-[#ffffff]">
                   Available Fonts ({fontsData.available_fonts.length})
                 </h4>
               </div>
@@ -86,7 +86,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {fontsData.available_fonts.map((font, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1.5 bg-card border border-[#D1FAE5] rounded-full text-xs font-medium text-[#166534] shadow-sm"
+                    className="px-3 py-1.5 bg-card border border-[#383838] rounded-full text-xs font-medium text-[#ffffff] shadow-sm"
                   >
                     {font.name}
                   </span>
@@ -97,7 +97,7 @@ const FontManager: React.FC<FontManagerProps> = ({
 
           {/* Fonts Needing Upload */}
           {fontsNeedingUpload.length > 0 && (
-            <div className="p-4 bg-[#FFFBEB] rounded-xl border border-[#FDE68A]">
+            <div className="p-4 bg-[#FFFBEB] rounded-xl border border-[#383838]">
               <div className="flex items-center gap-2 mb-4">
                 <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                 <h4 className="text-sm font-semibold text-[#92400E]">
@@ -109,7 +109,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {fontsNeedingUpload.map((font, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 bg-card rounded-xl border border-[#FDE68A] shadow-sm"
+                    className="flex items-center justify-between p-4 bg-card rounded-xl border border-[#383838] shadow-sm"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-[#FEF3C7] flex items-center justify-center">
@@ -156,7 +156,7 @@ const FontManager: React.FC<FontManagerProps> = ({
             <div className="p-4 bg-[#F0FDF4] rounded-xl border border-[#BBF7D0]">
               <div className="flex items-center gap-2 mb-4">
                 <CheckCircle2 className="w-5 h-5 text-[#16A34A]" />
-                <h4 className="text-sm font-semibold text-[#166534]">
+                <h4 className="text-sm font-semibold text-[#ffffff]">
                   Uploaded Fonts ({uploadedFonts.length})
                 </h4>
               </div>
@@ -164,19 +164,19 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {uploadedFonts.map((font, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 bg-card rounded-xl border border-[#D1FAE5] shadow-sm"
+                    className="flex items-center justify-between p-3 bg-card rounded-xl border border-[#383838] shadow-sm"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-[#DCFCE7] flex items-center justify-center">
                         <CheckCircle2 className="w-4 h-4 text-[#16A34A]" />
                       </div>
-                      <span className="text-sm font-medium text-[#166534]">
+                      <span className="text-sm font-medium text-[#ffffff]">
                         {font.fontName}
                       </span>
                     </div>
                     <button
                       onClick={() => removeFont(font.fontName)}
-                      className="p-2 rounded-full text-[#6B7280] hover:text-[#DC2626] hover:bg-[#FEE2E2] transition-colors"
+                      className="p-2 rounded-full text-[#6B7280] hover:text-[#DC2626] hover:bg-[#383838] transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -190,7 +190,7 @@ const FontManager: React.FC<FontManagerProps> = ({
         {/* Action Footer */}
         <div className={`px-6 py-5 border-t transition-colors duration-300 ${allFontsUploaded
           ? 'bg-[#F0FDF4] border-[#BBF7D0]'
-          : 'bg-[#FAFAFA] border-[#F3F4F6]'
+          : 'bg-[#1d1d1d] border-[#383838]'
           }`}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {!allFontsUploaded && (
@@ -214,7 +214,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                   ? 'bg-[#E5E7EB] text-[#9CA3AF]'
                   : allFontsUploaded
                     ? 'bg-[#16A34A] text-foreground hover:bg-[#15803D] shadow-sm'
-                    : 'bg-card text-[#374151] border border-[#E5E7EB] hover:bg-[#F9FAFB]'
+                    : 'bg-card text-[#ffffff] border border-[#383838] hover:bg-[#F9FAFB]'
                 }
               `}
             >

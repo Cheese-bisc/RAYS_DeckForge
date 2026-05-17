@@ -12,20 +12,20 @@ const steps = [
 ]
 
 export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => (
-  <div className="flex flex-col items-center gap-7 px-4 min-w-[104px] pt-8 border-r border-[#EDEEEF]">
+  <div className="flex flex-col items-center gap-7 px-4 min-w-[104px] pt-8 border-r border-[#383838]">
     {steps.map(({ step, label }) => {
       const isActive = currentStep === step
       return (
         <div key={step} className="flex flex-col items-center gap-1.5 px-3  ">
           <span
-            className={`px-2 py-0.5 rounded-full text-[9px] font-medium ${isActive
-              ? 'bg-[#7A5AF8] text-foreground'
-              : 'bg-card text-[#404348] border border-[#EDEEEF]'
+            className={`px-2 py-0.5 rounded-[10px] text-[9px] font-medium ${isActive
+              ? 'bg-[#ffffff] text-[#000000]'
+              : 'bg-[#1d1d1d] text-[#888888] border border-[#383838]'
               }`}
           >
             Step-{step}
           </span>
-          <span className="text-[11px] font-normal text-foreground">{label}</span>
+          <span className="text-[11px] font-normal text-[#ffffff]">{label}</span>
         </div>
       )
     })}

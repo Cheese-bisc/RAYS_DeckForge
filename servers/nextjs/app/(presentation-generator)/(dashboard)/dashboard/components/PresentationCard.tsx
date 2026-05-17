@@ -31,6 +31,7 @@ export const PresentationCard = ({
   const pathname = usePathname();
   const [showDeleteDialog, setShowDeleteDialog] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
 
   const handlePreview = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -131,8 +132,8 @@ export const PresentationCard = ({
               </p>
 
             </div>
-            <Popover>
-              <PopoverTrigger className="w-6 h-6 hover:bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground" onClick={(e) => e.stopPropagation()}>
+            <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+              <PopoverTrigger className="w-6 h-6 hover:bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground" onClick={(e) => { e.stopPropagation(); setIsPopoverOpen(true); }}>
                 <EllipsisVertical className="w-6 h-6 text-muted-foreground" />
               </PopoverTrigger>
               <PopoverContent align="end" className="bg-card w-[200px]">
@@ -141,6 +142,7 @@ export const PresentationCard = ({
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    setIsPopoverOpen(false);
                     setShowDeleteDialog(true);
                   }}
                 >

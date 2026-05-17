@@ -5,10 +5,7 @@ import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { handleSaveLLMConfig } from "@/utils/storeHelpers";
-import {
-  checkIfSelectedOllamaModelIsPulled,
-  pullOllamaModel,
-} from "@/utils/providerUtils";
+
 import { LLMConfig } from "@/types/llm_config";
 import { usePathname } from "next/navigation";
 import OnBoardingSlidebar from "./OnBoarding/OnBoardingSlidebar";
@@ -18,15 +15,7 @@ import DeckforgeMode from "./OnBoarding/DeckforgeMode";
 import GenerationWithImage from "./OnBoarding/GenerationWithImage";
 import FinalStep from "./OnBoarding/FinalStep";
 
-// Button state interface
-interface ButtonState {
-  isLoading: boolean;
-  isDisabled: boolean;
-  text: string;
-  showProgress: boolean;
-  progressPercentage?: number;
-  status?: string;
-}
+
 
 
 export default function Home() {

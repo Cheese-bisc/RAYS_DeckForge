@@ -906,7 +906,7 @@ export const SchemaEditor: React.FC<SchemaEditorProps> = ({
                                             setExpandedFields(new Set());
                                         }
                                     }}
-                                    className="text-[10px] font-medium text-muted-foreground hover:text-violet-600 transition-colors"
+                                    className="text-[10px] font-medium text-muted-foreground hover:text-[#ffffff] transition-colors"
                                 >
                                     {areAllCollapsed ? 'Expand all' : 'Collapse all'}
                                 </button>

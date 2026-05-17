@@ -11,7 +11,6 @@ import {
 } from "@/utils/storeHelpers";
 import {
   checkIfSelectedOllamaModelIsPulled,
-  pullOllamaModel,
 } from "@/utils/providerUtils";
 import { useRouter, usePathname } from "next/navigation";
 import { LLMConfig } from "@/types/llm_config";
@@ -56,28 +55,7 @@ const SettingsPage = () => {
     showProgress: false,
   });
 
-  const [downloadingModel, setDownloadingModel] = useState<{
-    name: string;
-    size: number | null;
-    downloaded: number | null;
-    status: string;
-    done: boolean;
-  } | null>(null);
-  const [showDownloadModal, setShowDownloadModal] = useState<boolean>(false);
-  const downloadAbortRef = React.useRef<AbortController | null>(null);
 
-  const downloadProgress = React.useMemo(() => {
-    if (
-      downloadingModel &&
-      downloadingModel.downloaded !== null &&
-      downloadingModel.size !== null
-    ) {
-      return Math.round(
-        (downloadingModel.downloaded / downloadingModel.size) * 100
-      );
-    }
-    return 0;
-  }, [downloadingModel?.downloaded, downloadingModel?.size]);
 
   const ensureSelectedStockProviderReady = async (): Promise<boolean> => {
     if (llmConfig.DISABLE_IMAGE_GENERATION) {
@@ -155,25 +133,7 @@ const SettingsPage = () => {
         text: "Saving Configuration...",
       }));
       await handleSaveLLMConfig(llmConfig);
-      if (llmConfig.LLM === "ollama" && llmConfig.OLLAMA_MODEL) {
-        const isPulled = await checkIfSelectedOllamaModelIsPulled(
-          llmConfig.OLLAMA_MODEL
-        );
-        if (!isPulled) {
-          setShowDownloadModal(true);
-          setDownloadingModel({
-            name: llmConfig.OLLAMA_MODEL || "",
-            size: null,
-            downloaded: null,
-            status: "pulling",
-            done: false,
-          });
-          const downloadOutcome = await handleModelDownload();
-          if (downloadOutcome === "cancelled") {
-            return;
-          }
-        }
-      }
+
       notify.success(
         "Settings saved",
         "Your configuration was saved successfully."
@@ -199,71 +159,7 @@ const SettingsPage = () => {
     }
   };
 
-  const handleModelDownload = async (): Promise<"completed" | "cancelled"> => {
-    const ac = new AbortController();
-    downloadAbortRef.current = ac;
-    try {
-      await pullOllamaModel(
-        llmConfig.OLLAMA_MODEL!,
-        setDownloadingModel,
-        ac.signal
-      );
-      return "completed";
-    } catch (e) {
-      const aborted = e instanceof Error && e.name === "AbortError";
-      if (aborted) {
-        setDownloadingModel(null);
-        setShowDownloadModal(false);
-        setButtonState({
-          isLoading: false,
-          isDisabled: false,
-          text: "Save Configuration",
-          showProgress: false,
-        });
-        notify.info(
-          "Download cancelled",
-          "The Ollama model download was stopped. Your settings are already saved—you can save again to retry the download."
-        );
-        return "cancelled";
-      }
-      setDownloadingModel(null);
-      setShowDownloadModal(false);
-      throw e;
-    } finally {
-      downloadAbortRef.current = null;
-    }
-  };
 
-  useEffect(() => {
-    if (
-      downloadingModel &&
-      downloadingModel.downloaded !== null &&
-      downloadingModel.size !== null
-    ) {
-      const percentage = Math.round(
-        (downloadingModel.downloaded / downloadingModel.size) * 100
-      );
-      setButtonState({
-        isLoading: true,
-        isDisabled: true,
-        text: `Downloading Model (${percentage}%)`,
-        showProgress: true,
-        progressPercentage: percentage,
-        status: downloadingModel.status,
-      });
-    }
-
-    if (downloadingModel && downloadingModel.done) {
-      setTimeout(() => {
-        setShowDownloadModal(false);
-        setDownloadingModel(null);
-        notify.success(
-          "Model ready",
-          "The Ollama model finished downloading successfully."
-        );
-      }, 2000);
-    }
-  }, [downloadingModel]);
 
   useEffect(() => {
     if (!canChangeKeys) {
@@ -287,13 +183,13 @@ const SettingsPage = () => {
           ? llmConfig.VERTEX_MODEL
           : textProviderKey === "azure"
             ? llmConfig.AZURE_OPENAI_MODEL
-        : textProviderKey === "anthropic"
-          ? llmConfig.ANTHROPIC_MODEL
-          : textProviderKey === "ollama"
-            ? llmConfig.OLLAMA_MODEL
-            : textProviderKey === "custom"
-              ? llmConfig.CUSTOM_MODEL
-                : "";
+            : textProviderKey === "anthropic"
+              ? llmConfig.ANTHROPIC_MODEL
+              : textProviderKey === "ollama"
+                ? llmConfig.OLLAMA_MODEL
+                : textProviderKey === "custom"
+                  ? llmConfig.CUSTOM_MODEL
+                  : "";
   const textSummary = selectedTextModel
     ? `${textProviderLabel} (${selectedTextModel})`
     : textProviderLabel;
@@ -390,104 +286,6 @@ const SettingsPage = () => {
         </div>
       ) : null}
 
-      {/* Download Progress Modal */}
-      {showDownloadModal && downloadingModel && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="rounded-[10px] max-w-md w-full p-6 relative" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
-            {/* Modal Content */}
-            <div className="text-center">
-              {/* Icon */}
-              <div className="mb-4">
-                {downloadingModel.done ? (
-                  <CheckCircle className="w-12 h-12 mx-auto" style={{ color: '#ffffff' }} />
-                ) : (
-                  <Download className="w-12 h-12 mx-auto animate-pulse" style={{ color: '#888888' }} />
-                )}
-              </div>
-
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {downloadingModel.done
-                  ? "Download Complete!"
-                  : "Downloading Model"}
-              </h3>
-
-              {/* Model Name */}
-              <p className="text-sm text-foreground mb-6">
-                {llmConfig.OLLAMA_MODEL}
-              </p>
-
-              {/* Progress Bar */}
-              {downloadProgress > 0 && (
-                <div className="mb-4">
-                  <div className="w-full rounded-full h-3 overflow-hidden" style={{ background: '#383838' }}>
-                    <div
-                      className="h-3 rounded-full transition-all duration-300 ease-out"
-                      style={{ width: `${downloadProgress}%`, background: '#ffffff' }}
-                    />
-                  </div>
-                  <p className="text-sm text-foreground mt-2">
-                    {downloadProgress}% Complete
-                  </p>
-                </div>
-              )}
-
-              {/* Status */}
-              {downloadingModel.status && (
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <CheckCircle className="w-4 h-4" style={{ color: '#ffffff' }} />
-                  <span className="text-sm font-medium capitalize" style={{ color: '#ffffff' }}>
-                    {downloadingModel.status}
-                  </span>
-                </div>
-              )}
-
-              {/* Status Message */}
-              {downloadingModel.status &&
-                downloadingModel.status !== "pulled" && (
-                  <div className="text-xs text-muted-foreground">
-                    {downloadingModel.status === "downloading" &&
-                      "Downloading model files..."}
-                    {downloadingModel.status === "verifying" &&
-                      "Verifying model integrity..."}
-                    {downloadingModel.status === "pulling" &&
-                      "Pulling model from registry..."}
-                  </div>
-                )}
-
-              {/* Download Info */}
-              {downloadingModel.downloaded && downloadingModel.size && (
-                <div className="mt-4 p-3 rounded-[10px]" style={{ background: '#000000', border: '1px solid #383838' }}>
-                  <div className="flex justify-between text-xs text-foreground">
-                    <span>
-                      Downloaded:{" "}
-                      {(downloadingModel.downloaded / 1024 / 1024).toFixed(1)}{" "}
-                      MB
-                    </span>
-                    <span>
-                      Total: {(downloadingModel.size / 1024 / 1024).toFixed(1)}{" "}
-                      MB
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {!downloadingModel.done && (
-                <div className="mt-6 flex justify-center">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="rounded-lg border-border text-foreground hover:bg-muted"
-                    onClick={() => downloadAbortRef.current?.abort()}
-                  >
-                    Cancel download
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

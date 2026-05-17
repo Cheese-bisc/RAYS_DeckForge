@@ -47,28 +47,28 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
         <div className="space-y-6 font-syne ">
             {isLoading && (!outlines || outlines.length === 0) && (
                 <div className="flex items-center justify-center">
-                    <span className="inline-flex items-center gap-1 rounded-full border border-blue-200 bg-blue-50 text-blue-600 px-2 py-0.5 text-xs">
-                        <Loader2 className="h-3 w-3 animate-spin" />
+                    <span className="inline-flex items-center gap-1 rounded-[10px] border border-[#383838] bg-[#1d1d1d] text-[#ffffff] px-2 py-0.5 text-xs">
+                        <Loader2 className="h-3 w-3 animate-spin text-[#ffffff]" />
                         Thinking
                     </span>
                 </div>
             )}
 
             {isLoading && (
-                <div className="space-y-4 bg-card">
+                <div className="space-y-4">
                     {[...Array(6)].map((_, index) => (
                         <div key={index} className="animate-pulse">
-                            <div className="flex items-start space-x-3 p-4 border rounded-lg bg-card">
-                                <div className="w-6 h-6 bg-muted rounded-full flex-shrink-0"></div>
+                            <div className="flex items-start space-x-3 p-4 border border-[#383838] rounded-[10px] bg-[#1d1d1d]">
+                                <div className="w-6 h-6 bg-[#383838] rounded-full flex-shrink-0"></div>
                                 <div className="flex-1 space-y-2">
-                                    <div className="h-5 bg-muted rounded w-3/4"></div>
+                                    <div className="h-5 bg-[#383838] rounded w-3/4"></div>
                                     <div className="space-y-1">
-                                        <div className="h-4 bg-muted rounded w-full"></div>
-                                        <div className="h-4 bg-muted rounded w-5/6"></div>
-                                        <div className="h-4 bg-muted rounded w-4/6"></div>
+                                        <div className="h-4 bg-[#383838] rounded w-full"></div>
+                                        <div className="h-4 bg-[#383838] rounded w-5/6"></div>
+                                        <div className="h-4 bg-[#383838] rounded w-4/6"></div>
                                     </div>
                                 </div>
-                                <div className="w-5 h-5 bg-muted rounded flex-shrink-0"></div>
+                                <div className="w-5 h-5 bg-[#383838] rounded flex-shrink-0"></div>
                             </div>
                         </div>
                     ))}
@@ -78,7 +78,7 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
             {/* Outlines content */}
 
             {outlines && outlines.length > 0 && (
-                <div className="bg-[#F9F8F8] p-7 relative z-20 rounded-[20px] min-h-[calc(100vh-200px)]">
+                <div className="bg-[#1d1d1d] p-7 relative z-20 rounded-[10px] min-h-[calc(100vh-200px)] border border-[#383838]">
                     <DndContext
                         sensors={sensors}
                         collisionDetection={closestCenter}
@@ -108,7 +108,7 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
                             onAddSlide();
                         }}
                         disabled={isLoading || isStreaming}
-                        className="w-full my-4 text-blue-600 border-blue-200"
+                        className="w-full my-4 text-[#ffffff] border-[#383838] bg-[#000000] hover:bg-[#383838] transition-colors rounded-[8px]"
                     >
                         + Add Slide
                     </Button>
@@ -117,15 +117,15 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
 
             {/* Empty state */}
             {!isStreaming && !isLoading && outlines && outlines.length === 0 && (
-                <div className="text-center py-12 bg-card rounded-lg border-2 border-dashed border-border">
-                    <FileText className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-foreground mb-4">No outlines available</p>
+                <div className="text-center py-12 bg-[#1d1d1d] rounded-[10px] border-2 border-dashed border-[#383838]">
+                    <FileText className="w-12 h-12 text-[#888888] mx-auto mb-4" />
+                    <p className="text-[#ffffff] mb-4">No outlines available</p>
                     <Button
                         variant="outline"
                         onClick={() => {
                             onAddSlide();
                         }}
-                        className="text-blue-600 border-blue-200"
+                        className="text-[#ffffff] border-[#383838] bg-[#000000] hover:bg-[#383838] rounded-[8px]"
                     >
                         + Add First Slide
                     </Button>

@@ -14,7 +14,6 @@ import { Switch } from '../ui/switch';
 import { Select, SelectItem, SelectContent, SelectValue, SelectTrigger } from '../ui/select';
 import { usePathname } from 'next/navigation';
 import { handleSaveLLMConfig } from '@/utils/storeHelpers';
-import { checkIfSelectedOllamaModelIsPulled, pullOllamaModel } from '@/utils/providerUtils';
 import { getApiUrl } from '@/utils/api';
 
 const MANUAL_MODEL_PROVIDERS = new Set(["vertex", "azure"]);
@@ -30,18 +29,10 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
     const [openModelSelect, setOpenModelSelect] = useState(false);
     const [modelsLoading, setModelsLoading] = useState(false);
     const [modelsChecked, setModelsChecked] = useState(false);
-    const [showDownloadModal, setShowDownloadModal] = useState(false);
     const [savingConfig, setSavingConfig] = useState(false);
     const [llmConfig, setLlmConfig] = useState<LLMConfig>(
         userConfigState.llm_config
     );
-    const [downloadingModel, setDownloadingModel] = useState<{
-        name: string;
-        size: number | null;
-        downloaded: number | null;
-        status: string;
-        done: boolean;
-    } | null>(null);
     const isManualModelProvider = MANUAL_MODEL_PROVIDERS.has(llmConfig.LLM || "");
 
     const handleProviderChange = (provider: string) => {
@@ -303,15 +294,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
         return null;
     };
-    const handleModelDownload = async () => {
-        try {
-            await pullOllamaModel(llmConfig.OLLAMA_MODEL!, setDownloadingModel);
-        }
-        finally {
-            setDownloadingModel(null);
-            setShowDownloadModal(false);
-        }
-    };
+
     const checkCurrentAuthStatus = async () => {
         try {
             const res = await fetch(getApiUrl("/api/v1/ppt/codex/auth/status"));
@@ -343,15 +326,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
             console.log("[handleSaveConfig] Calling handleSaveLLMConfig...");
             await handleSaveLLMConfig(llmConfig, { skipImages: true });
 
-            if (llmConfig.LLM === "ollama" && llmConfig.OLLAMA_MODEL) {
-                console.log("[handleSaveConfig] Checking Ollama model:", llmConfig.OLLAMA_MODEL);
-                const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
-                console.log("[handleSaveConfig] isPulled:", isPulled);
-                if (!isPulled) {
-                    setShowDownloadModal(true);
-                    await handleModelDownload();
-                }
-            }
+
 
             console.log("[handleSaveConfig] Save successful, moving to Step 3");
             toast.info("Configuration saved successfully");
@@ -365,12 +340,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
         }
     };
 
-    const downloadProgress = useMemo(() => {
-        if (downloadingModel && downloadingModel.downloaded !== null && downloadingModel.size !== null) {
-            return Math.round((downloadingModel.downloaded / downloadingModel.size) * 100);
-        }
-        return 0;
-    }, [downloadingModel?.downloaded, downloadingModel?.size]);
+
 
     useEffect(() => {
         if (llmConfig.LLM === 'ollama' && !modelsChecked && !modelsLoading) {
@@ -1038,78 +1008,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     Continue to Finish
                 </button>
             </div>
-            {/* Download Progress Modal */}
-            {showDownloadModal && downloadingModel && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl max-w-md w-full p-6 relative">
-                        {/* Modal Content */}
-                        <div className="text-center">
-                            {/* Icon */}
-                            <div className="mb-4">
-                                {downloadingModel.done ? (
-                                    <CheckCircle className="w-12 h-12 text-green-600 mx-auto" />
-                                ) : (
-                                    <Download className="w-12 h-12 text-blue-600 mx-auto animate-pulse" />
-                                )}
-                            </div>
 
-                            {/* Title */}
-                            <h3 className="text-lg font-semibold text-foreground mb-2">
-                                {downloadingModel.done ? "Download Complete!" : "Downloading Model"}
-                            </h3>
-
-                            {/* Model Name */}
-                            <p className="text-sm text-foreground mb-6">
-                                {llmConfig.OLLAMA_MODEL}
-                            </p>
-
-                            {/* Progress Bar */}
-                            {downloadProgress > 0 && (
-                                <div className="mb-4">
-                                    <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                                        <div
-                                            className="bg-blue-600 h-3 rounded-full transition-all duration-300 ease-out"
-                                            style={{ width: `${downloadProgress}%` }}
-                                        />
-                                    </div>
-                                    <p className="text-sm text-foreground mt-2">
-                                        {downloadProgress}% Complete
-                                    </p>
-                                </div>
-                            )}
-
-                            {/* Status */}
-                            {downloadingModel.status && (
-                                <div className="flex items-center justify-center gap-2 mb-4">
-                                    <CheckCircle className="w-4 h-4 text-green-600" />
-                                    <span className="text-sm font-medium text-green-700 capitalize">
-                                        {downloadingModel.status}
-                                    </span>
-                                </div>
-                            )}
-
-                            {/* Status Message */}
-                            {downloadingModel.status && downloadingModel.status !== "pulled" && (
-                                <div className="text-xs text-muted-foreground">
-                                    {downloadingModel.status === "downloading" && "Downloading model files..."}
-                                    {downloadingModel.status === "verifying" && "Verifying model integrity..."}
-                                    {downloadingModel.status === "pulling" && "Pulling model from registry..."}
-                                </div>
-                            )}
-
-                            {/* Download Info */}
-                            {downloadingModel.downloaded && downloadingModel.size && (
-                                <div className="mt-4 p-3 bg-muted rounded-lg">
-                                    <div className="flex justify-between text-xs text-foreground">
-                                        <span>Downloaded: {(downloadingModel.downloaded / 1024 / 1024).toFixed(1)} MB</span>
-                                        <span>Total: {(downloadingModel.size / 1024 / 1024).toFixed(1)} MB</span>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }

@@ -61,7 +61,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                     </label>
                     <div className="">
                         <Select value={llmConfig.DALL_E_3_QUALITY || 'standard'} onValueChange={(value) => input_field_changed(value, "DALL_E_3_QUALITY")}>
-                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between">
+                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors hover:border-[#383838] justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -89,7 +89,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                         >
                             <SelectTrigger
 
-                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between">
+                                className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors hover:border-[#383838] justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -111,9 +111,9 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
 
 
     return (
-        <div className="space-y-6 bg-card p-7 rounded-[12px] ">
+        <div className="space-y-6 bg-[#1d1d1d] p-7 rounded-[12px] ">
             {/* API Key Input */}
-            <div className="mb-4  bg-card p-10 pt-5 rounded-[12px]">
+            <div className="mb-4  bg-[#1d1d1d] p-10 pt-5 rounded-[12px]">
                 <ToolTip content="Enable/Disable Image Generation" className='flex justify-end items-center'>
                     <div className='flex justify-end items-center'>
                         <Switch
@@ -159,7 +159,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                                         variant="outline"
                                                         role="combobox"
                                                         aria-expanded={openImageProviderSelect}
-                                                        className="w-[205px] h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between"
+                                                        className="w-[205px] h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors hover:border-[#383838] justify-between"
                                                     >
                                                         <div className="flex gap-3 items-center">
                                                             <span className="text-sm font-medium text-foreground">
@@ -245,7 +245,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                                                 <input
                                                                     type="text"
                                                                     placeholder="http://192.168.1.7:8188"
-                                                                    className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                                                    className="w-full px-4 py-2.5 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                                     value={llmConfig.COMFYUI_URL || ""}
                                                                     onChange={(e) => {
                                                                         input_field_changed(
@@ -274,7 +274,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                                                 <input
                                                                     type="text"
                                                                     placeholder="http://localhost:3000/api/v1"
-                                                                    className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                                                    className="w-full px-4 py-2.5 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                                     value={llmConfig.OPEN_WEBUI_IMAGE_URL || ""}
                                                                     onChange={(e) => {
                                                                         input_field_changed(
@@ -299,7 +299,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                                         <input
                                                             type={showApiKey ? 'text' : 'password'}
                                                             placeholder={`Enter your ${provider.apiKeyFieldLabel}`}
-                                                            className="w-full px-4 py-2.5 h-12 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                                            className="w-full px-4 py-2.5 h-12 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                             value={getFieldValue(provider.apiKeyField)}
                                                             onChange={(e) =>
                                                                 updateFieldValue(
@@ -311,7 +311,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                                         <button
                                                             type="button"
                                                             onClick={() => setShowApiKey((prev) => !prev)}
-                                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
+                                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-[#1d1d1d] px-2 py-1 cursor-pointer'
                                                         >
                                                             {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                                         </button>
@@ -336,7 +336,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                         <input
                                             type={showApiKey ? 'text' : 'password'}
                                             placeholder="API key"
-                                            className="w-full px-4 py-2.5 h-12 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-4 py-2.5 h-12 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             value={llmConfig.OPEN_WEBUI_IMAGE_API_KEY || ""}
                                             onChange={(e) => {
                                                 input_field_changed(e.target.value, "OPEN_WEBUI_IMAGE_API_KEY");
@@ -345,7 +345,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                         <button
                                             type="button"
                                             onClick={() => setShowApiKey((prev) => !prev)}
-                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
+                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-[#1d1d1d] px-2 py-1 cursor-pointer'
                                         >
                                             {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                         </button>
@@ -359,7 +359,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
                                 <div className="relative">
                                     <textarea
                                         placeholder='Paste your ComfyUI workflow JSON here (export via "Export (API)" in ComfyUI)'
-                                        className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors font-mono text-xs"
+                                        className="w-full px-4 py-2.5 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors font-mono text-xs bg-transparent text-foreground"
                                         rows={3}
                                         value={llmConfig.COMFYUI_WORKFLOW || ""}
                                         onChange={(e) => {
@@ -379,7 +379,7 @@ const ImageProvider = ({ llmConfig, setLlmConfig }: { llmConfig: LLMConfig, setL
 
 
             {/* Web Grounding Toggle - show at the end, below models dropdown */}
-            {/* <div className="bg-card flex justify-between items-center p-10 rounded-[12px]">
+            {/* <div className="bg-[#1d1d1d] flex justify-between items-center p-10 rounded-[12px]">
                 <div className=' max-w-[290px]'>
 
                     <h4 className="text-xl font-normal text-foreground">Advanced</h4>

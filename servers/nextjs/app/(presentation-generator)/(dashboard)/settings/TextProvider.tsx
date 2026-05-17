@@ -169,7 +169,7 @@ const TextProvider = ({
                     }),
                 });
             } else if (selectedProvider === 'ollama') {
-                response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/supported'));
+                response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/available'));
             } else {
                 response = await fetch(getApiUrl('/api/v1/ppt/openai/models/available'), {
                     method: 'POST',
@@ -197,11 +197,11 @@ const TextProvider = ({
                                 }
 
                                 if (model && typeof model === 'object') {
-                                    const typedModel = model as { value?: string; label?: string; size?: string };
+                                    const typedModel = model as { value?: string; label?: string; size?: string | number, name?: string };
                                     return {
-                                        value: typedModel.value || typedModel.label || '',
-                                        label: typedModel.label || typedModel.value || '',
-                                        size: typedModel.size,
+                                        value: typedModel.value || typedModel.name || typedModel.label || '',
+                                        label: typedModel.label || typedModel.name || typedModel.value || '',
+                                        size: typeof typedModel.size === 'number' ? `${(typedModel.size / 1024 / 1024 / 1024).toFixed(1)} GB` : typedModel.size,
                                     };
                                 }
 
@@ -272,12 +272,12 @@ const TextProvider = ({
     }, [selectedProvider, modelsChecked, modelsLoading]);
 
     return (
-        <div className="space-y-6 bg-card p-7 rounded-[12px] ">
+        <div className="space-y-6 bg-[#1d1d1d] p-7 rounded-[12px] ">
             {/* API Key Input */}
-            <div className="mb-4 flex items-end justify-between rounded-[12px] bg-card pt-5 pb-10 px-10">
+            <div className="mb-4 flex items-end justify-between rounded-[12px] bg-[#1d1d1d] pt-5 pb-10 px-10">
                 <div className=" max-w-[290px] ">
                     <div className='w-[60px] h-[60px] rounded-[4px] flex items-center justify-center'
-                        style={{ backgroundColor: '#4C55541A' }}
+                        style={{ backgroundColor: '#1d1d1d' }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <path d="M15.9459 5.31543V26.5767" stroke="#4C5554" strokeWidth="1.59459" strokeLinecap="round" strokeLinejoin="round" />
@@ -306,7 +306,7 @@ const TextProvider = ({
                                             variant="outline"
                                             role="combobox"
                                             aria-expanded={openProviderSelect}
-                                            className="w-[222px] h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between"
+                                            className="w-[222px] h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors hover:border-[#383838] justify-between"
                                         >
                                             <div className="flex gap-3 items-center">
                                                 <span className="text-sm font-medium text-foreground">
@@ -382,7 +382,7 @@ const TextProvider = ({
                                                         onInputChange('http://localhost:11434', 'OLLAMA_URL');
                                                     }
                                                 }}
-                                                className="mt-8 py-2.5 bg-muted px-3.5 w-fit rounded-[48px] text-xs font-semibold text-foreground transition-all duration-200 border border-border hover:bg-accent focus:ring-2 focus:ring-ring/30"
+                                                className="mt-8 py-2.5 bg-muted px-3.5 w-fit rounded-[48px] text-xs font-semibold text-foreground transition-all duration-200 border border-[#383838] hover:bg-accent focus:ring-2 focus:ring-ring/30"
                                             >
                                                 Use Ollama URL
                                             </button>
@@ -396,7 +396,7 @@ const TextProvider = ({
                                                         type="text"
                                                         value={currentOllamaUrl}
                                                         onChange={(e) => onApiKeyChange(selectedProvider, e.target.value)}
-                                                        className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                         placeholder="http://localhost:11434"
                                                     />
                                                 </div>
@@ -423,13 +423,13 @@ const TextProvider = ({
                                                     type={showApiKey ? 'text' : 'password'}
                                                     value={currentApiKey}
                                                     onChange={(e) => onApiKeyChange(selectedProvider, e.target.value)}
-                                                    className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                                    className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                     placeholder={`Enter your ${providerApiKeyLabel}`}
                                                 />
                                                 <button
                                                     type="button"
                                                     onClick={() => setShowApiKey((prev) => !prev)}
-                                                    className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
+                                                    className='absolute right-2 top-1/2 -translate-y-1/2 bg-[#1d1d1d] px-2 py-1 cursor-pointer'
                                                 >
                                                     {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                                 </button>
@@ -441,7 +441,7 @@ const TextProvider = ({
                                         type="text"
                                         value={currentCustomUrl}
                                         onChange={(e) => onInputChange(e.target.value, 'CUSTOM_LLM_URL')}
-                                        className="w-full mt-2 px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                        className="w-full mt-2 px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="OpenAI-compatible URL"
                                     />
                                 )}
@@ -451,21 +451,21 @@ const TextProvider = ({
                                             type="text"
                                             value={llmConfig.VERTEX_PROJECT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_PROJECT')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="GCP project (optional if API key used)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.VERTEX_LOCATION || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_LOCATION')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="GCP location (optional)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.VERTEX_BASE_URL || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_BASE_URL')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="Vertex base URL (optional)"
                                         />
                                     </div>
@@ -476,28 +476,28 @@ const TextProvider = ({
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_ENDPOINT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_ENDPOINT')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="Azure endpoint (https://...openai.azure.com)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_BASE_URL || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_BASE_URL')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="Azure base URL (optional alternative)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_API_VERSION || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_API_VERSION')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="API version (e.g. 2024-10-21)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_DEPLOYMENT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_DEPLOYMENT')}
-                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder="Deployment name (optional)"
                                         />
                                     </div>
@@ -517,8 +517,8 @@ const TextProvider = ({
                                         (selectedProvider === 'custom' && !currentCustomUrl)
                                     }
                                     className={`mt-4 py-2.5 bg-muted px-3.5 w-fit  rounded-[48px] text-xs font-semibold text-foreground transition-all duration-200 border ${modelsLoading
-                                        ? " border-border cursor-not-allowed text-muted-foreground"
-                                        : " border-border text-foreground hover:bg-accent focus:ring-2 focus:ring-ring/30"
+                                        ? " border-[#383838] cursor-not-allowed text-muted-foreground"
+                                        : " border-[#383838] text-foreground hover:bg-accent focus:ring-2 focus:ring-ring/30"
                                         }`}
                                 >
                                     {modelsLoading ? (
@@ -550,7 +550,7 @@ const TextProvider = ({
                                                 variant="outline"
                                                 role="combobox"
                                                 aria-expanded={openModelSelect}
-                                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between"
+                                                className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors hover:border-[#383838] justify-between"
                                             >
                                                 <span className="text-sm truncate font-medium text-foreground">
                                                     {(() => {
@@ -634,7 +634,7 @@ const TextProvider = ({
                                         onInputChange(e.target.value, currentModelField);
                                     }
                                 }}
-                                className="w-full h-12 px-4 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
+                                className="w-full h-12 px-4 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                 placeholder={
                                     selectedProvider === 'vertex'
                                         ? 'e.g. gemini-2.5-flash'
@@ -656,7 +656,7 @@ const TextProvider = ({
 
 
 
-            {/* <div className="bg-card flex justify-between items-center p-10 rounded-[12px]">
+            {/* <div className="bg-[#1d1d1d] flex justify-between items-center p-10 rounded-[12px]">
                 <div className=' max-w-[290px]'>
 
                     <h4 className="text-xl font-normal text-foreground">Advanced</h4>

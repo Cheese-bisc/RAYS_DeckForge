@@ -185,7 +185,7 @@ const CustomTemplatePage = () => {
 
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-muted to-card">
+        <div className="min-h-screen bg-[#000000]">
 
             <Header />
             <TemplateStudioHeader />

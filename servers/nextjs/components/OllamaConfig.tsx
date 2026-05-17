@@ -42,12 +42,17 @@ export default function OllamaConfig({
   const fetchOllamaModels = async () => {
     try {
       setOllamaModelsLoading(true);
-      const response = await fetch(getApiUrl("/api/v1/ppt/ollama/models/supported"));
+      const response = await fetch(getApiUrl("/api/v1/ppt/ollama/models/available"));
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        setOllamaModels(data);
+        const mappedData = data.map((model: any) => ({
+          label: model.name,
+          value: model.name,
+          size: model.size || "Unknown size",
+        }));
+        console.log(mappedData);
+        setOllamaModels(mappedData);
       } else {
         console.error('Failed to fetch Ollama models');
         setOllamaModels([]);
@@ -105,7 +110,7 @@ export default function OllamaConfig({
       {/* Model Selection */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-foreground mb-3">
-          Choose a supported model
+          Choose an installed model
         </label>
         <div className="w-full">
           {ollamaModelsLoading ? (
@@ -208,7 +213,7 @@ export default function OllamaConfig({
         </div>
         {(!ollamaModels || ollamaModels.length === 0) && !ollamaModelsLoading && (
           <p className="mt-2 text-sm text-muted-foreground">
-            No models available. Please check your Ollama connection.
+            No models available. An administrator must install models on the server.
           </p>
         )}
       </div>
