@@ -172,7 +172,7 @@ const TableOrChart: React.FC<SlideLayoutProps> = ({ data: slideData }) => {
         <div className="px-12 pt-6">
           {mode === "table" ? (
             <div className="rounded-xl p-5" style={{ backgroundColor: 'var(--primary-color, #BFF4FF)' }}>
-              <div className="overflow-x-auto rounded-lg bg-white ring-1" style={{ borderColor: 'var(--stroke, #E5E7EB)' }}>
+              <div className="overflow-x-auto rounded-lg bg-card ring-1" style={{ borderColor: 'var(--stroke, #E5E7EB)' }}>
                 <table className="w-full border-separate border-spacing-0">
                   <thead className="w-full">
                     <tr>

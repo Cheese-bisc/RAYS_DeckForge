@@ -70,13 +70,13 @@ const CHART_COLORS = ['#1F8A2E', '#A8D9A8', '#4CAF50', '#81C784', '#EC4899', '#1
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-sm font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-sm font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-xs" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -383,7 +383,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex flex-row p-[60px] gap-[40px]"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex flex-row p-[60px] gap-[40px]"
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -393,19 +393,19 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                 {/* Left Column */}
                 <div className="flex flex-col basis-[42%] justify-start">
-                    <h1 className="text-[42.7px] text-black  font-bold leading-[1.1] mb-[20px] tracking-[-1.6px]"
+                    <h1 className="text-[42.7px] text-foreground  font-bold leading-[1.1] mb-[20px] tracking-[-1.6px]"
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
                         {title}
                     </h1>
-                    <p className="text-[16px] text-black  leading-[1.6] mb-[40px]"
+                    <p className="text-[16px] text-foreground  leading-[1.6] mb-[40px]"
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
                         {description}
                     </p>
                     <div className="grid grid-cols-2 gap-[25px]">
                         {metrics?.map((metric, index) => (
-                            <div key={index} className="bg-[#1F8A2E] rounded-[8px] p-[20px] flex flex-col items-center justify-center text-white text-center shadow-md min-h-[150px]"
+                            <div key={index} className="bg-[#1F8A2E] rounded-[8px] p-[20px] flex flex-col items-center justify-center text-foreground text-center shadow-md min-h-[150px]"
 
                                 style={{ backgroundColor: 'var(--primary-color,#1F8A2E)' }}
                             >
@@ -425,7 +425,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 </div>
 
                 {/* Right Column */}
-                <div className="flex flex-col basis-[58%] bg-white border-[1.3px] border-[#F0F0F2] rounded-[6px] p-[20px]"
+                <div className="flex flex-col basis-[58%] bg-card border-[1.3px] border-[#F0F0F2] rounded-[6px] p-[20px]"
 
                     style={{ borderColor: 'var(--stroke,#F0F0F2)', backgroundColor: 'var(--card-color,#FFFFFF)' }}
                 >
@@ -434,13 +434,13 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                             style={{ backgroundColor: 'var(--primary-color,#1F8A2E)' }}
                         >
-                            <span className="text-white  font-bold text-[28.4px]"
+                            <span className="text-foreground  font-bold text-[28.4px]"
                                 style={{ color: 'var(--primary-text,#FFFFFF)' }}
                             >
                                 {chart?.title}
                             </span>
                         </div>
-                        <div className="text-black  text-[18.7px]"
+                        <div className="text-foreground  text-[18.7px]"
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
                             {chart?.topLabel}
@@ -455,7 +455,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                         <div className={`w-[12px] h-[12px] rounded-full ${i === 0 ? 'bg-[#1F8A2E]' : 'bg-[#A8D9A8]'}`}
                                             style={{ backgroundColor: i === 0 ? 'var(--graph-0, #1F8A2E)' : 'var(--graph-1, #A8D9A8)' }}
                                         />
-                                        <span className="text-[12px] text-black font-['Open_Sans_Regular']"
+                                        <span className="text-[12px] text-foreground font-['Open_Sans_Regular']"
                                             style={{ color: 'var(--background-text,#000000)' }}
                                         >{name}</span>
                                     </div>
@@ -469,7 +469,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                         </div>
 
-                        <div className="absolute bottom-[0px] right-[20px] text-black font-['Playfair_Display_Regular'] text-[16px]"
+                        <div className="absolute bottom-[0px] right-[20px] text-foreground font-['Playfair_Display_Regular'] text-[16px]"
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
                             {chart?.bottomLabel}

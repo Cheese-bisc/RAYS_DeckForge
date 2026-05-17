@@ -307,16 +307,7 @@ const SettingsPage = () => {
 
 
   return (
-    <div className="h-screen font-syne flex flex-col overflow-hidden relative">
-      <div
-        className="fixed z-0 bottom-[-14.5rem] left-0 w-full h-full"
-        style={{
-          height: "341px",
-          borderRadius: "1440px",
-          background:
-            "radial-gradient(5.92% 104.69% at 50% 100%, rgba(122, 90, 248, 0.00) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(50% 50% at 50% 50%, rgba(122, 90, 248, 0.80) 0%, rgba(122, 90, 248, 0.00) 100%)",
-        }}
-      />
+    <div className="h-screen flex flex-col overflow-hidden relative" style={{ background: '#000000', fontFamily: "'Space Mono', monospace" }}>
 
       <main className="w-full mx-auto gap-6   overflow-hidden flex ">
         <SettingSideBar
@@ -328,17 +319,17 @@ const SettingsPage = () => {
         <div className="w-full">
           <div className="sticky top-0 right-0 z-50 py-[28px]   backdrop-blur mb-4 ">
             <div className="flex  gap-3 items-center ">
-              <h3 className=" text-[28px] tracking-[-0.84px] font-unbounded font-normal text-black flex items-center gap-2">
+              <h3 className="text-[28px] tracking-[-0.84px] font-normal flex items-center gap-2" style={{ color: '#ffffff' }}>
                 Settings
               </h3>
-              <p className="text-[10px] px-2.5 py-0.5 rounded-[50px] text-[#7A5AF8] border border-[#EDEEEF]  font-medium ">
+              <p className="text-[10px] px-2.5 py-0.5 rounded-[10px] font-medium" style={{ color: '#888888', border: '1px solid #383838' }}>
                 {textSummary} · {imageSummary}
               </p>
             </div>
           </div>
 
-          {mode === 'nanobanana' && <div className=" w-full bg-[#F9F8F8] p-7 rounded-[20px]">
-            <h4>Nano Banana</h4>
+          {mode === 'nanobanana' && <div className="w-full p-7 rounded-[10px]" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
+            <h4 style={{ color: '#ffffff' }}>Nano Banana</h4>
           </div>}
           {mode === 'deckforge' && selectedProvider === 'text-provider' && <TextProvider
 
@@ -354,16 +345,16 @@ const SettingsPage = () => {
           {mode === 'deckforge' && selectedProvider === 'image-provider' && <ImageProvider llmConfig={llmConfig} setLlmConfig={setLlmConfig} />}
           {selectedProvider === 'privacy' && <PrivacySettings />}
           {selectedProvider === "session" && (
-            <div className="w-full max-w-lg space-y-5 rounded-[20px] border border-[#EDEEEF] bg-white p-7">
+            <div className="w-full max-w-lg space-y-5 rounded-[10px] p-7" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
               <div>
-                <h4 className="font-unbounded text-lg font-normal text-black">Sign out</h4>
-                <p className="mt-2 font-syne text-sm leading-relaxed text-[#494A4D]">
+                <h4 className="text-lg font-normal" style={{ color: '#ffffff' }}>Sign out</h4>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: '#888888' }}>
                   End your session on this deployment. You will need to sign in again to use the app and access the API.
                 </p>
               </div>
               <LogoutButton
                 label="Sign out"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-[58px] border border-[#EDEEEF] bg-[#7C51F8] px-5 py-3 font-syne text-xs font-semibold text-white transition hover:bg-[#6d46e6] disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-60"
               />
             </div>
           )}
@@ -373,19 +364,18 @@ const SettingsPage = () => {
 
       {/* Fixed Bottom Button — hidden on Sign out; nothing to save there */}
       {selectedProvider !== "session" ? (
-        <div className=" mx-auto fixed bottom-20 right-5 ">
+        <div className="mx-auto fixed bottom-20 right-5">
           <button
             onClick={handleSaveConfig}
             disabled={buttonState.isDisabled}
             style={{
-              background:
-                "linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)",
-              color: "#101323",
+              background: '#ffffff',
+              color: '#000000',
             }}
-            className={`w-full font-syne font-semibold flex items-center justify-center gap-2 py-3 px-5 rounded-[58px] transition-all duration-500 ${buttonState.isDisabled
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-4 focus:ring-blue-200"
-              } text-white`}
+            className={`font-semibold flex items-center justify-center gap-2 py-3 px-5 rounded-[10px] transition-all duration-500 ${buttonState.isDisabled
+              ? 'opacity-60 cursor-not-allowed'
+              : 'hover:opacity-90'
+              }`}
           >
             {buttonState.isLoading ? (
               <div className="flex items-center justify-center gap-2">
@@ -403,40 +393,40 @@ const SettingsPage = () => {
       {/* Download Progress Modal */}
       {showDownloadModal && downloadingModel && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-2xl max-w-md w-full p-6 relative">
+          <div className="rounded-[10px] max-w-md w-full p-6 relative" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
             {/* Modal Content */}
             <div className="text-center">
               {/* Icon */}
               <div className="mb-4">
                 {downloadingModel.done ? (
-                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto" />
+                  <CheckCircle className="w-12 h-12 mx-auto" style={{ color: '#ffffff' }} />
                 ) : (
-                  <Download className="w-12 h-12 text-blue-600 mx-auto animate-pulse" />
+                  <Download className="w-12 h-12 mx-auto animate-pulse" style={{ color: '#888888' }} />
                 )}
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {downloadingModel.done
                   ? "Download Complete!"
                   : "Downloading Model"}
               </h3>
 
               {/* Model Name */}
-              <p className="text-sm text-gray-600 mb-6">
+              <p className="text-sm text-foreground mb-6">
                 {llmConfig.OLLAMA_MODEL}
               </p>
 
               {/* Progress Bar */}
               {downloadProgress > 0 && (
                 <div className="mb-4">
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                  <div className="w-full rounded-full h-3 overflow-hidden" style={{ background: '#383838' }}>
                     <div
-                      className="bg-blue-600 h-3 rounded-full transition-all duration-300 ease-out"
-                      style={{ width: `${downloadProgress}%` }}
+                      className="h-3 rounded-full transition-all duration-300 ease-out"
+                      style={{ width: `${downloadProgress}%`, background: '#ffffff' }}
                     />
                   </div>
-                  <p className="text-sm text-gray-600 mt-2">
+                  <p className="text-sm text-foreground mt-2">
                     {downloadProgress}% Complete
                   </p>
                 </div>
@@ -445,8 +435,8 @@ const SettingsPage = () => {
               {/* Status */}
               {downloadingModel.status && (
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-sm font-medium text-green-700 capitalize">
+                  <CheckCircle className="w-4 h-4" style={{ color: '#ffffff' }} />
+                  <span className="text-sm font-medium capitalize" style={{ color: '#ffffff' }}>
                     {downloadingModel.status}
                   </span>
                 </div>
@@ -455,7 +445,7 @@ const SettingsPage = () => {
               {/* Status Message */}
               {downloadingModel.status &&
                 downloadingModel.status !== "pulled" && (
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     {downloadingModel.status === "downloading" &&
                       "Downloading model files..."}
                     {downloadingModel.status === "verifying" &&
@@ -467,8 +457,8 @@ const SettingsPage = () => {
 
               {/* Download Info */}
               {downloadingModel.downloaded && downloadingModel.size && (
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                  <div className="flex justify-between text-xs text-gray-600">
+                <div className="mt-4 p-3 rounded-[10px]" style={{ background: '#000000', border: '1px solid #383838' }}>
+                  <div className="flex justify-between text-xs text-foreground">
                     <span>
                       Downloaded:{" "}
                       {(downloadingModel.downloaded / 1024 / 1024).toFixed(1)}{" "}
@@ -487,7 +477,7 @@ const SettingsPage = () => {
                   <Button
                     type="button"
                     variant="outline"
-                    className="rounded-lg border-gray-300 text-gray-800 hover:bg-gray-50"
+                    className="rounded-lg border-border text-foreground hover:bg-muted"
                     onClick={() => downloadAbortRef.current?.abort()}
                   >
                     Cancel download

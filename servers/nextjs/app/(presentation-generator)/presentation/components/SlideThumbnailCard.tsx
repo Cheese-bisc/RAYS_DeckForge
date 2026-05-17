@@ -27,7 +27,7 @@ export const SlideThumbnailCard = forwardRef<
       } ${className}`}
       {...props}
     >
-      <p className="pointer-events-none absolute -left-1 top-1/2 z-50 flex h-[18px] min-w-[18px] -translate-y-1/2 items-center justify-center rounded-full border border-[#EDEEEF] bg-white px-1 text-[10px] font-medium text-[#191919] shadow-sm">
+      <p className="pointer-events-none absolute -left-1 top-1/2 z-50 flex h-[18px] min-w-[18px] -translate-y-1/2 items-center justify-center rounded-full border border-[#EDEEEF] bg-card px-1 text-[10px] font-medium text-[#191919] shadow-sm">
         {index + 1}
       </p>
 

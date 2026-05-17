@@ -29,7 +29,7 @@ const HeadlineDescriptionWithImageLayout = ({ data }: { data: Partial<z.infer<ty
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex items-center font-['Poppins']"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex items-center font-['Poppins']"
 
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',

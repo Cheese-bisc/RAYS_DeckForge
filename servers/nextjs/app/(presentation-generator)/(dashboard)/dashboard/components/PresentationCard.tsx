@@ -103,40 +103,41 @@ export const PresentationCard = ({
     <Card
       suppressHydrationWarning={true}
       onClick={handlePreview}
-      className="bg-[#F8FBFB] font-syne shadow-none sm:shadow-none  presentation-card rounded-[12px] p-0 group hover:shadow-md transition-all duration-500 slide-theme cursor-pointer overflow-hidden flex flex-col"
+      className="shadow-none sm:shadow-none presentation-card rounded-[10px] p-0 group hover:shadow-md transition-all duration-500 slide-theme cursor-pointer overflow-hidden flex flex-col"
+      style={{ background: '#1d1d1d', border: '1px solid #383838' }}
     >
       <div
         id={`dashboard-presentation-card-${id}`}
         suppressHydrationWarning={true} className="flex flex-col flex-1 relative z-40">
-        {/* <p className=" text-xs font-syne absolute top-2 flex gap-1 capitalize  items-center left-2 rounded-[100px]  px-2.5 py-1 bg-[#3A3A3AF5] text-white font-semibold  z-40 ">
+        {/* <p className=" text-xs font-syne absolute top-2 flex gap-1 capitalize  items-center left-2 rounded-[100px]  px-2.5 py-1 bg-[#3A3A3AF5] text-foreground font-semibold  z-40 ">
 
           {presentation.type}
         </p> */}
 
         <img src="/card_bg.svg" alt="" className="absolute top-0 left-0 w-full h-full object-cover" />
-        <div className="scale-[0.75] mt-4  border border-gray-300 rounded-lg overflow-hidden">
+        <div className="scale-[0.75] mt-4  border border-border rounded-lg overflow-hidden">
 
           <SlideScale slide={firstSlide} isClickable={false} />
         </div>
 
-        <div className="w-full py-3 px-5 mt-auto z-40 relative bg-white  border-t border-[#EDEEEF]">
+        <div className="w-full py-3 px-5 mt-auto z-40 relative" style={{ background: '#1d1d1d', borderTop: '1px solid #383838' }}>
           <div className="flex items-center justify-between gap-7 w-full">
             <div className="flex flex-col items-start gap-1">
-              <div className="text-sm text-[#191919] font-semibold  overflow-hidden line-clamp-1">
-                <MarkdownRenderer content={title} className="text-sm mb-0  font-syne text-[#191919] font-semibold  overflow-hidden line-clamp-1" />
+              <div className="text-sm text-foreground font-semibold  overflow-hidden line-clamp-1">
+                <MarkdownRenderer content={title} className="text-sm mb-0  font-syne text-foreground font-semibold  overflow-hidden line-clamp-1" />
               </div>
-              <p className="text-[#808080] text-sm font-syne">
+              <p className="text-muted-foreground text-sm font-syne">
                 {new Date(presentation?.created_at).toLocaleDateString()}
               </p>
 
             </div>
             <Popover>
-              <PopoverTrigger className="w-6 h-6 hover:bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700" onClick={(e) => e.stopPropagation()}>
-                <EllipsisVertical className="w-6 h-6 text-gray-500" />
+              <PopoverTrigger className="w-6 h-6 hover:bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground" onClick={(e) => e.stopPropagation()}>
+                <EllipsisVertical className="w-6 h-6 text-muted-foreground" />
               </PopoverTrigger>
-              <PopoverContent align="end" className="bg-white w-[200px]">
+              <PopoverContent align="end" className="bg-card w-[200px]">
                 <button
-                  className="flex items-center justify-between w-full px-2 py-1 hover:bg-gray-100"
+                  className="flex items-center justify-between w-full px-2 py-1 hover:bg-muted"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -164,37 +165,39 @@ export const PresentationCard = ({
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
           <div
-            className="relative w-[360px] rounded-2xl bg-white shadow-2xl animate-[scaleIn_200ms_ease-out]"
+            className="relative w-[360px] rounded-[10px] animate-[scaleIn_200ms_ease-out]"
+            style={{ background: '#1d1d1d', border: '1px solid #383838' }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
             }}
           >
             <div className="flex flex-col items-center p-6 pb-4 text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-50">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[10px]" style={{ background: '#383838' }}>
                 <AlertTriangle className="h-6 w-6 text-red-500" />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-[#191919]">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
                 Delete Presentation?
               </h3>
-              <p className="text-sm leading-relaxed text-gray-500">
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 You are about to delete{" "}
-                <span className="font-medium text-gray-700">&quot;{title}&quot;</span>.
+                <span className="font-medium text-foreground">&quot;{title}&quot;</span>.
                 This action cannot be undone.
               </p>
             </div>
-            <div className="flex border-t border-gray-100">
+            <div className="flex" style={{ borderTop: '1px solid #383838' }}>
               <button
                 onClick={() => setShowDeleteDialog(false)}
                 disabled={isDeleting}
-                className="flex-1 px-4 py-3.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 px-4 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 onClick={() => void handleDelete()}
                 disabled={isDeleting}
-                className="flex flex-1 items-center justify-center gap-2 border-l border-gray-100 px-4 py-3.5 text-sm font-medium text-red-500 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex flex-1 items-center justify-center gap-2 px-4 py-3.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+                style={{ borderLeft: '1px solid #383838', color: '#ffffff' }}
               >
                 {isDeleting ? (
                   <>

@@ -54,7 +54,7 @@ const TableOfContentsSlideLayout: React.FC<TableOfContentsSlideLayoutProps> = ({
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg px-8 sm:px-12 lg:px-20 py-8 sm:py-12 lg:py-16 max-h-[720px] aspect-video bg-white relative z-20 mx-auto"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg px-8 sm:px-12 lg:px-20 py-8 sm:py-12 lg:py-16 max-h-[720px] aspect-video bg-card relative z-20 mx-auto"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -76,7 +76,7 @@ const TableOfContentsSlideLayout: React.FC<TableOfContentsSlideLayoutProps> = ({
 
                 {/* Title Section */}
                 <div className="text-center mb-8 sm:mb-12 mt-6">
-                    <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                    <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                         Table of Contents
                     </h1>
                     {/* Decorative Wave */}
@@ -100,21 +100,21 @@ const TableOfContentsSlideLayout: React.FC<TableOfContentsSlideLayoutProps> = ({
                             <div key={section.number} className="flex items-center justify-between group">
                                 <div className="flex items-center space-x-4">
                                     {/* Number Box */}
-                                    <div style={{ background: "var(--primary-color,#9333ea)", color: "var(--primary-text,#ffffff)" }} className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl group-hover:bg-purple-700 transition-colors">
+                                    <div style={{ background: "var(--primary-color,#9333ea)", color: "var(--primary-text,#ffffff)" }} className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 rounded-xl flex items-center justify-center text-foreground font-bold text-lg sm:text-xl group-hover:bg-purple-700 transition-colors">
                                         {section.number}
                                     </div>
                                     {/* Title */}
-                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg sm:text-xl font-medium text-gray-800 group-hover:text-purple-600 transition-colors">
+                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg sm:text-xl font-medium text-foreground group-hover:text-purple-600 transition-colors">
                                         {section.title}
                                     </span>
                                 </div>
                                 {/* Page Number */}
                                 <div className="text-right">
-                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-lg sm:text-xl text-gray-600">
+                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-lg sm:text-xl text-foreground">
                                         {section.pageNumber}
                                     </span>
                                     {/* Dotted line effect */}
-                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-gray-300 text-sm mt-1">
+                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-muted-foreground text-sm mt-1">
                                         .....
                                     </div>
                                 </div>
@@ -128,21 +128,21 @@ const TableOfContentsSlideLayout: React.FC<TableOfContentsSlideLayoutProps> = ({
                             <div key={section.number} className="flex items-center justify-between group">
                                 <div className="flex items-center space-x-4">
                                     {/* Number Box */}
-                                    <div style={{ background: "var(--primary-color,#9333ea)", color: "var(--primary-text,#ffffff)" }} className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl group-hover:bg-purple-700 transition-colors">
+                                    <div style={{ background: "var(--primary-color,#9333ea)", color: "var(--primary-text,#ffffff)" }} className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 rounded-xl flex items-center justify-center text-foreground font-bold text-lg sm:text-xl group-hover:bg-purple-700 transition-colors">
                                         {section.number}
                                     </div>
                                     {/* Title */}
-                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg sm:text-xl font-medium text-gray-800 group-hover:text-purple-600 transition-colors">
+                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg sm:text-xl font-medium text-foreground group-hover:text-purple-600 transition-colors">
                                         {section.title}
                                     </span>
                                 </div>
                                 {/* Page Number */}
                                 <div className="text-right">
-                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-lg sm:text-xl text-gray-600">
+                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-lg sm:text-xl text-foreground">
                                         {section.pageNumber}
                                     </span>
                                     {/* Dotted line effect */}
-                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-gray-300 text-sm mt-1">
+                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-muted-foreground text-sm mt-1">
                                         .....
                                     </div>
                                 </div>

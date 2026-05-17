@@ -37,7 +37,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden"
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -79,7 +79,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                         }}
                                     >
                                         <div
-                                            className={` font-normal text-[17.8px] leading-[1.4] mb-4 ${isBlueBackground ? 'text-white' : 'text-[#244CD9]'
+                                            className={` font-normal text-[17.8px] leading-[1.4] mb-4 ${isBlueBackground ? 'text-foreground' : 'text-[#244CD9]'
                                                 }`}
                                             style={{
                                                 color: isBlueBackground ? 'var(--background-text,#FFFFFF)' : 'var(--background-text,#244CD9)',
@@ -88,7 +88,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                             {metric.label}
                                         </div>
                                         <div
-                                            className={` font-bold text-[39.3px] leading-tight ${isBlueBackground ? 'text-white' : 'text-[#244CD9]'
+                                            className={` font-bold text-[39.3px] leading-tight ${isBlueBackground ? 'text-foreground' : 'text-[#244CD9]'
                                                 }`}
                                             style={{
                                                 color: isBlueBackground ? 'var(--background-text,#FFFFFF)' : 'var(--background-text,#244CD9)',

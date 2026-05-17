@@ -345,7 +345,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden  p-8 box-border "
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden  p-8 box-border "
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -356,7 +356,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 {/* Header Section */}
                 <div className="flex justify-between items-start mb-4 relative z-10 px-8 pb-8">
                     <div className="flex-1 text-center">
-                        <h1 className="text-[44px] text-black  font-bold -ml-16"
+                        <h1 className="text-[44px] text-foreground  font-bold -ml-16"
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
                             {title}
@@ -373,13 +373,13 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                         <div className="bg-[#1F8A2E] px-8 py-3"
                             style={{ backgroundColor: 'var(--primary-color,#1F8A2E)' }}
                         >
-                            <span className="text-[34px] text-white  font-bold leading-none"
+                            <span className="text-[34px] text-foreground  font-bold leading-none"
                                 style={{ color: 'var(--primary-text,#FFFFFF)' }}
                             >
                                 {badgeText}
                             </span>
                         </div>
-                        <div className="text-[22px] text-black  italic pb-1"
+                        <div className="text-[22px] text-foreground  italic pb-1"
 
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
@@ -396,7 +396,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                     {/* Footer Description Row */}
                     <div className=" absolute bottom-1 right-2 ">
-                        <div className="text-[20px] text-black  pr-4"
+                        <div className="text-[20px] text-foreground  pr-4"
 
                             style={{ color: 'var(--background-text,#000000)' }}
                         >

@@ -177,13 +177,13 @@ interface MultiChartGridWithBulletsSlideLayoutProps {
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-[10px] font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-[10px] font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-[9px]" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -516,7 +516,7 @@ const MiniChartRenderer: React.FC<{
             );
 
         default:
-            return <div className="flex items-center justify-center h-full text-gray-400 text-sm">Unsupported chart type</div>;
+            return <div className="flex items-center justify-center h-full text-muted-foreground text-sm">Unsupported chart type</div>;
     }
 };
 
@@ -560,7 +560,7 @@ const MultiChartGridWithBulletsSlideLayout: React.FC<MultiChartGridWithBulletsSl
                 rel="stylesheet"
             />
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-gradient-to-br from-slate-50 via-white to-indigo-50/30 relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-gradient-to-br from-muted via-card to-indigo-50/30 relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: "var(--heading-font-family, 'Poppins')",
                     background: "var(--background-color, linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eef2ff 100%))"
@@ -618,7 +618,7 @@ const MultiChartGridWithBulletsSlideLayout: React.FC<MultiChartGridWithBulletsSl
                             {charts.map((chart, index) => (
                                 <div
                                     key={index}
-                                    className="backdrop-blur-sm rounded-xl border border-gray-100/80 shadow-sm flex flex-col overflow-hidden"
+                                    className="backdrop-blur-sm rounded-xl border border-border/80 shadow-sm flex flex-col overflow-hidden"
                                     style={{ borderColor: 'var(--stroke,#F8F9FA)', backgroundColor: 'var(--card-color,#FFFFFF)' }}
                                 >
                                     {/* Chart Header */}

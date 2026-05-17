@@ -141,7 +141,7 @@ const ServicesSlide = ({ data }: { data: Partial<SchemaType> }) => {
                 <div key={`${item.heading}-${index}`} className="flex w-[302px] flex-col items-center text-center">
                   <div
                     className={`flex items-center justify-center rounded-full ${isActive
-                      ? "bg-[#157CFF] text-white"
+                      ? "bg-[#157CFF] text-foreground"
                       : "border border-[#157CFF] bg-transparent text-[#157CFE]"
                       }`}
                     style={{

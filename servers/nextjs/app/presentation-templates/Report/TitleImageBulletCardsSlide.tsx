@@ -71,7 +71,7 @@ function SolutionCard({
 }) {
   return (
     <div
-      className="flex py-[60px] px-10 w-[312px] flex-col items-center justify-center rounded-[160px] bg-[#4d4ef3]  text-center text-white"
+      className="flex py-[60px] px-10 w-[312px] flex-col items-center justify-center rounded-[160px] bg-[#4d4ef3]  text-center text-foreground"
       style={{
         backgroundColor: "var(--graph-1,#4d4ef3)",
         color: "var(--primary-text,#ffffff)",

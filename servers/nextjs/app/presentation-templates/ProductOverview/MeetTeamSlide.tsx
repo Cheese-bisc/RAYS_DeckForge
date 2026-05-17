@@ -111,7 +111,7 @@ const MeetTeamSlide = ({ data }: { data: Partial<SchemaType> }) => {
 
           <div className="w-[520px]">
             <p
-              className="text-[20px] font-semibold tracking-[2.074px] text-white"
+              className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
               style={{ color: "var(--primary-color,#15342D)" }}
             >
               {taglineLabel}
@@ -142,7 +142,7 @@ const MeetTeamSlide = ({ data }: { data: Partial<SchemaType> }) => {
                 }}
               >
                 <p
-                  className="text-[20px] font-semibold tracking-[2.074px] text-white"
+                  className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
                   style={{
                     color: member.highlighted
                       ? "var(--primary-text,#edf2f1)"
@@ -152,7 +152,7 @@ const MeetTeamSlide = ({ data }: { data: Partial<SchemaType> }) => {
                   {member.title}
                 </p>
                 <p
-                  className="mt-[20px] text-[28px] font-normal  text-white"
+                  className="mt-[20px] text-[28px] font-normal  text-foreground"
                   style={{
                     color: member.highlighted
                       ? "var(--primary-text,#edf2f1)"

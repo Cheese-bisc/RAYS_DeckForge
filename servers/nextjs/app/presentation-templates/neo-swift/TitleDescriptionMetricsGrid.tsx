@@ -48,7 +48,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                             {title}
                         </h1>
                     </div>
-                    <p className="text-[16px] text-black text-center max-w-[850px] leading-[1.8]"
+                    <p className="text-[16px] text-foreground text-center max-w-[850px] leading-[1.8]"
 
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
@@ -69,8 +69,8 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                     borderColor: 'var(--stroke,#EBEBEB)',
                                 }}
                             >
-                                <span className="text-[15.8px] text-black mb-1" style={{ color: 'var(--primary-text,#000000)' }}>{item.label}</span>
-                                <span className="text-[36.3px] text-black mb-3" style={{ color: 'var(--primary-text,#000000)' }}>{item.value}</span>
+                                <span className="text-[15.8px] text-foreground mb-1" style={{ color: 'var(--primary-text,#000000)' }}>{item.label}</span>
+                                <span className="text-[36.3px] text-foreground mb-3" style={{ color: 'var(--primary-text,#000000)' }}>{item.value}</span>
                                 <span className="text-[12.6px] text-[#4D5463] text-center leading-tight" style={{ color: 'var(--primary-text,#4D5463)' }}>
                                     {item.description}
                                 </span>

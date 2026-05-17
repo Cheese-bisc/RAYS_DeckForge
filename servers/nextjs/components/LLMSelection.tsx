@@ -217,7 +217,7 @@ export default function LLMProviderSelection({
   return (
     <div className="h-full flex flex-col mt-10">
       {/* Provider Selection - Fixed Header */}
-      <div className="p-2 rounded-2xl border border-gray-200">
+      <div className="p-2 rounded-2xl border border-border">
         <Tabs
           value={llmConfig.LLM || "openai"}
           onValueChange={handleProviderChange}
@@ -310,7 +310,7 @@ export default function LLMProviderSelection({
         />
         {/* <div className="my-8">
           <div className="flex items-center justify-between mb-4 bg-green-50 p-2 rounded-sm">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-foreground">
               Disable Image Generation
             </label>
             <Switch
@@ -323,8 +323,8 @@ export default function LLMProviderSelection({
               }}
             />
           </div>
-          <p className="text-sm text-gray-500 flex items-center gap-2">
-            <span className="block w-1 h-1 rounded-full bg-gray-400"></span>
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
+            <span className="block w-1 h-1 rounded-full bg-secondary"></span>
             When enabled, slides will not include automatically generated
             images.
           </p>
@@ -379,9 +379,9 @@ export default function LLMProviderSelection({
             color: "#101323",
           }}
           className={`w-full font-semibold py-3 px-4 rounded-lg transition-all duration-500 ${buttonState.isDisabled
-            ? "bg-gray-400 cursor-not-allowed"
+            ? "bg-secondary cursor-not-allowed"
             : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-4 focus:ring-blue-200"
-            } text-white`}
+            } text-foreground`}
         >
           {buttonState.isLoading ? (
             <div className="flex items-center justify-center gap-2">

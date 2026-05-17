@@ -82,7 +82,7 @@ const TeamSlide = ({ data }: { data: Partial<SchemaType> }) => {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
       <div
-        className="relative h-[720px] w-[1280px] overflow-hidden rounded-[24px] bg-white"
+        className="relative h-[720px] w-[1280px] overflow-hidden rounded-[24px] bg-card"
         style={{
           backgroundColor: "var(--background-color,#ffffff)",
           fontFamily: "var(--body-font-family,'Source Sans 3')",
@@ -107,9 +107,9 @@ const TeamSlide = ({ data }: { data: Partial<SchemaType> }) => {
                   backgroundImage: "linear-gradient(to top, var(--graph-1,#4d4ef3), rgba(77, 78, 243, 0.55), transparent)",
                 }}
               />
-              <div className="absolute left-0 bottom-0 p-[33px]  text-white" style={{ color: "var(--primary-text,#ffffff)" }}>
+              <div className="absolute left-0 bottom-0 p-[33px]  text-foreground" style={{ color: "var(--primary-text,#ffffff)" }}>
                 <p
-                  className="text-[21px] tracking-[2.074px] font-medium text-white/90"
+                  className="text-[21px] tracking-[2.074px] font-medium text-foreground/90"
                   style={{ color: "var(--primary-text,#ffffff)", opacity: 0.9 }}
                 >
                   {member.title}

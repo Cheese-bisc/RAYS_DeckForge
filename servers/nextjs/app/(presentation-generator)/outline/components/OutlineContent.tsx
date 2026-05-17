@@ -55,20 +55,20 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
             )}
 
             {isLoading && (
-                <div className="space-y-4 bg-white">
+                <div className="space-y-4 bg-card">
                     {[...Array(6)].map((_, index) => (
                         <div key={index} className="animate-pulse">
-                            <div className="flex items-start space-x-3 p-4 border rounded-lg bg-white">
-                                <div className="w-6 h-6 bg-gray-200 rounded-full flex-shrink-0"></div>
+                            <div className="flex items-start space-x-3 p-4 border rounded-lg bg-card">
+                                <div className="w-6 h-6 bg-muted rounded-full flex-shrink-0"></div>
                                 <div className="flex-1 space-y-2">
-                                    <div className="h-5 bg-gray-200 rounded w-3/4"></div>
+                                    <div className="h-5 bg-muted rounded w-3/4"></div>
                                     <div className="space-y-1">
-                                        <div className="h-4 bg-gray-100 rounded w-full"></div>
-                                        <div className="h-4 bg-gray-100 rounded w-5/6"></div>
-                                        <div className="h-4 bg-gray-100 rounded w-4/6"></div>
+                                        <div className="h-4 bg-muted rounded w-full"></div>
+                                        <div className="h-4 bg-muted rounded w-5/6"></div>
+                                        <div className="h-4 bg-muted rounded w-4/6"></div>
                                     </div>
                                 </div>
-                                <div className="w-5 h-5 bg-gray-200 rounded flex-shrink-0"></div>
+                                <div className="w-5 h-5 bg-muted rounded flex-shrink-0"></div>
                             </div>
                         </div>
                     ))}
@@ -117,9 +117,9 @@ const OutlineContent: React.FC<OutlineContentProps> = ({
 
             {/* Empty state */}
             {!isStreaming && !isLoading && outlines && outlines.length === 0 && (
-                <div className="text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-200">
-                    <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-4">No outlines available</p>
+                <div className="text-center py-12 bg-card rounded-lg border-2 border-dashed border-border">
+                    <FileText className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-foreground mb-4">No outlines available</p>
                     <Button
                         variant="outline"
                         onClick={() => {

@@ -62,7 +62,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                     {kpiList?.map((kpi, index) => (
                         <div
                             key={index}
-                            className="w-[259.3px] h-[152.8px] bg-[#1F8A2E] rounded-[7px] flex flex-col items-center justify-center text-white p-4 shadow-sm"
+                            className="w-[259.3px] h-[152.8px] bg-[#1F8A2E] rounded-[7px] flex flex-col items-center justify-center text-foreground p-4 shadow-sm"
                             style={{
                                 boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
                                 backgroundColor: 'var(--primary-color,#1F8A2E)'

@@ -124,7 +124,7 @@ const BulletWithIconsDescriptionGridSlideLayout = ({
       />
 
       <div
-        className="w-full rounded-sm max-w-[1280px] shadow-lg  aspect-video relative z-20 mx-auto overflow-hidden border-2 border-gray-800"
+        className="w-full rounded-sm max-w-[1280px] shadow-lg  aspect-video relative z-20 mx-auto overflow-hidden border-2 border-border"
         style={{
           fontFamily: "var(--heading-font-family,Montserrat)",
           backgroundColor: "var(--background-color, #FFFFFF)",

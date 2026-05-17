@@ -202,7 +202,7 @@ const DataAnalysisDashboardSlide = ({ data }: { data: Partial<SchemaType> }) => 
           </h2>
         </div>
 
-        {summaryCards && summaryCards.length > 0 && <div className=" mx-[64px] grid bg-white gap-[16px] p-[13px] mt-[22px] rounded-[14px]  "
+        {summaryCards && summaryCards.length > 0 && <div className=" mx-[64px] grid bg-card gap-[16px] p-[13px] mt-[22px] rounded-[14px]  "
           style={{
             gridTemplateColumns: `repeat(${summaryCards.length}, minmax(220px, 1fr))`,
             backgroundColor: "var(--card-color,#ffffff)",
@@ -225,7 +225,7 @@ const DataAnalysisDashboardSlide = ({ data }: { data: Partial<SchemaType> }) => 
             }}
           >
             <div
-              className={`grid h-full bg-white p-[13px] rounded-[14px] min-h-0 gap-[10px] `}
+              className={`grid h-full bg-card p-[13px] rounded-[14px] min-h-0 gap-[10px] `}
               style={{
                 gridTemplateColumns: `repeat(${halfChart.length}, minmax(150px, 1fr))`,
                 backgroundColor: "var(--card-color,#ffffff)",
@@ -250,7 +250,7 @@ const DataAnalysisDashboardSlide = ({ data }: { data: Partial<SchemaType> }) => 
           </div>}
           {otherHalfChart && otherHalfChart.length > 0 && <div className="mt-[14px] px-[64px] flex-1 h-[200px] ">
             <div
-              className={`grid h-full bg-white p-[13px] rounded-[14px] min-h-0 gap-[10px] `}
+              className={`grid h-full bg-card p-[13px] rounded-[14px] min-h-0 gap-[10px] `}
               style={{
                 gridTemplateColumns: `repeat(${otherHalfChart.length}, minmax(150px, 1fr))`,
                 backgroundColor: "var(--card-color,#ffffff)",

@@ -50,7 +50,7 @@ const IntroSlideLayout: React.FC<IntroSlideLayoutProps> = ({ data: slideData }) 
                 rel="stylesheet"
             />
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     background: "var(--background-color,#ffffff)"
                     , fontFamily: "var(--heading-font-family,Poppins)"
@@ -87,7 +87,7 @@ const IntroSlideLayout: React.FC<IntroSlideLayoutProps> = ({ data: slideData }) 
                     {/* Right Section - Content */}
                     <div className="flex-1 flex flex-col justify-center pl-8 space-y-6">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                             {slideData?.title || 'Product Overview'}
                         </h1>
 
@@ -95,12 +95,12 @@ const IntroSlideLayout: React.FC<IntroSlideLayoutProps> = ({ data: slideData }) 
                         <div style={{ background: "var(--background-text,#9333ea)" }} className="w-20 h-1 bg-purple-600"></div>
 
                         {/* Description */}
-                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-foreground leading-relaxed">
                             {slideData?.description || 'Our product offers customizable dashboards for real-time reporting and data-driven decisions. It integrates with third-party tools to enhance operations and scales with business growth for improved efficiency.'}
                         </p>
 
                         {/* Presenter Section */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-lg p-4 lg:p-6 border border-gray-200 shadow-sm"
+                        <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 lg:p-6 border border-border shadow-sm"
                             style={{
                                 backgroundColor: 'var(--card-color, #ffffff)',
                                 borderColor: 'var(--stroke, #e5e7eb)',
@@ -116,10 +116,10 @@ const IntroSlideLayout: React.FC<IntroSlideLayoutProps> = ({ data: slideData }) 
 
                                 {/* Presenter Info */}
                                 <div className="flex flex-col">
-                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg lg:text-xl font-bold text-gray-900">
+                                    <span style={{ color: "var(--background-text,#111827)" }} className="text-lg lg:text-xl font-bold text-foreground">
                                         {slideData?.presenterName || 'John Doe'}
                                     </span>
-                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-sm lg:text-base text-gray-600 font-medium">
+                                    <span style={{ color: "var(--background-text,#4b5563)" }} className="text-sm lg:text-base text-foreground font-medium">
                                         {slideData?.presentationDate || 'December 2024'}
                                     </span>
                                 </div>

@@ -71,7 +71,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 <div className="w-1/2"
                 >
                     <div className="  p-12">
-                        <div className="p-10 py-24 bg-white shadow-md rounded-lg"
+                        <div className="p-10 py-24 bg-card shadow-md rounded-lg"
 
                             style={{
                                 background: 'var(--card-color,#ffffff)'

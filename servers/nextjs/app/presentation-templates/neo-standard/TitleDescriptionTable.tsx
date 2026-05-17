@@ -55,7 +55,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 <div className="flex justify-between items-start gap-10 mb-[40px]">
                     <div className="">
                         <h1
-                            className="text-[42.7px] text-black  font-bold leading-none uppercase"
+                            className="text-[42.7px] text-foreground  font-bold leading-none uppercase"
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
                             {title}
@@ -64,7 +64,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                     <div className="max-w-[510px]">
                         <p
                             style={{ fontFamily: 'Playfair Display', color: 'var(--background-text,#000000)' }}
-                            className="text-[16px] text-black leading-[1.6]"
+                            className="text-[16px] text-foreground leading-[1.6]"
                         >
                             {description}
                         </p>
@@ -110,7 +110,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                 {row.map((cell, cellIndex) => (
                                     <div
                                         key={cellIndex}
-                                        className="text-[20.3px] py-1 px-2 text-black text-center whitespace-pre-line leading-[1.4]"
+                                        className="text-[20.3px] py-1 px-2 text-foreground text-center whitespace-pre-line leading-[1.4]"
                                         style={{ color: 'var(--background-text,#000000)' }}
                                     >
                                         {cell}

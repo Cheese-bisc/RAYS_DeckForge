@@ -272,9 +272,9 @@ const TextProvider = ({
     }, [selectedProvider, modelsChecked, modelsLoading]);
 
     return (
-        <div className="space-y-6 bg-[#F9F8F8] p-7 rounded-[12px] ">
+        <div className="space-y-6 bg-card p-7 rounded-[12px] ">
             {/* API Key Input */}
-            <div className="mb-4 flex items-end justify-between rounded-[12px] bg-white pt-5 pb-10 px-10">
+            <div className="mb-4 flex items-end justify-between rounded-[12px] bg-card pt-5 pb-10 px-10">
                 <div className=" max-w-[290px] ">
                     <div className='w-[60px] h-[60px] rounded-[4px] flex items-center justify-center'
                         style={{ backgroundColor: '#4C55541A' }}
@@ -285,8 +285,8 @@ const TextProvider = ({
                             <path d="M11.9594 26.5762H19.9324" stroke="#4C5554" strokeWidth="1.59459" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-normal text-[#191919] py-2.5">Text Generation Settings</h3>
-                    <p className=" text-sm  text-gray-500">
+                    <h3 className="text-xl font-normal text-foreground py-2.5">Text Generation Settings</h3>
+                    <p className=" text-sm  text-muted-foreground">
                         Choosing where text content comes from
                     </p>
                 </div>
@@ -294,7 +294,7 @@ const TextProvider = ({
                     <div className={`flex gap-4 justify-end ${selectedProvider === 'codex' ? 'items-end' : 'items-start'}`}>
                         <div className={`relative ${selectedProvider === 'codex' ? 'w-[240px]' : 'w-[222px]'}`}>
                             <div className="flex flex-col justify-start ">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-foreground mb-2">
                                     Select Text Provider
                                 </label>
                                 <Popover
@@ -306,17 +306,17 @@ const TextProvider = ({
                                             variant="outline"
                                             role="combobox"
                                             aria-expanded={openProviderSelect}
-                                            className="w-[222px] h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between"
+                                            className="w-[222px] h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between"
                                         >
                                             <div className="flex gap-3 items-center">
-                                                <span className="text-sm font-medium text-gray-900">
+                                                <span className="text-sm font-medium text-foreground">
                                                     {llmConfig.LLM
                                                         ? LLM_PROVIDERS[llmConfig.LLM]
                                                             ?.label || llmConfig.LLM
                                                         : "Select text provider"}
                                                 </span>
                                             </div>
-                                            <ChevronUp className="w-4 h-4 text-gray-500" />
+                                            <ChevronUp className="w-4 h-4 text-muted-foreground" />
                                         </Button>
                                     </PopoverTrigger>
                                     <PopoverContent
@@ -350,11 +350,11 @@ const TextProvider = ({
                                                                 <div className="flex gap-3 items-center">
                                                                     <div className="flex flex-col space-y-1 flex-1">
                                                                         <div className="flex items-center justify-between gap-2">
-                                                                            <span className="text-sm font-medium text-gray-900 capitalize">
+                                                                            <span className="text-sm font-medium text-foreground capitalize">
                                                                                 {provider.label}
                                                                             </span>
                                                                         </div>
-                                                                        <span className="text-xs text-gray-600 leading-relaxed">
+                                                                        <span className="text-xs text-foreground leading-relaxed">
                                                                             {provider.description}
                                                                         </span>
                                                                     </div>
@@ -382,13 +382,13 @@ const TextProvider = ({
                                                         onInputChange('http://localhost:11434', 'OLLAMA_URL');
                                                     }
                                                 }}
-                                                className="mt-8 py-2.5 bg-[#EDEEEF] px-3.5 w-fit rounded-[48px] text-xs font-semibold text-[#101323] transition-all duration-200 border border-[#EDEEEF] hover:bg-[#E8F0FF]/90 focus:ring-2 focus:ring-blue-500/20"
+                                                className="mt-8 py-2.5 bg-muted px-3.5 w-fit rounded-[48px] text-xs font-semibold text-foreground transition-all duration-200 border border-border hover:bg-accent focus:ring-2 focus:ring-ring/30"
                                             >
                                                 Use Ollama URL
                                             </button>
                                         ) : (
                                             <>
-                                                <label className="block text-sm font-medium capitalize text-gray-700 mb-2">
+                                                <label className="block text-sm font-medium capitalize text-foreground mb-2">
                                                     Ollama URL
                                                 </label>
                                                 <div className="relative">
@@ -396,7 +396,7 @@ const TextProvider = ({
                                                         type="text"
                                                         value={currentOllamaUrl}
                                                         onChange={(e) => onApiKeyChange(selectedProvider, e.target.value)}
-                                                        className="w-full px-2 py-3 outline-none border  border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                        className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                                         placeholder="http://localhost:11434"
                                                     />
                                                 </div>
@@ -406,7 +406,7 @@ const TextProvider = ({
                                                         onInputChange(false, 'USE_CUSTOM_URL');
                                                         onInputChange('http://localhost:11434', 'OLLAMA_URL');
                                                     }}
-                                                    className="mt-2 text-xs font-medium text-[#4B5563] underline underline-offset-2"
+                                                    className="mt-2 text-xs font-medium text-muted-foreground underline underline-offset-2"
                                                 >
                                                     Use default Ollama URL
                                                 </button>
@@ -415,7 +415,7 @@ const TextProvider = ({
                                     </>
                                 ) : selectedProvider === 'codex' ? null : (
                                         <>
-                                            <label className="block text-sm font-medium capitalize text-gray-700 mb-2">
+                                            <label className="block text-sm font-medium capitalize text-foreground mb-2">
                                                 {providerApiKeyLabel}
                                             </label>
                                             <div className="relative">
@@ -423,15 +423,15 @@ const TextProvider = ({
                                                     type={showApiKey ? 'text' : 'password'}
                                                     value={currentApiKey}
                                                     onChange={(e) => onApiKeyChange(selectedProvider, e.target.value)}
-                                                    className="w-full px-2 py-3 outline-none border  border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                    className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                                     placeholder={`Enter your ${providerApiKeyLabel}`}
                                                 />
                                                 <button
                                                     type="button"
                                                     onClick={() => setShowApiKey((prev) => !prev)}
-                                                    className='absolute right-2 top-1/2 -translate-y-1/2 bg-white px-2 py-1 cursor-pointer'
+                                                    className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
                                                 >
-                                                    {showApiKey ? <Eye className='w-4 h-4 text-gray-500' /> : <EyeOff className='w-4 h-4 text-gray-500' />}
+                                                    {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                                 </button>
                                             </div>
                                         </>
@@ -441,7 +441,7 @@ const TextProvider = ({
                                         type="text"
                                         value={currentCustomUrl}
                                         onChange={(e) => onInputChange(e.target.value, 'CUSTOM_LLM_URL')}
-                                        className="w-full mt-2 px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full mt-2 px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                         placeholder="OpenAI-compatible URL"
                                     />
                                 )}
@@ -451,21 +451,21 @@ const TextProvider = ({
                                             type="text"
                                             value={llmConfig.VERTEX_PROJECT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_PROJECT')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="GCP project (optional if API key used)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.VERTEX_LOCATION || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_LOCATION')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="GCP location (optional)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.VERTEX_BASE_URL || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'VERTEX_BASE_URL')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="Vertex base URL (optional)"
                                         />
                                     </div>
@@ -476,28 +476,28 @@ const TextProvider = ({
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_ENDPOINT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_ENDPOINT')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="Azure endpoint (https://...openai.azure.com)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_BASE_URL || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_BASE_URL')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="Azure base URL (optional alternative)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_API_VERSION || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_API_VERSION')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="API version (e.g. 2024-10-21)"
                                         />
                                         <input
                                             type="text"
                                             value={llmConfig.AZURE_OPENAI_DEPLOYMENT || ''}
                                             onChange={(e) => onInputChange(e.target.value, 'AZURE_OPENAI_DEPLOYMENT')}
-                                            className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                             placeholder="Deployment name (optional)"
                                         />
                                     </div>
@@ -516,9 +516,9 @@ const TextProvider = ({
                                         (selectedProvider === 'anthropic' && !currentApiKey) ||
                                         (selectedProvider === 'custom' && !currentCustomUrl)
                                     }
-                                    className={`mt-4 py-2.5 bg-[#EDEEEF] px-3.5 w-fit  rounded-[48px] text-xs font-semibold text-[#101323] transition-all duration-200 border ${modelsLoading
-                                        ? " border-gray-300 cursor-not-allowed text-gray-500"
-                                        : " border-[#EDEEEF] text-[#101323] hover:bg-[#E8F0FF]/90 focus:ring-2 focus:ring-blue-500/20"
+                                    className={`mt-4 py-2.5 bg-muted px-3.5 w-fit  rounded-[48px] text-xs font-semibold text-foreground transition-all duration-200 border ${modelsLoading
+                                        ? " border-border cursor-not-allowed text-muted-foreground"
+                                        : " border-border text-foreground hover:bg-accent focus:ring-2 focus:ring-ring/30"
                                         }`}
                                 >
                                     {modelsLoading ? (
@@ -537,7 +537,7 @@ const TextProvider = ({
                     {!isManualModelProvider && selectedProvider !== 'codex' && modelsChecked && availableModels.length > 0 ? (
                         <div className="w-[222px]">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-3">
+                                <label className="block text-sm font-medium text-foreground mb-3">
                                     {selectedProvider === 'ollama' ? 'Choose a supported model' : `Select ${modelLabel} Model`}
                                 </label>
                                 <div className="w-full">
@@ -550,9 +550,9 @@ const TextProvider = ({
                                                 variant="outline"
                                                 role="combobox"
                                                 aria-expanded={openModelSelect}
-                                                className="w-full h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between"
+                                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors hover:border-border justify-between"
                                             >
-                                                <span className="text-sm truncate font-medium text-gray-900">
+                                                <span className="text-sm truncate font-medium text-foreground">
                                                     {(() => {
                                                         if (!currentModel) return "Select a model";
                                                         const selectedModel = availableModels.find((model) => model.value === currentModel);
@@ -564,7 +564,7 @@ const TextProvider = ({
                                                     })()}
                                                 </span>
 
-                                                <ChevronUp className="w-4 h-4 text-gray-500" />
+                                                <ChevronUp className="w-4 h-4 text-muted-foreground" />
                                             </Button>
                                         </PopoverTrigger>
                                         <PopoverContent
@@ -599,11 +599,11 @@ const TextProvider = ({
                                                                 <div className="flex gap-3 items-center">
                                                                     <div className="flex flex-col space-y-1 flex-1">
                                                                         <div className="flex items-center justify-between gap-2">
-                                                                            <span className="text-sm font-medium text-gray-900">
+                                                                            <span className="text-sm font-medium text-foreground">
                                                                                 {model.label}
                                                                             </span>
                                                                             {selectedProvider === 'ollama' && model.size ? (
-                                                                                <span className="text-xs font-medium text-gray-500">
+                                                                                <span className="text-xs font-medium text-muted-foreground">
                                                                                     {model.size}
                                                                                 </span>
                                                                             ) : null}
@@ -623,7 +623,7 @@ const TextProvider = ({
                     ) : null}
                     {isManualModelProvider ? (
                         <div className="w-[222px]">
-                            <label className="block text-sm font-medium text-gray-700 mb-3">
+                            <label className="block text-sm font-medium text-foreground mb-3">
                                 {`Enter ${modelLabel} Model`}
                             </label>
                             <input
@@ -634,7 +634,7 @@ const TextProvider = ({
                                         onInputChange(e.target.value, currentModelField);
                                     }
                                 }}
-                                className="w-full h-12 px-4 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                className="w-full h-12 px-4 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-blue-500 transition-colors"
                                 placeholder={
                                     selectedProvider === 'vertex'
                                         ? 'e.g. gemini-2.5-flash'
@@ -656,11 +656,11 @@ const TextProvider = ({
 
 
 
-            {/* <div className="bg-white flex justify-between items-center p-10 rounded-[12px]">
+            {/* <div className="bg-card flex justify-between items-center p-10 rounded-[12px]">
                 <div className=' max-w-[290px]'>
 
-                    <h4 className="text-xl font-normal text-[#191919]">Advanced</h4>
-                    <p className="mt-2.5 text-sm  text-gray-500">
+                    <h4 className="text-xl font-normal text-foreground">Advanced</h4>
+                    <p className="mt-2.5 text-sm  text-muted-foreground">
                         Configure advanced AI features.
                     </p>
                 </div>
@@ -671,7 +671,7 @@ const TextProvider = ({
                                 checked={!!llmConfig.WEB_GROUNDING}
                                 onCheckedChange={(checked) => onInputChange(checked, "WEB_GROUNDING")}
                             />
-                            <label className="text-sm font-medium text-gray-700">
+                            <label className="text-sm font-medium text-foreground">
                                 Enable Web Grounding
                             </label>
                         </div>

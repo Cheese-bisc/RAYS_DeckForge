@@ -42,7 +42,7 @@ const QuoteSlideLayout: React.FC<QuoteSlideLayoutProps> = ({ data: slideData }) 
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -78,7 +78,7 @@ const QuoteSlideLayout: React.FC<QuoteSlideLayoutProps> = ({ data: slideData }) 
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-32 h-32 bg-purple-600/20 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+                <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-card/10 rounded-full blur-2xl"></div>
 
                 {/* Main Content */}
                 <div className="relative z-10 px-8 sm:px-12 lg:px-20 pt-14 py-12 flex-1 flex flex-col justify-center h-full">
@@ -86,7 +86,7 @@ const QuoteSlideLayout: React.FC<QuoteSlideLayoutProps> = ({ data: slideData }) 
 
                         {/* Heading */}
                         <div className="space-y-4">
-                            <h1 style={{ color: "var(--background-text,#ffffff)" }} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                            <h1 style={{ color: "var(--background-text,#ffffff)" }} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                                 {slideData?.heading || 'Words of Wisdom'}
                             </h1>
                             {/* Purple accent line */}
@@ -107,7 +107,7 @@ const QuoteSlideLayout: React.FC<QuoteSlideLayoutProps> = ({ data: slideData }) 
                             </div>
 
                             {/* Quote Text */}
-                            <blockquote style={{ color: "var(--background-text,#ffffff)" }} className="text-xl sm:text-2xl lg:text-3xl font-medium text-white leading-relaxed italic">
+                            <blockquote style={{ color: "var(--background-text,#ffffff)" }} className="text-xl sm:text-2xl lg:text-3xl font-medium text-foreground leading-relaxed italic">
                                 "{slideData?.quote || 'Success is not final, failure is not fatal: it is the courage to continue that counts. The future belongs to those who believe in the beauty of their dreams.'}"
                             </blockquote>
 

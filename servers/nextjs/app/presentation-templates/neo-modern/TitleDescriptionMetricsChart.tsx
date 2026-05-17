@@ -65,13 +65,13 @@ const CHART_COLORS = ['#244CD9', '#6B89E6', '#4169E1', '#7B9FFF', '#EC4899', '#1
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-sm font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-sm font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-xs" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -382,7 +382,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex font-['Montserrat'] font-normal"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex font-['Montserrat'] font-normal"
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
                     fontFamily: 'var(--body-font-family,Montserrat)',

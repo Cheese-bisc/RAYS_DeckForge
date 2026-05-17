@@ -94,28 +94,28 @@ const NewSlideV1 = ({
 
   if (loading) {
     return (
-      <div className="my-6 w-full bg-gray-50 p-8 max-w-[1280px]">
+      <div className="my-6 w-full bg-muted p-8 max-w-[1280px]">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-semibold">Select a Slide Layout</h2>
           <X
             onClick={() => setShowNewSlideSelection(false)}
-            className="text-gray-500 text-2xl cursor-pointer"
+            className="text-muted-foreground text-2xl cursor-pointer"
           />
         </div>
         <div className="flex items-center justify-center h-32">
-          <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
+          <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="my-6 w-full bg-gray-50 p-8 max-w-[1280px]">
+    <div className="my-6 w-full bg-muted p-8 max-w-[1280px]">
       <div className="flex justify-between items-center  mb-8">
         <h2 className="text-2xl font-semibold">Select a Slide Layout</h2>
         <X
           onClick={() => setShowNewSlideSelection(false)}
-          className="text-gray-500 text-2xl cursor-pointer"
+          className="text-muted-foreground text-2xl cursor-pointer"
         />
       </div>
       <div className="grid grid-cols-4 gap-4">

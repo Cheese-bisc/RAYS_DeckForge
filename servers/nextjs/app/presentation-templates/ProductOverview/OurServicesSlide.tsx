@@ -82,7 +82,7 @@ const OurServicesSlide = ({ data }: { data: Partial<SchemaType> }) => {
 
             <div className="mt-[26px] w-[560px]">
               <p
-                className="text-[20px] font-semibold tracking-[2.074px] text-white"
+                className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
                 style={{ color: "var(--primary-color,#15342D)" }}
               >
                 {taglineLabel}
@@ -124,7 +124,7 @@ const OurServicesSlide = ({ data }: { data: Partial<SchemaType> }) => {
               }}
             >
               <p
-                className="text-[20px] font-semibold tracking-[4.354px] text-white"
+                className="text-[20px] font-semibold tracking-[4.354px] text-foreground"
                 style={{
                   color: card.isHighlighted
                     ? "var(--primary-text,#edf2f1)"
@@ -134,7 +134,7 @@ const OurServicesSlide = ({ data }: { data: Partial<SchemaType> }) => {
                 {card.heading}
               </p>
               <p
-                className={`${card.isHighlighted ? "text-white" : "text-[#15342D]"} mt-[20px] text-[28px] font-normal`}
+                className={`${card.isHighlighted ? "text-foreground" : "text-[#15342D]"} mt-[20px] text-[28px] font-normal`}
                 style={{
                   color: card.isHighlighted
                     ? "var(--primary-text,#edf2f1)"

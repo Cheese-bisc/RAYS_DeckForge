@@ -98,13 +98,13 @@ interface ChartWithBulletsSlideLayoutProps {
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-xs font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}  >{label}</p>
+                <p className="text-xs font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}  >{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-[10px]" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -260,7 +260,7 @@ const ChartWithBulletsSlideLayout: React.FC<ChartWithBulletsSlideLayoutProps> = 
                 rel="stylesheet"
             />
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -284,17 +284,17 @@ const ChartWithBulletsSlideLayout: React.FC<ChartWithBulletsSlideLayoutProps> = 
                     {/* Left Section - Title, Description, Chart */}
                     <div className="flex-1 flex flex-col pr-8">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                             {slideData?.title || 'Market Size'}
                         </h1>
 
                         {/* Description */}
-                        <p style={{ color: "var(--background-text, #4b5563)" }} className="text-base text-gray-700 leading-relaxed mb-8">
+                        <p style={{ color: "var(--background-text, #4b5563)" }} className="text-base text-foreground leading-relaxed mb-8">
                             {slideData?.description || 'Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.'}
                         </p>
 
                         {/* Chart Container */}
-                        <div className="flex-1 rounded-lg shadow-sm border border-gray-100 p-4"
+                        <div className="flex-1 rounded-lg shadow-sm border border-border p-4"
                             style={{
                                 borderColor: 'var(--stroke, #F8F9FA)',
                             }}
@@ -313,7 +313,7 @@ const ChartWithBulletsSlideLayout: React.FC<ChartWithBulletsSlideLayoutProps> = 
                         {bulletPoints.map((bullet, index) => (
                             <div
                                 key={index}
-                                className="rounded-2xl p-6 text-white"
+                                className="rounded-2xl p-6 text-foreground"
                                 style={{
                                     backgroundColor: 'var(--primary-color,#9333ea)'
                                 }}

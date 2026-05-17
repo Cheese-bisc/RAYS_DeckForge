@@ -145,7 +145,7 @@ const MarketSizeSlideLayout: React.FC<MarketSizeSlideProps> = ({
               {stats.map((stat, index) => (
                 <div key={index}>
                   <div className="space-y-2">
-                    <div className="text-white text-sm font-semibold px-3 py-1 inline-block rounded-sm" style={{ backgroundColor: 'var(--primary-color, #234CD9)', color: 'var(--primary-text, #ffffff)' }}>
+                    <div className="text-foreground text-sm font-semibold px-3 py-1 inline-block rounded-sm" style={{ backgroundColor: 'var(--primary-color, #234CD9)', color: 'var(--primary-text, #ffffff)' }}>
                       <span className="text-sm">{stat.label}</span>
                     </div>
                     <div className="text-2xl font-bold" style={{ color: 'var(--primary-color, #1E4CD9)' }}>

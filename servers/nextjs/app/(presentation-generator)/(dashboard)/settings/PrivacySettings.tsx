@@ -47,31 +47,31 @@ const PrivacySettings = () => {
 
   if (trackingEnabled === null) {
     return (
-      <div className="w-full bg-[#F9F8F8] p-7 rounded-[20px] flex items-center justify-center min-h-[200px]">
-        <Loader2 className="w-5 h-5 animate-spin text-[#5146E5]" />
+      <div className="w-full bg-card p-7 rounded-[20px] flex items-center justify-center min-h-[200px]">
+        <Loader2 className="w-5 h-5 animate-spin text-primary" />
       </div>
     );
   }
 
   return (
     <div className="w-full space-y-6">
-      <div className="bg-[#F9F8F8] p-7 rounded-[20px]">
-        <h4 className="text-sm font-semibold text-[#191919] mb-1">
+      <div className="bg-card p-7 rounded-[20px]">
+        <h4 className="text-sm font-semibold text-foreground mb-1">
           Usage analytics
         </h4>
-        <p className="text-xs text-[#6B7280] mb-6 leading-relaxed max-w-lg">
+        <p className="text-xs text-muted-foreground mb-6 leading-relaxed max-w-lg">
           Share anonymous usage data to help us improve RAYS DeckForge. No personal information or presentation content is collected.
         </p>
 
-        <div className="flex items-center justify-between gap-4 rounded-[10px] bg-white border border-[#EDEEEF] p-4">
+        <div className="flex items-center justify-between gap-4 rounded-[10px] bg-card border border-border p-4">
           <div>
             <label
               htmlFor="tracking-toggle"
-              className="text-sm font-medium text-[#191919] cursor-pointer select-none block"
+              className="text-sm font-medium text-foreground cursor-pointer select-none block"
             >
               Share anonymous usage data
             </label>
-            <p className="text-xs text-[#9CA3AF] mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               {trackingEnabled
                 ? "Anonymous usage data is being shared."
                 : "Anonymous usage data is not being shared"}
@@ -79,7 +79,7 @@ const PrivacySettings = () => {
           </div>
           <div className="flex items-center gap-2">
             {saving && (
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#9CA3AF]" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-muted-foreground" />
             )}
             <Switch
               id="tracking-toggle"

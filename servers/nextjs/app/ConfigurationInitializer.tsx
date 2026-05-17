@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { setCanChangeKeys, setLLMConfig } from '@/store/slices/userConfig';
 import { hasValidLLMConfig } from '@/utils/storeHelpers';
 import { usePathname, useRouter } from 'next/navigation';
@@ -17,20 +17,24 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
     () => !route?.startsWith("/pdf-maker")
   );
   const router = useRouter();
+  const hasRun = useRef(false);
 
-  // Fetch user config state
+  // Fetch user config state — only run once
   useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
     fetchUserConfigState();
   }, []);
 
-  const setLoadingToFalseAfterNavigatingTo = (pathname: string) => {
-    const interval = setInterval(() => {
-      if (window.location.pathname === pathname) {
-        clearInterval(interval);
-        setIsLoading(false);
-      }
-    }, 500);
-  }
+  // Hard safety timeout — never stay stuck on loading screen
+  useEffect(() => {
+    if (!isLoading) return;
+    const timeout = setTimeout(() => {
+      console.warn("[ConfigurationInitializer] Safety timeout — forcing loading=false");
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
 
   const fetchUserConfigState = async () => {
     if (route.startsWith("/pdf-maker")) {
@@ -79,44 +83,48 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
       if (isValid) {
         // Check if the selected Ollama model is pulled
         if (llmConfig.LLM === 'ollama' && llmConfig.OLLAMA_MODEL) {
-          const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
-          if (!isPulled) {
-            console.log("[ConfigurationInitializer] Ollama model not pulled, redirecting to /");
-            router.push('/');
-            setLoadingToFalseAfterNavigatingTo('/');
-            return;
+          try {
+            const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
+            if (!isPulled) {
+              console.log("[ConfigurationInitializer] Ollama model not pulled, redirecting to /");
+              router.push('/');
+              setIsLoading(false);
+              return;
+            }
+          } catch {
+            // If check fails, proceed anyway
           }
         }
         if (llmConfig.LLM === 'custom') {
-          const isAvailable = await checkIfSelectedCustomModelIsAvailable(llmConfig);
-          if (!isAvailable) {
-            console.log("[ConfigurationInitializer] Custom model not available, redirecting to /");
-            router.push('/');
-            setLoadingToFalseAfterNavigatingTo('/');
-            return;
+          try {
+            const isAvailable = await checkIfSelectedCustomModelIsAvailable(llmConfig);
+            if (!isAvailable) {
+              console.log("[ConfigurationInitializer] Custom model not available, redirecting to /");
+              router.push('/');
+              setIsLoading(false);
+              return;
+            }
+          } catch {
+            // If check fails, proceed anyway
           }
         }
         if (route === '/') {
           console.log("[ConfigurationInitializer] Config valid, moving from / to /upload");
           router.push('/upload');
-          setLoadingToFalseAfterNavigatingTo('/upload');
-        } else {
-          setIsLoading(false);
         }
+        setIsLoading(false);
       } else if (route !== '/') {
         console.log("[ConfigurationInitializer] Config invalid, redirecting to / from", route);
         router.push('/');
-        setLoadingToFalseAfterNavigatingTo('/');
+        setIsLoading(false);
       } else {
         setIsLoading(false);
       }
     } else {
       if (route === '/') {
         router.push('/upload');
-        setLoadingToFalseAfterNavigatingTo('/upload');
-      } else {
-        setIsLoading(false);
       }
+      setIsLoading(false);
     }
   }
 
@@ -144,35 +152,31 @@ export function ConfigurationInitializer({ children }: { children: React.ReactNo
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#E9E8F8] via-[#F5F4FF] to-[#E0DFF7] flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#000000' }}>
         <div className="max-w-md w-full">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 text-center">
-            {/* Logo/Branding */}
+          <div className="rounded-[10px] p-8 text-center" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
+            {/* RAYS Branding */}
             <div className="mb-6">
-              <img
-                src="/Logo.png"
-                alt="RAYS DeckForge"
-                className="h-12 mx-auto mb-4 opacity-90"
-              />
-              <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+              <div className="text-2xl font-bold tracking-wider" style={{ color: '#ffffff', fontFamily: "'Space Mono', 'Fira Code', monospace" }}>RAYS</div>
+              <div className="w-16 h-0.5 mx-auto mt-3 rounded-full" style={{ background: '#383838' }}></div>
             </div>
 
             {/* Loading Text */}
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-gray-800 font-inter">
-                Initializing Application
+              <h3 className="text-lg font-semibold" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
+                DeckForge
               </h3>
-              <p className="text-sm text-gray-600 font-inter">
-                Loading configuration and checking model availability...
+              <p className="text-sm" style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>
+                Initializing system…
               </p>
             </div>
 
             {/* Progress Indicator */}
             <div className="mt-6">
-              <div className="flex space-x-1 justify-center">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div className="flex space-x-1.5 justify-center">
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#ffffff' }}></div>
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#888888', animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#ffffff', animationDelay: '0.4s' }}></div>
               </div>
             </div>
           </div>

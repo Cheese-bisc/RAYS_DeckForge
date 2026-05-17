@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <div className="w-full   sticky top-0 z-50 py-7 "
       style={{
-        background: "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 110.67%)",
+        background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background) / 0) 110.67%)",
 
       }}
     >
@@ -54,9 +54,9 @@ const Header = () => {
             {showHeaderBack ? (
               <Link
                 href={backHref}
-                className="text-[#333333] text-xs font-syne font-semibold flex items-center gap-2"
+                className="text-foreground text-xs font-syne font-semibold flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4 shrink-0 text-[#333333]" aria-hidden />
+                <ArrowLeft className="w-4 h-4 shrink-0 text-foreground" aria-hidden />
                 <span>{backLabel}</span>
               </Link>
             ) : null}

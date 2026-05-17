@@ -99,8 +99,8 @@ const MilestoneSlide = ({ data }: { data: Partial<SchemaType> }) => {
 
                   <div
                     className={`relative flex h-[270px]   w-[270px] items-center justify-center rounded-full ${isActive
-                      ? "z-10 bg-[#157CFF] text-white"
-                      : "border border-[#157CFF] bg-white text-[#157CFE]"
+                      ? "z-10 bg-[#157CFF] text-foreground"
+                      : "border border-[#157CFF] bg-card text-[#157CFE]"
                       } ${index > 0 ? "ml-[-45px]" : ""} `}
                     style={{
                       backgroundColor: isActive ? "var(--primary-color,#157CFF)" : "var(--card-color,#ffffff)",
@@ -109,7 +109,7 @@ const MilestoneSlide = ({ data }: { data: Partial<SchemaType> }) => {
                     }}
                   >
                     <span
-                      className={`${isActive ? "text-white" : "text-[#157CFF]"} text-[42px] font-medium tracking-[0.18em]`}
+                      className={`${isActive ? "text-foreground" : "text-[#157CFF]"} text-[42px] font-medium tracking-[0.18em]`}
                       style={{ color: isActive ? "var(--primary-text,#ffffff)" : "var(--primary-color,#157CFF)" }}
                     >
                       {item.bulletNumber}

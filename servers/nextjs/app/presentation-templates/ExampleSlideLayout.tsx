@@ -52,10 +52,10 @@ type SchemaType = z.infer<typeof Schema>;
 export default function ExampleSlideLayout({ data }: { data: SchemaType }) {
   const { title, subtitle, metrics, chartImage, trendIcon } = data;
   return (
-    <div className="aspect-video max-w-[1280px] w-full bg-white">
+    <div className="aspect-video max-w-[1280px] w-full bg-card">
       <header className="slide-header">
-        {title && <h1 className="text-4xl font-bold text-gray-900">{title}</h1>}
-        {subtitle && <p className="text-xl text-gray-600 mt-2">{subtitle}</p>}
+        {title && <h1 className="text-4xl font-bold text-foreground">{title}</h1>}
+        {subtitle && <p className="text-xl text-foreground mt-2">{subtitle}</p>}
       </header>
 
       <main className="slide-content flex-1 flex">
@@ -75,7 +75,7 @@ export default function ExampleSlideLayout({ data }: { data: SchemaType }) {
             {metrics.map((metric, index) => (
               <div
                 key={index}
-                className="metric-item mb-4 p-3 bg-gray-50 rounded"
+                className="metric-item mb-4 p-3 bg-muted rounded"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{metric.label}</span>

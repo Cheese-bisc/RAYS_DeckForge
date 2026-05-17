@@ -300,9 +300,9 @@ const PresentationHeader = ({
   };
 
   const ExportOptions = ({ mobile }: { mobile: boolean }) => (
-    <div className={` rounded-[18px] max-md:mt-4 ${mobile ? "" : "bg-white"}  p-5`}>
-      <p className="text-sm font-medium text-[#19001F]">Export as</p>
-      <div className="my-[18px] h-[1px] bg-[#E8E8E8]" />
+    <div className={`rounded-[10px] max-md:mt-4 p-5`} style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
+      <p className="text-sm font-medium" style={{ color: '#ffffff' }}>Export as</p>
+      <div className="my-[18px] h-[1px]" style={{ background: '#383838' }} />
       <div className="space-y-3">
 
         <Button
@@ -311,7 +311,7 @@ const PresentationHeader = ({
             setOpen(false);
           }}
           variant="ghost"
-          className={`  rounded-none px-0 w-full text-xs flex justify-start text-black hover:bg-transparent ${mobile ? "bg-white py-6 border-none rounded-lg" : ""}`} >
+          className={`  rounded-none px-0 w-full text-xs flex justify-start text-foreground hover:bg-transparent ${mobile ? "bg-card py-6 border-none rounded-lg" : ""}`} >
 
           PDF
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -322,7 +322,7 @@ const PresentationHeader = ({
             setOpen(false);
           }}
           variant="ghost"
-          className={`w-full flex px-0 justify-start text-xs text-black hover:bg-transparent  ${mobile ? "bg-white py-6" : ""}`}
+          className={`w-full flex px-0 justify-start text-xs text-foreground hover:bg-transparent  ${mobile ? "bg-card py-6" : ""}`}
         >
 
           PPTX
@@ -342,7 +342,7 @@ const PresentationHeader = ({
       )}
     >
       {isEditingTitle ? (
-        <div className="flex items-stretch w-[450px]  gap-0.5 rounded-[14px] border border-[#E4E2EB] bg-white pl-3.5 pr-1 py-1 shadow-[0_2px_12px_rgba(17,3,31,0.06)] ring-2 ring-[#5141e5]/15">
+        <div className="flex items-stretch w-[450px] gap-0.5 rounded-[10px] pl-3.5 pr-1 py-1" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
           <input
             ref={titleInputRef}
             value={draftTitle}
@@ -360,16 +360,16 @@ const PresentationHeader = ({
               }
             }}
             placeholder="Presentation title"
-            className="min-w-0 flex-1 bg-transparent py-2 pr-2 font-unbounded text-base leading-tight text-[#101323] placeholder:text-[#101323]/35 outline-none border-0 focus:ring-0"
+            className="min-w-0 flex-1 bg-transparent py-2 pr-2 text-base leading-tight outline-none border-0 focus:ring-0" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}
             aria-label="Presentation title"
           />
-          <div className="flex shrink-0 items-center gap-0.5 border-l border-[#EDECEC] pl-1 ml-0.5">
+          <div className="flex shrink-0 items-center gap-0.5 pl-1 ml-0.5" style={{ borderLeft: '1px solid #383838' }}>
             <ToolTip content="Save · Enter">
               <button
                 type="button"
                 onMouseDown={onTitleSaveMouseDown}
                 onClick={commitTitleEdit}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-[#5141e5] hover:bg-[#5141e5]/10 transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-[10px] transition-colors" style={{ color: '#ffffff' }}
                 aria-label="Save title"
               >
                 <Check className="h-4 w-4" strokeWidth={2.25} />
@@ -380,7 +380,7 @@ const PresentationHeader = ({
                 type="button"
                 onMouseDown={onTitleCancelMouseDown}
                 onClick={cancelTitleEdit}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-[#101323]/55 hover:bg-[#F6F6F9] hover:text-[#101323] transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-[10px] transition-colors" style={{ color: '#888888' }}
                 aria-label="Cancel editing title"
               >
                 <X className="h-4 w-4" strokeWidth={2.25} />
@@ -394,20 +394,20 @@ const PresentationHeader = ({
           onClick={beginTitleEdit}
           disabled={isStreaming || !presentationData}
           className={cn(
-            "group/title flex w-full min-w-0 items-center gap-2.5 rounded-[14px] px-3 py-2 text-left -mx-3 transition-colors",
-            "hover:bg-[#F6F6F9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5141e5] focus-visible:ring-offset-2",
+            "group/title flex w-full min-w-0 items-center gap-2.5 rounded-[10px] px-3 py-2 text-left -mx-3 transition-colors",
+            "hover:bg-[#1d1d1d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#383838] focus-visible:ring-offset-2",
             "disabled:pointer-events-none disabled:opacity-100 disabled:hover:bg-transparent"
           )}
         >
-          <h2 className="min-w-0 flex-1 font-unbounded text-lg w-[450px] leading-snug text-[#101323]">
+          <h2 className="min-w-0 flex-1 text-lg w-[450px] leading-snug" style={{ color: '#ffffff' }}>
             <MarkdownRenderer
               content={presentationData?.title || "Presentation"}
-              className="mb-0 min-w-0 overflow-hidden text-ellipsis line-clamp-1 text-sm text-[#101323] prose-p:my-0 prose-headings:my-0"
+              className="mb-0 min-w-0 overflow-hidden text-ellipsis line-clamp-1 text-sm prose-p:my-0 prose-headings:my-0"
             />
           </h2>
           {presentationData && !isStreaming && (
             <Pencil
-              className="h-3.5 w-3.5 shrink-0 text-[#101323]/40 transition-all duration-200 group-hover/title:text-[#5141e5] opacity-80 sm:opacity-0 sm:group-hover/title:opacity-100 group-hover/title:opacity-100"
+              className="h-3.5 w-3.5 shrink-0 transition-all duration-200 opacity-80 sm:opacity-0 sm:group-hover/title:opacity-100 group-hover/title:opacity-100" style={{ color: '#888888' }}
               aria-hidden
             />
           )}
@@ -418,7 +418,8 @@ const PresentationHeader = ({
 
   return (
     <>
-      <div className="py-[18px] px-4 sticky top-0 bg-white z-50 shadow-sm font-syne flex justify-between items-center gap-4">
+      <div className="py-[18px] px-4 sticky top-0 z-50" style={{ background: '#1d1d1d', borderBottom: '1px solid #383838' }}>
+        <div className="flex justify-between items-center gap-4">
         <div className="flex items-center gap-3">
 
           <img onClick={() => {
@@ -438,31 +439,31 @@ const PresentationHeader = ({
           </div>}
           {presentationData && presentationData.slides && !presentationData.slides[0].layout.includes("custom") && <ThemeSelector current_theme={presentationData?.theme || {}} themes={themes} />}
 
-          <div className="flex items-center gap-2 bg-[#F6F6F9] px-3.5 h-[38px] border border-[#EDECEC] rounded-[80px]">
+          <div className="flex items-center gap-2 px-3.5 h-[38px] rounded-[10px]" style={{ background: '#000000', border: '1px solid #383838' }}>
 
             <ToolTip content="Regenerate Presentation">
               <button onClick={handleReGenerate} className="group">
-                <RotateCcw className="w-3.5 h-3.5 text-[#101323] group-hover:text-[#5141e5] duration-300" />
+                <RotateCcw className="w-3.5 h-3.5 duration-300" style={{ color: '#ffffff' }} />
               </button>
             </ToolTip>
             <Separator orientation="vertical" className="h-4" />
             <ToolTip content="Undo">
-              <button disabled={!canUndo} className=" disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer group" onClick={() => {
+              <button disabled={!canUndo} className="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer group" onClick={() => {
                 onUndo();
               }}>
 
-                <Undo2 className="w-3.5 h-3.5 text-[#101323] group-hover:text-[#5141e5] duration-300" />
+                <Undo2 className="w-3.5 h-3.5 duration-300" style={{ color: '#ffffff' }} />
 
               </button>
             </ToolTip>
             <Separator orientation="vertical" className="h-4" />
             <ToolTip content="Redo">
 
-              <button disabled={!canRedo} className=" disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer group" onClick={() => {
+              <button disabled={!canRedo} className="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer group" onClick={() => {
 
                 onRedo();
               }}>
-                <Redo2 className="w-3.5 h-3.5 text-[#101323] group-hover:text-[#5141e5] duration-300" />
+                <Redo2 className="w-3.5 h-3.5 duration-300" style={{ color: '#ffffff' }} />
 
               </button>
             </ToolTip>
@@ -475,16 +476,17 @@ const PresentationHeader = ({
                   router.push(to);
                 }}
                 disabled={isStreaming || !presentationData?.slides || presentationData?.slides.length === 0} className="cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group">
-                <Play className="w-3.5 h-3.5 text-[#101323] group-hover:text-[#5141e5] duration-300" />
+                <Play className="w-3.5 h-3.5 duration-300" style={{ color: '#ffffff' }} />
               </button>
             </ToolTip>
           </div>
 
           <Popover open={open} onOpenChange={setOpen} >
             <PopoverTrigger asChild>
-              <button className="flex  items-center gap-[7px] px-[18px] py-[11px] rounded-[53px] text-sm font-semibold text-[#101323]"
+              <button className="flex items-center gap-[7px] px-[18px] py-[11px] rounded-[10px] text-sm font-semibold"
                 style={{
-                  background: "linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)",
+                  background: "#ffffff",
+                  color: "#000000"
                 }}
                 disabled={isExporting || isStreaming === true}
               >
@@ -495,6 +497,7 @@ const PresentationHeader = ({
               <ExportOptions mobile={false} />
             </PopoverContent>
           </Popover>
+        </div>
         </div>
       </div>
     </>

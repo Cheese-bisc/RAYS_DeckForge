@@ -43,7 +43,7 @@ const BasicInfoSlideLayout: React.FC<BasicInfoSlideLayoutProps> = ({ data: slide
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -80,7 +80,7 @@ const BasicInfoSlideLayout: React.FC<BasicInfoSlideLayoutProps> = ({ data: slide
                     {/* Right Section - Content */}
                     <div className="flex-1 flex flex-col justify-center pl-8 space-y-6">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                             {slideData?.title || 'Product Overview'}
                         </h1>
 
@@ -88,7 +88,7 @@ const BasicInfoSlideLayout: React.FC<BasicInfoSlideLayoutProps> = ({ data: slide
                         <div style={{ background: "var(--primary-color, #9333ea)" }} className="w-20 h-1 bg-purple-600"></div>
 
                         {/* Description */}
-                        <p style={{ color: "var(--background-text, #4b5563)" }} className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        <p style={{ color: "var(--background-text, #4b5563)" }} className="text-base sm:text-lg text-foreground leading-relaxed">
                             {slideData?.description || 'Our product offers customizable dashboards for real-time reporting and data-driven decisions. It integrates with third-party tools to enhance operations and scales with business growth for improved efficiency.'}
                         </p>
 

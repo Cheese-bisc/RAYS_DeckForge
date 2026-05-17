@@ -146,7 +146,7 @@ const KPICard = ({ kpi }: { kpi: z.infer<typeof Schema>["kpis"][0] }) => {
 
                 {/* Header Bar */}
                 <div
-                    className=" w-full h-[65px]  flex items-center justify-between px-5 text-white"
+                    className=" w-full h-[65px]  flex items-center justify-between px-5 text-foreground"
                     style={{
                         backgroundColor: 'var(--primary-color,#9234EC)',
 
@@ -219,7 +219,7 @@ const dynamicSlideLayout = ({ data }: { data: z.infer<typeof Schema> }) => {
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="  w-full h-full rounded-sm max-w-[1280px] flex items-center gap-[20px] shadow-lg aspect-video bg-white relative z-20 mx-auto overflow-hidden "
+            <div className="  w-full h-full rounded-sm max-w-[1280px] flex items-center gap-[20px] shadow-lg aspect-video bg-card relative z-20 mx-auto overflow-hidden "
 
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',

@@ -12,7 +12,7 @@ const TemplateCardSkeleton = () => (
                 ))}
             </div>
         </div>
-        <div className="flex items-center justify-between p-5 bg-white border-t border-[#EDEEEF] relative z-40">
+        <div className="flex items-center justify-between p-5 bg-card border-t border-[#EDEEEF] relative z-40">
             <div className="w-[191px]">
                 <Skeleton className="h-4 w-28 mb-2" />
                 <Skeleton className="h-3 w-full mb-1" />

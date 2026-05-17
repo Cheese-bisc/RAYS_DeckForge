@@ -84,7 +84,7 @@ const TableOfContentsLayout: React.FC<TableOfContentsLayoutProps> = ({
           <div className="grid grid-cols-2 gap-x-10 gap-y-5">
             {items.map((item, idx) => (
               <div key={idx} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full text-white flex items-center justify-center text-base font-bold" style={{ backgroundColor: 'var(--primary-color, #1E4CD9)', color: 'var(--primary-text, #ffffff )' }}>
+                <div className="flex-shrink-0 w-10 h-10 rounded-full text-foreground flex items-center justify-center text-base font-bold" style={{ backgroundColor: 'var(--primary-color, #1E4CD9)', color: 'var(--primary-text, #ffffff )' }}>
                   {idx + 1}
                 </div>
                 <div className="flex-1 rounded-md p-3" style={{ backgroundColor: 'var(--card-color, #F5F8FE)' }}>

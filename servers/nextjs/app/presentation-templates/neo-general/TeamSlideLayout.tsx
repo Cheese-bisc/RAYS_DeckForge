@@ -98,7 +98,7 @@ const TeamSlideLayout: React.FC<TeamSlideLayoutProps> = ({ data: slideData }) =>
 
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -132,7 +132,7 @@ const TeamSlideLayout: React.FC<TeamSlideLayoutProps> = ({ data: slideData }) =>
                     {/* Left Section - Title and Company Description */}
                     <div className="flex-1 flex flex-col justify-center pr-8 space-y-6">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-[42.7px] font-bold text-gray-900 leading-tight">
+                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-[42.7px] font-bold text-foreground leading-tight">
                             {slideData?.title || 'Our Team Members'}
                         </h1>
 
@@ -140,7 +140,7 @@ const TeamSlideLayout: React.FC<TeamSlideLayoutProps> = ({ data: slideData }) =>
                         <div style={{ background: "var(--primary-color,#9333ea)" }} className="w-20 h-1 bg-purple-600"></div>
 
                         {/* Company Description */}
-                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-foreground leading-relaxed">
                             {slideData?.companyDescription || 'Ginyard International Co. is a leading provider of innovative digital solutions tailored for businesses. Our mission is to empower organizations to achieve their goals through cutting-edge technology and strategic partnerships.'}
                         </p>
                     </div>
@@ -161,13 +161,13 @@ const TeamSlideLayout: React.FC<TeamSlideLayoutProps> = ({ data: slideData }) =>
 
                                     {/* Member Info */}
                                     <div>
-                                        <h3 style={{ color: "var(--background-text,#111827)" }} className="text-lg font-semibold text-gray-900">
+                                        <h3 style={{ color: "var(--background-text,#111827)" }} className="text-lg font-semibold text-foreground">
                                             {member.name}
                                         </h3>
-                                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-sm font-medium text-gray-600 italic mb-2">
+                                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-sm font-medium text-foreground italic mb-2">
                                             {member.position}
                                         </p>
-                                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-xs text-gray-600 leading-relaxed px-2">
+                                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-xs text-foreground leading-relaxed px-2">
                                             {member.description}
                                         </p>
                                     </div>

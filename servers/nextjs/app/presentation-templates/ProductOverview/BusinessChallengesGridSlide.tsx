@@ -76,13 +76,13 @@ const BusinessChallengesGridSlide = ({ data }: { data: Partial<SchemaType> }) =>
           {blocks?.map((block, index) => (
             <div key={index} className="">
               <p
-                className="text-[20px] font-semibold tracking-[2.074px] text-white"
+                className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
                 style={{ color: "var(--primary-text,#edf2f1)" }}
               >
                 {block.heading}
               </p>
               <p
-                className="mt-[24px] text-[28px] font-normal  text-white"
+                className="mt-[24px] text-[28px] font-normal  text-foreground"
                 style={{ color: "var(--primary-text,#edf2f1)" }}
               >
                 {block.body}

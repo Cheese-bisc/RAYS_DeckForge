@@ -121,7 +121,7 @@ const PricingPlanSlide = ({ data }: { data: Partial<SchemaType> }) => {
                 }}
               >
                 <p
-                  className="text-[20px] font-semibold tracking-[2.074px] text-white"
+                  className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
                   style={{
                     color: active
                       ? "var(--primary-text,#edf2f1)"

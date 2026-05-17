@@ -32,7 +32,7 @@ export const CustomTemplateCard = React.memo(function CustomTemplateCard({ templ
 
     return (
         <Card
-            className="cursor-pointer flex flex-col shadow-none sm:shadow-none relative hover:shadow-sm transition-all duration-200 group overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-white"
+            className="cursor-pointer flex flex-col shadow-none sm:shadow-none relative hover:shadow-sm transition-all duration-200 group overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-card"
             onClick={handleOpen}
         >
             <TemplatePreviewStage>
@@ -43,9 +43,9 @@ export const CustomTemplateCard = React.memo(function CustomTemplateCard({ templ
                     templateId={template.id}
                 />
             </TemplatePreviewStage>
-            <div className="relative z-40 flex items-center justify-between border-t border-[#EDEEEF] bg-white px-6 py-5">
-                <h3 className="max-w-[min(191px,65%)] text-base font-bold text-gray-900">{template.name}</h3>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-purple-600" />
+            <div className="relative z-40 flex items-center justify-between border-t border-[#EDEEEF] bg-card px-6 py-5">
+                <h3 className="max-w-[min(191px,65%)] text-base font-bold text-foreground">{template.name}</h3>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-purple-600" />
             </div>
         </Card>
     );
@@ -69,19 +69,19 @@ const InbuiltTemplateCard = React.memo(function InbuiltTemplateCard({
     return (
         <Card
             key={template.id}
-            className="group relative cursor-pointer overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-white shadow-none sm:shadow-none transition-all duration-200 hover:shadow-sm"
+            className="group relative cursor-pointer overflow-hidden rounded-[22px] border border-[#E8E9EC] bg-card shadow-none sm:shadow-none transition-all duration-200 hover:shadow-sm"
             onClick={handleOpen}
         >
             <TemplatePreviewStage>
                 <LayoutsBadge count={template.layouts.length} />
                 <InbuiltTemplatePreview layouts={template.layouts} templateId={template.id} />
             </TemplatePreviewStage>
-            <div className="relative z-40 flex items-center justify-between gap-4 border-t border-[#EDEEEF] bg-white px-6 py-5">
+            <div className="relative z-40 flex items-center justify-between gap-4 border-t border-[#EDEEEF] bg-card px-6 py-5">
                 <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-bold capitalize text-gray-900">{template.name}</h3>
-                    <p className="mt-1 line-clamp-2 text-sm text-gray-500">{template.description}</p>
+                    <h3 className="text-base font-bold capitalize text-foreground">{template.name}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{template.description}</p>
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-blue-600" />
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-blue-600" />
             </div>
         </Card>
     );
@@ -139,7 +139,7 @@ const LayoutPreview = () => {
                     <div className="flex  gap-2.5 max-sm:w-full max-md:justify-center max-sm:flex-wrap">
                         <Link
                             href="/custom-template"
-                            className="inline-flex items-center font-syne font-semibold gap-2 rounded-xl px-4 py-2.5 text-black text-sm  shadow-sm hover:shadow-md"
+                            className="inline-flex items-center font-syne font-semibold gap-2 rounded-xl px-4 py-2.5 text-foreground text-sm  shadow-sm hover:shadow-md"
                             aria-label="Create new template"
                             style={{
                                 borderRadius: "48px",
@@ -210,7 +210,7 @@ const LayoutPreview = () => {
                     {customLoading ? (
                         <div className="flex items-center justify-center py-12">
                             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-                            <span className="ml-3 text-gray-600">Loading custom templates...</span>
+                            <span className="ml-3 text-foreground">Loading custom templates...</span>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center lg:grid-cols-4 gap-6">

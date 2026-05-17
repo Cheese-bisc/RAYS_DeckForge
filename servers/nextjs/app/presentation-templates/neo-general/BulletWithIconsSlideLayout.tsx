@@ -69,7 +69,7 @@ const BulletWithIconsSlideLayout: React.FC<BulletWithIconsSlideLayoutProps> = ({
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-gradient-to-br from-gray-50 to-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-gradient-to-br from-muted to-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -96,7 +96,7 @@ const BulletWithIconsSlideLayout: React.FC<BulletWithIconsSlideLayoutProps> = ({
                 <div className="flex flex-col h-full px-8 sm:px-12 lg:px-20 pt-12 pb-8">
                     {/* Title Section - Full Width */}
                     <div className="mb-8">
-                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-[42.7px] font-bold text-gray-900">
+                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-[42.7px] font-bold text-foreground">
                             {slideData?.title || 'Problem'}
                         </h1>
                     </div>
@@ -139,7 +139,7 @@ const BulletWithIconsSlideLayout: React.FC<BulletWithIconsSlideLayoutProps> = ({
                         {/* Right Section - Content */}
                         <div className="flex-1 flex flex-col justify-center pl-8 lg:pl-16">
                             {/* Description */}
-                            <p style={{ color: "var(--background-text,#4b5563)" }} className="text-lg text-gray-700 leading-relaxed mb-8">
+                            <p style={{ color: "var(--background-text,#4b5563)" }} className="text-lg text-foreground leading-relaxed mb-8">
                                 {slideData?.description || 'Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.'}
                             </p>
 
@@ -160,11 +160,11 @@ const BulletWithIconsSlideLayout: React.FC<BulletWithIconsSlideLayoutProps> = ({
 
                                         {/* Content */}
                                         <div className="flex-1">
-                                            <h3 style={{ color: "var(--background-text,#111827)" }} className="text-xl font-semibold text-gray-900 mb-2">
+                                            <h3 style={{ color: "var(--background-text,#111827)" }} className="text-xl font-semibold text-foreground mb-2">
                                                 {bullet.title}
                                             </h3>
                                             <div style={{ background: "var(--primary-color,#9333ea)" }} className="w-12 h-0.5 bg-purple-600 mb-3"></div>
-                                            <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base text-gray-700 leading-relaxed">
+                                            <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base text-foreground leading-relaxed">
                                                 {bullet.description}
                                             </p>
                                         </div>

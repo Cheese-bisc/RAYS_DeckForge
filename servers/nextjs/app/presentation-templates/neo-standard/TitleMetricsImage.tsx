@@ -74,7 +74,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                             {metrics?.map((metric, idx) => (
                                 <div
                                     key={idx}
-                                    className="bg-[#1F8A2E] rounded-[7px] h-[152.8px] flex flex-col justify-center items-center text-white px-4"
+                                    className="bg-[#1F8A2E] rounded-[7px] h-[152.8px] flex flex-col justify-center items-center text-foreground px-4"
 
                                     style={{ backgroundColor: 'var(--primary-color,#1F8A2E)' }}
                                 >

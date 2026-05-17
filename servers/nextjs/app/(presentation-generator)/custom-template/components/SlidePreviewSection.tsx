@@ -22,9 +22,9 @@ export const SlidePreviewSection: React.FC<SlidePreviewSectionProps> = ({
     return (
         <div className="my-8 max-w-[1440px] mx-auto">
             {/* Header Card */}
-            <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden">
+            <div className="bg-card rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden">
                 {/* Header */}
-                <div className="px-6 py-5 border-b border-[#F3F4F6] bg-gradient-to-r from-[#FAFAFA] to-white">
+                <div className="px-6 py-5 border-b border-[#F3F4F6] bg-gradient-to-r from-[#FAFAFA] to-card">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#EBE9FE] to-[#DDD6FE] flex items-center justify-center shadow-sm">
@@ -54,7 +54,7 @@ export const SlidePreviewSection: React.FC<SlidePreviewSectionProps> = ({
                                 className="w-full h-full object-cover"
                             />
                             {/* Slide number badge */}
-                            <div className="absolute top-2 left-2 px-2.5 py-1 bg-black/70 backdrop-blur-sm rounded-lg text-xs font-semibold text-white shadow-lg">
+                            <div className="absolute top-2 left-2 px-2.5 py-1 bg-black/70 backdrop-blur-sm rounded-lg text-xs font-semibold text-foreground shadow-lg">
                                 {index + 1}
                             </div>
 
@@ -67,7 +67,7 @@ export const SlidePreviewSection: React.FC<SlidePreviewSectionProps> = ({
 
 
                 {/* Action Footer */}
-                <div className="px-6 py-5 border-t border-[#F3F4F6] bg-gradient-to-r from-[#FAFAFA] to-white">
+                <div className="px-6 py-5 border-t border-[#F3F4F6] bg-gradient-to-r from-[#FAFAFA] to-card">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-sm text-[#6B7280] max-w-md text-center sm:text-left">
                             Ready to generate your template. Each slide will be converted to a reusable React component.

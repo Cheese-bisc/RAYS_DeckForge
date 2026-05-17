@@ -13,7 +13,7 @@ export const FontCard: React.FC<FontCardProps> = ({ font, isSelected, onSelect }
     className={`relative p-3 rounded-xl cursor-pointer transition-all duration-200 group
       ${isSelected
         ? 'bg-gradient-to-br from-[#F8F7FF] to-[#F0EFFF] border border-[#7A5AF8] shadow-sm'
-        : 'bg-white border border-[#EDEEEF] hover:border-[#C4B5FD] hover:bg-[#FAFAFF]'
+        : 'bg-card border border-[#EDEEEF] hover:border-[#C4B5FD] hover:bg-[#FAFAFF]'
       }`}
     onClick={() => onSelect(font.name)}
   >

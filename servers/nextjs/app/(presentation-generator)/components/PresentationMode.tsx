@@ -165,7 +165,7 @@ const PresentationMode: React.FC<PresentationModeProps> = ({
                 e.stopPropagation();
                 onFullscreenToggle();
               }}
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-card/20"
             >
               {isFullscreen ? (
                 <Minimize2 className="h-5 w-5" />
@@ -181,7 +181,7 @@ const PresentationMode: React.FC<PresentationModeProps> = ({
                 e.stopPropagation();
                 onExit();
               }}
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-card/20"
             >
               <X className="h-5 w-5" />
             </Button>
@@ -197,11 +197,11 @@ const PresentationMode: React.FC<PresentationModeProps> = ({
                 onSlideChange(currentSlide - 1);
               }}
               disabled={currentSlide === 0}
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-card/20"
             >
               <ChevronLeft className="h-5 w-5" style={{ color: "var(--text-body-color,#000000)" }} />
             </Button>
-            <span className="text-white"
+            <span className="text-foreground"
               style={{ color: "var(--text-body-color,#000000)" }}
             >
               {currentSlide + 1} / {slides.length}
@@ -215,7 +215,7 @@ const PresentationMode: React.FC<PresentationModeProps> = ({
                 onSlideChange(currentSlide + 1);
               }}
               disabled={currentSlide === slides.length - 1}
-              className="text-white hover:bg-white/20"
+              className="text-foreground hover:bg-card/20"
             >
               <ChevronRight className="h-5 w-5" style={{ color: "var(--text-body-color,#000000)" }} />
             </Button>

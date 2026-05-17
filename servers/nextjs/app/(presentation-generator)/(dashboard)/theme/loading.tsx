@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
 const ThemeCardSkeleton = () => (
-    <div className="rounded-xl px-6 border border-[#EDEEEF] w-[305px] bg-white overflow-hidden">
+    <div className="rounded-xl px-6 border border-[#EDEEEF] w-[305px] bg-card overflow-hidden">
         {/* Preview area */}
         <div className="relative h-[250px] p-6">
             {/* Top badges */}

@@ -88,7 +88,7 @@ type StatMetric = {
 function StatPill({ metrics }: { metrics: StatMetric[] }) {
   return (
     <div
-      className="h-[438px] w-[248px] overflow-hidden rounded-[127px] bg-[#157CFF] px-[28px] py-[74px] text-center text-white"
+      className="h-[438px] w-[248px] overflow-hidden rounded-[127px] bg-[#157CFF] px-[28px] py-[74px] text-center text-foreground"
       style={{
         backgroundColor: "var(--primary-color,#157CFF)",
         color: "var(--primary-text,#ffffff)",
@@ -99,7 +99,7 @@ function StatPill({ metrics }: { metrics: StatMetric[] }) {
           <div key={`${metric.value}-${metric.label}-${index}`} className={``}>
             <p className="text-[55px]  leading-[44.353px] tracking-[-1.09px]">{metric.value}</p>
             {metric.label && <p className="mt-[6px] text-[20px]  leading-none">{metric.label}</p>}
-            {metric.description && <p className="text-[20px] mt-1 leading-[1.15] text-white/90" style={{ color: "var(--primary-text,#ffffff)", opacity: 0.9 }}>
+            {metric.description && <p className="text-[20px] mt-1 leading-[1.15] text-foreground/90" style={{ color: "var(--primary-text,#ffffff)", opacity: 0.9 }}>
               {metric.description}
             </p>}
           </div>

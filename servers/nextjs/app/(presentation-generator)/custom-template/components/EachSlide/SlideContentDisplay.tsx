@@ -33,7 +33,7 @@ export const SlideContentDisplay: React.FC<SlideContentDisplayProps> = ({
           <div className="mb-4 flex items-center justify-between bg-[#EDE9FE] border border-[#C4B5FD] rounded-xl px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-[#7A5AF8] flex items-center justify-center">
-                <span className="text-white text-xs">✨</span>
+                <span className="text-foreground text-xs">✨</span>
               </div>
               <span className="text-sm font-medium text-[#5B21B6]">
                 Showing AI-generated preview
@@ -54,7 +54,7 @@ export const SlideContentDisplay: React.FC<SlideContentDisplayProps> = ({
         )}
 
         {/* Slide Content */}
-        <div className="relative rounded-xl overflow-hidden border border-[#E5E7EB] bg-white shadow-sm">
+        <div className="relative rounded-xl overflow-hidden border border-[#E5E7EB] bg-card shadow-sm">
           <div ref={slideDisplayRef}>
             <SlideContent
               slide={slide}
@@ -94,7 +94,7 @@ export const SlideContentDisplay: React.FC<SlideContentDisplayProps> = ({
             </p>
             <button
               onClick={() => retrySlide(slide.slide_number)}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-white border border-[#FECACA] text-[#DC2626] hover:bg-[#FEE2E2] transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-card border border-[#FECACA] text-[#DC2626] hover:bg-[#FEE2E2] transition-all"
             >
               <RotateCcw className="w-4 h-4" />
               Retry

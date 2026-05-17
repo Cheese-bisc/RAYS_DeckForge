@@ -54,7 +54,7 @@ export const V1ContentRender = ({ slide, isEditMode, theme }: { slide: any, isEd
     // Show loading state for custom templates
     if (isCustomTemplate && customLoading) {
         return (
-            <div className="flex flex-col items-center justify-center aspect-video h-full bg-gray-100 rounded-lg">
+            <div className="flex flex-col items-center justify-center aspect-video h-full bg-muted rounded-lg">
                 <Loader2 className="w-4 h-4 animate-spin" />
             </div>
         );
@@ -64,15 +64,15 @@ export const V1ContentRender = ({ slide, isEditMode, theme }: { slide: any, isEd
     if (!Layout) {
         if (Object.keys(slide.content).length === 0) {
             return (
-                <div className="flex flex-col items-center cursor-pointer justify-center aspect-video h-full bg-gray-100 rounded-lg">
-                    <p className="text-gray-600 text-center text-base">Blank Slide</p>
-                    <p className="text-gray-600 text-center text-sm">This slide is empty. Please add content to it using the edit button.</p>
+                <div className="flex flex-col items-center cursor-pointer justify-center aspect-video h-full bg-muted rounded-lg">
+                    <p className="text-foreground text-center text-base">Blank Slide</p>
+                    <p className="text-foreground text-center text-sm">This slide is empty. Please add content to it using the edit button.</p>
                 </div>
             )
         }
         return (
-            <div className="flex flex-col items-center justify-center aspect-video h-full bg-gray-100 rounded-lg">
-                <p className="text-gray-600 text-center text-base">
+            <div className="flex flex-col items-center justify-center aspect-video h-full bg-muted rounded-lg">
+                <p className="text-foreground text-center text-base">
                     Layout &quot;{slide.layout}&quot; not found in &quot;
                     {slide.layout_group}&quot; Template
                 </p>

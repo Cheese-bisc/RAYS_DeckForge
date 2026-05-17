@@ -215,7 +215,7 @@ const BusinessModelSlide: React.FC<Props> = ({ data }) => {
               </div>
             ) : (
               <div className="w-full">
-                <div className="bg-white rounded-lg shadow p-4"
+                <div className="bg-card rounded-lg shadow p-4"
                   style={{ backgroundColor: 'var(--card-color, #F5F8FE)' }}
                 >
                   <div className="w-full h-72">

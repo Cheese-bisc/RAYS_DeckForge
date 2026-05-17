@@ -54,7 +54,7 @@ const FontManager: React.FC<FontManagerProps> = ({
 
   return (
     <div className="my-8 max-w-[900px] mx-auto">
-      <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden">
+      <div className="bg-card rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden">
         {/* Header */}
         <div className="px-6 py-5 border-b border-[#F3F4F6] bg-[#FAFAFA]">
           <div className="flex items-center gap-4">
@@ -86,7 +86,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {fontsData.available_fonts.map((font, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1.5 bg-white border border-[#D1FAE5] rounded-full text-xs font-medium text-[#166534] shadow-sm"
+                    className="px-3 py-1.5 bg-card border border-[#D1FAE5] rounded-full text-xs font-medium text-[#166534] shadow-sm"
                   >
                     {font.name}
                   </span>
@@ -109,7 +109,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {fontsNeedingUpload.map((font, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#FDE68A] shadow-sm"
+                    className="flex items-center justify-between p-4 bg-card rounded-xl border border-[#FDE68A] shadow-sm"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-[#FEF3C7] flex items-center justify-center">
@@ -164,7 +164,7 @@ const FontManager: React.FC<FontManagerProps> = ({
                 {uploadedFonts.map((font, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 bg-white rounded-xl border border-[#D1FAE5] shadow-sm"
+                    className="flex items-center justify-between p-3 bg-card rounded-xl border border-[#D1FAE5] shadow-sm"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-[#DCFCE7] flex items-center justify-center">
@@ -213,8 +213,8 @@ const FontManager: React.FC<FontManagerProps> = ({
                 ${isUploading
                   ? 'bg-[#E5E7EB] text-[#9CA3AF]'
                   : allFontsUploaded
-                    ? 'bg-[#16A34A] text-white hover:bg-[#15803D] shadow-sm'
-                    : 'bg-white text-[#374151] border border-[#E5E7EB] hover:bg-[#F9FAFB]'
+                    ? 'bg-[#16A34A] text-foreground hover:bg-[#15803D] shadow-sm'
+                    : 'bg-card text-[#374151] border border-[#E5E7EB] hover:bg-[#F9FAFB]'
                 }
               `}
             >

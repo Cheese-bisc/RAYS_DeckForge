@@ -55,7 +55,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                     {/* Title */}
                     <h1
-                        className="text-[42.7px] text-black  font-bold leading-[1.05] whitespace-pre-wrap mb-[25px]"
+                        className="text-[42.7px] text-foreground  font-bold leading-[1.05] whitespace-pre-wrap mb-[25px]"
                         style={{ letterSpacing: '-1.6px', color: 'var(--background-text,#000000)' }}
                     >
                         {title}
@@ -63,7 +63,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                     {/* Description */}
                     <p
-                        className="text-[16px] text-black  leading-[1.78] max-w-[475px]"
+                        className="text-[16px] text-foreground  leading-[1.78] max-w-[475px]"
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
                         {description}
@@ -106,13 +106,13 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                 {/* Event Text Column */}
                                 <div className="flex flex-col pt-[3px] max-w-[250px]">
                                     <span
-                                        className="text-[21.3px] text-black  font-bold leading-none mb-[8px]"
+                                        className="text-[21.3px] text-foreground  font-bold leading-none mb-[8px]"
                                         style={{ color: 'var(--background-text,#000000)' }}
                                     >
                                         {item.year}
                                     </span>
                                     <span
-                                        className="text-[16px] text-black  leading-[1.2]"
+                                        className="text-[16px] text-foreground  leading-[1.2]"
                                         style={{ color: 'var(--background-text,#000000)' }}
                                     >
                                         {item.eventDescription}

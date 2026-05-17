@@ -95,7 +95,7 @@ const BulletIconsOnlySlideLayout: React.FC<BulletIconsOnlySlideLayoutProps> = ({
 
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -133,7 +133,7 @@ const BulletIconsOnlySlideLayout: React.FC<BulletIconsOnlySlideLayoutProps> = ({
                     {/* Left Section - Title and Bullet Points */}
                     <div className="flex-1 flex flex-col pr-8">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-8">
+                        <h1 style={{ color: "var(--background-text, #111827)" }} className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-8">
                             {slideData?.title || 'Solutions'}
                         </h1>
 
@@ -157,11 +157,11 @@ const BulletIconsOnlySlideLayout: React.FC<BulletIconsOnlySlideLayoutProps> = ({
 
                                     {/* Content */}
                                     <div className="flex-1">
-                                        <h3 style={{ color: "var(--background-text, #111827)" }} className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
+                                        <h3 style={{ color: "var(--background-text, #111827)" }} className="text-lg sm:text-xl font-semibold text-foreground mb-1">
                                             {bullet.title}
                                         </h3>
                                         {bullet.subtitle && (
-                                            <p style={{ color: "var(--background-text, #4b5563)" }} className="text-sm text-gray-700 leading-relaxed">
+                                            <p style={{ color: "var(--background-text, #4b5563)" }} className="text-sm text-foreground leading-relaxed">
                                                 {bullet.subtitle}
                                             </p>
                                         )}

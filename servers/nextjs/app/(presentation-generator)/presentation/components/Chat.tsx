@@ -854,7 +854,7 @@ const Chat = ({
   };
 
   return (
-    <div className="flex h-full w-full flex-col bg-white">
+    <div className="flex h-full w-full flex-col bg-card">
       <div className="flex items-center justify-between px-4 pt-8">
         <div className="flex items-center gap-2">
           <h4 className="flex items-center gap-2 text-sm font-semibold text-[#101828]">
@@ -953,10 +953,10 @@ const Chat = ({
                   key={message.id}
                   className="flex items-start justify-end gap-2"
                 >
-                  <div className="max-w-[78%] rounded-[20px] bg-[#A100FF] px-4 py-3 text-sm font-medium leading-5 text-white">
+                  <div className="max-w-[78%] rounded-[20px] bg-[#A100FF] px-4 py-3 text-sm font-medium leading-5 text-foreground">
                     <p className="whitespace-pre-wrap">{message.content}</p>
                   </div>
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FF8617] text-sm font-semibold text-white">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FF8617] text-sm font-semibold text-foreground">
                     U
                   </div>
                 </div>
@@ -1043,7 +1043,7 @@ const Chat = ({
 
       <form
         onSubmit={handleSubmit}
-        className="relative mx-4 mb-4 rounded-[8px] border border-[#F4F4F4] bg-white px-2.5 py-3"
+        className="relative mx-4 mb-4 rounded-[8px] border border-[#F4F4F4] bg-card px-2.5 py-3"
         style={{
           boxShadow: "0 4px 14px 0 rgba(0, 0, 0, 0.04)",
         }}
@@ -1064,11 +1064,11 @@ const Chat = ({
         <button
           type="button"
           disabled
-          className="absolute bottom-3 left-3 h-[28px] rounded-[64px] border border-[#EDEEEF] bg-white px-3 py-1 opacity-50"
+          className="absolute bottom-3 left-3 h-[28px] rounded-[64px] border border-[#EDEEEF] bg-card px-3 py-1 opacity-50"
           aria-label="Attach files"
           title="Attachments are not supported yet"
         >
-          <Plus className="h-3 w-3 text-black" />
+          <Plus className="h-3 w-3 text-foreground" />
         </button>
         {isSending ? (
           <div className="absolute bottom-3 right-3 flex items-center gap-2">
@@ -1084,7 +1084,7 @@ const Chat = ({
             <button
               type="button"
               onClick={stopStreaming}
-              className="flex items-center gap-1.5 rounded-[34px] border border-[#E4E7EC] bg-white px-3 py-2 text-sm font-medium text-[#344054] transition-colors hover:bg-[#F9FAFB]"
+              className="flex items-center gap-1.5 rounded-[34px] border border-[#E4E7EC] bg-card px-3 py-2 text-sm font-medium text-[#344054] transition-colors hover:bg-[#F9FAFB]"
               aria-label="Stop chat response"
             >
               <Square className="h-3 w-3 fill-current" />

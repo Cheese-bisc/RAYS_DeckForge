@@ -122,7 +122,7 @@ export function OutlineItem({
         <div
             ref={setNodeRef}
             style={style}
-            className={`mb-4 bg-white rounded-[12px] group shadow-sm p-10 relative font-syne transition-all duration-500 hover:shadow-[0_6.6px_13.2px_0_rgba(0,0,0,0.10)] ${isDragging ? "opacity-50" : ""}`}
+            className={`mb-4 bg-card rounded-[12px] group shadow-sm p-10 relative font-syne transition-all duration-500 hover:shadow-[0_6.6px_13.2px_0_rgba(0,0,0,0.10)] ${isDragging ? "opacity-50" : ""}`}
         >
 
             <div
@@ -146,7 +146,7 @@ export function OutlineItem({
 
 
                 <div id={`outline-item-${index}`} className="flex flex-col basis-full gap-2">
-                    <p className="text-black w-fit text-[10px] font-medium  bg-white border border-[#EDEEEF] rounded-[80px] px-2.5">Slide {index}</p>
+                    <p className="text-foreground w-fit text-[10px] font-medium  bg-card border border-[#EDEEEF] rounded-[80px] px-2.5">Slide {index}</p>
                     {/* Editable Markdown Content */}
                     {isStreaming ? (
                         isActiveStreaming ? (
@@ -178,9 +178,9 @@ export function OutlineItem({
                     <ToolTip content="Delete Slide">
                         <button
                             onClick={handleSlideDelete}
-                            className="p-1.5 sm:p-2 bg-white shadow-md  rounded-full transition-colors"
+                            className="p-1.5 sm:p-2 bg-card shadow-md  rounded-full transition-colors"
                         >
-                            <Trash className="w-4 h-4  text-black/70" />
+                            <Trash className="w-4 h-4  text-foreground/70" />
                         </button>
                     </ToolTip>
                 </div>

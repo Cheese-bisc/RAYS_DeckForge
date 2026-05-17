@@ -177,7 +177,7 @@ const ComparisonTableWithTextSlide = ({ data }: { data: Partial<SchemaType> }) =
                     {cells?.map((cell, cellIndex) => (
                       <td
                         key={`cell-${rowIndex}-${cellIndex}`}
-                        className=" border-r border-t bg-white p-[33px] text-left text-[18px] leading-[1.2] last:border-r-0"
+                        className=" border-r border-t bg-card p-[33px] text-left text-[18px] leading-[1.2] last:border-r-0"
                         style={{
                           borderColor: "var(--stroke,#bcc3c3)",
                           backgroundColor: "var(--card-color,#ffffff)",

@@ -89,10 +89,10 @@ export const TemplateCreationProgress: React.FC<TemplateCreationProgressProps> =
                                     className={`
                     w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-200
                     ${status === 'completed'
-                                            ? 'bg-[#7A5AF8] border-[#7A5AF8] text-white'
+                                            ? 'bg-[#7A5AF8] border-[#7A5AF8] text-foreground'
                                             : status === 'current'
-                                                ? 'bg-white border-[#7A5AF8] text-[#7A5AF8]'
-                                                : 'bg-white border-[#E5E7EB] text-[#9CA3AF]'
+                                                ? 'bg-card border-[#7A5AF8] text-[#7A5AF8]'
+                                                : 'bg-card border-[#E5E7EB] text-[#9CA3AF]'
                                         }
                   `}
                                 >

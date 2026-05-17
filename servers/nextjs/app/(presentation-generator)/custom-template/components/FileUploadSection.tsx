@@ -75,14 +75,14 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
           }}
         >
 
-          <div className={`flex justify-center gap-1 py-2.5 pl-2 pr-3 cursor-pointer bg-white  rounded-[80px] `}
+          <div className={`flex justify-center gap-1 py-2.5 pl-2 pr-3 cursor-pointer bg-card  rounded-[80px] `}
 
             style={{
               boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.06)',
             }}
           >
-            <UploadIcon className={`w-4 h-4 text-black`} />
-            <p className='text-xs font-medium text-black'>Upload PPTX File</p>
+            <UploadIcon className={`w-4 h-4 text-foreground`} />
+            <p className='text-xs font-medium text-foreground'>Upload PPTX File</p>
           </div>
         </div>
         <div className=" w-full bg-[#FAFAFF] rounded-[28px] p-2.5 "
@@ -105,7 +105,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                   />
                   <div className='absolute inset-0 flex flex-col items-center justify-center'>
                     <div className='w-[42px] h-[42px] flex justify-center items-center rounded-full bg-[#EBE9FE]' >
-                      <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-white'>
+                      <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-foreground'>
                         <Plus className='w-3 h-3' />
                       </div>
                     </div>
@@ -127,10 +127,10 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                         disabled={isProcessing}
                         onClick={removeFile}
                       >
-                        <X className="w-3 h-3 text-black " />
+                        <X className="w-3 h-3 text-foreground " />
                       </button>
 
-                      <FileText className="w-5 h-5 text-white" />
+                      <FileText className="w-5 h-5 text-foreground" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-[#4C4C4C] text-sm font-medium line-clamp-1"> {selectedFile.name}</h3>
@@ -200,7 +200,7 @@ export const FileUploadSection: React.FC<FileUploadSectionProps> = ({
                           : !selectedFile
                             ? "Select a PPTX file"
                             : "Check Fonts"}
-                        <ChevronRight className="w-3.5 h-3.5 text-black" />
+                        <ChevronRight className="w-3.5 h-3.5 text-foreground" />
                       </button>
                     </div>
                   )}

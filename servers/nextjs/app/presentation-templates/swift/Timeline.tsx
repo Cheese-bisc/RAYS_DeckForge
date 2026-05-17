@@ -138,14 +138,14 @@ const Timeline: React.FC<SlideLayoutProps> = ({ data: slideData }) => {
             {items.slice(0, 4).map((it, idx) => (
               <div key={idx} className="relative flex flex-col items-center">
                 {/* year badge - placed close to the card */}
-                <div className="mb-2 px-5 py-2 rounded-md text-white text-[16px] font-semibold" style={{ backgroundColor: 'var(--card-color, #111827)', color: 'var(--background-text, #FFFFFF)' }}>{it.year}</div>
+                <div className="mb-2 px-5 py-2 rounded-md text-foreground text-[16px] font-semibold" style={{ backgroundColor: 'var(--card-color, #111827)', color: 'var(--background-text, #FFFFFF)' }}>{it.year}</div>
 
                 {/* connector dot */}
                 <div className="w-5 h-5 rounded-full border-4" style={{ backgroundColor: 'var(--card-color, #FFFFFF)', borderColor: 'var(--primary-color, #BFF4FF)' }}></div>
 
                 {/* card container */}
                 <div className="mt-4">
-                  <div className="rounded-[16px] bg-white shadow-[0_16px_40px_rgba(0,0,0,0.08)] px-6 pt-6 pb-5 text-center w-[260px]"
+                  <div className="rounded-[16px] bg-card shadow-[0_16px_40px_rgba(0,0,0,0.08)] px-6 pt-6 pb-5 text-center w-[260px]"
                     style={{ backgroundColor: 'var(--card-color, #FFFFFF)' }}
                   >
                     <div className="mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: 'var(--primary-color, #BFF4FF)' }}>

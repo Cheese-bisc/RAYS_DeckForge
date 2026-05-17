@@ -86,16 +86,16 @@ const ImageWithDescriptionSlideLayout: React.FC<ImageWithDescriptionSlideLayoutP
                 />
               ) : (
                 /* Default building facade */
-                <div className="w-full h-full bg-gray-200 relative">
+                <div className="w-full h-full bg-muted relative">
                   {/* Building structure simulation */}
-                  <div className="absolute inset-0 bg-gray-300"></div>
+                  <div className="absolute inset-0 bg-muted"></div>
 
                   {/* Horizontal lines (building floors) */}
                   <div className="absolute inset-0">
                     {[...Array(12)].map((_, i) => (
                       <div
                         key={i}
-                        className="absolute w-full border-t border-gray-400 opacity-60"
+                        className="absolute w-full border-t border-border opacity-60"
                         style={{ top: `${(i + 1) * 8}%` }}
                       ></div>
                     ))}
@@ -106,7 +106,7 @@ const ImageWithDescriptionSlideLayout: React.FC<ImageWithDescriptionSlideLayoutP
                     {[...Array(6)].map((_, i) => (
                       <div
                         key={i}
-                        className="absolute h-full border-l border-gray-400 opacity-40"
+                        className="absolute h-full border-l border-border opacity-40"
                         style={{ left: `${(i + 1) * 16}%` }}
                       ></div>
                     ))}
@@ -117,13 +117,13 @@ const ImageWithDescriptionSlideLayout: React.FC<ImageWithDescriptionSlideLayoutP
                     {[...Array(32)].map((_, i) => (
                       <div
                         key={i}
-                        className="bg-blue-100 opacity-60 rounded-sm border border-gray-300"
+                        className="bg-blue-100 opacity-60 rounded-sm border border-border"
                       ></div>
                     ))}
                   </div>
 
                   {/* Building edge highlight */}
-                  <div className="absolute right-0 top-0 w-1 h-full bg-white opacity-80"></div>
+                  <div className="absolute right-0 top-0 w-1 h-full bg-card opacity-80"></div>
                 </div>
               )}
             </div>

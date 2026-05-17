@@ -148,14 +148,14 @@ const transformDivergingData = (data: any[]) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
 
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-sm font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-sm font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-xs" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -527,7 +527,7 @@ const ChartRenderer: React.FC<{ chart: z.infer<typeof Schema>['chart'] }> = ({ c
 
         default:
             return (
-                <div className="flex items-center justify-center h-[400px] text-gray-500">
+                <div className="flex items-center justify-center h-[400px] text-muted-foreground">
                     Unsupported chart type: {chart.type}
                 </div>
             );

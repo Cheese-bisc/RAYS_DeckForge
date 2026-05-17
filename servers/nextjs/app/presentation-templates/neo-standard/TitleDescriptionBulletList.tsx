@@ -30,7 +30,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 rel="stylesheet"
             />
             <div
-                className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex items-center justify-between gap-10 px-28 py-20"
+                className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex items-center justify-between gap-10 px-28 py-20"
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
                     fontFamily: 'var(--body-font-family,Playfair Display)',

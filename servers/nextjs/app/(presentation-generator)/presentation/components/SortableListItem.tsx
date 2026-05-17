@@ -53,7 +53,7 @@ export function SortableListItem({ slide, index, selectedSlide, onSlideClick }: 
             className={`p-3 cursor-pointer ring-0 border-[3px] rounded-lg slide-box
                 ${selectedSlide === index
                     ? ' border-[#5141e5] '
-                    : 'hover:slide-box/40 border-gray-300'
+                    : 'hover:slide-box/40 border-border'
                 }`}
         >
             <span className="font-medium slide-title">Slide {index + 1}</span>

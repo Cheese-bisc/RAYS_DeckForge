@@ -303,7 +303,7 @@ const CompanyTractionSlideLayout: React.FC<Props> = ({ data }) => {
                     className="flex-1 rounded-lg shadow-sm px-5 py-4 flex flex-col items-start"
                     style={{ backgroundColor: 'var(--primary-color, #F5F8FE)' }}
                   >
-                    <div className="text-white text-xs font-semibold px-3 py-1 rounded-sm mb-2" style={{ backgroundColor: 'var(--card-color, #234CD9)', color: 'var(--background-text, #ffffff)' }}>
+                    <div className="text-foreground text-xs font-semibold px-3 py-1 rounded-sm mb-2" style={{ backgroundColor: 'var(--card-color, #234CD9)', color: 'var(--background-text, #ffffff)' }}>
                       {stat.label}
                     </div>
                     <div className="text-2xl font-bold mb-1" style={{ color: 'var(--primary-text, #234CD9)' }}>

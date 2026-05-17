@@ -158,30 +158,17 @@ export default function AuthGate() {
 
   if (isLoading) {
     return (
-      <main className="relative min-h-screen overflow-hidden flex items-center justify-center p-6" style={{ background: 'var(--rays-bg-primary)' }}>
-        <div
-          className="pointer-events-none absolute inset-0 opacity-30"
-          style={{
-            background:
-              "radial-gradient(50% 50% at 50% 100%, rgba(0, 212, 255, 0.2) 0%, transparent 70%)",
-          }}
-        />
+      <main className="relative min-h-screen overflow-hidden flex items-center justify-center p-6" style={{ background: '#000000' }}>
         <div className="relative z-10 w-full max-w-md">
           <div className="rays-panel-elevated p-8 text-center">
-            <div className="mx-auto mb-5 rays-gradient-text font-mono text-2xl font-bold tracking-wider">RAYS</div>
-            <div className="mx-auto mb-4 h-0.5 w-16 rounded-full" style={{ background: 'var(--rays-gradient)' }} />
-            <h1 className="font-syne text-lg font-semibold" style={{ color: 'var(--rays-text-primary)' }}>DeckForge</h1>
-            <p className="mt-3 font-syne text-sm" style={{ color: 'var(--rays-text-secondary)' }}>Initializing system…</p>
+            <div className="text-2xl font-bold tracking-wider mb-5" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>RAYS</div>
+            <div className="mx-auto mb-4 h-0.5 w-16 rounded-full" style={{ background: '#383838' }} />
+            <h1 className="text-lg font-semibold" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>DeckForge</h1>
+            <p className="mt-3 text-sm" style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>Initializing system…</p>
             <div className="mt-6 flex justify-center gap-1.5">
-              <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: 'var(--rays-accent)' }} />
-              <span
-                className="h-2 w-2 animate-pulse rounded-full"
-                style={{ background: 'var(--rays-accent-alt)', animationDelay: "0.2s" }}
-              />
-              <span
-                className="h-2 w-2 animate-pulse rounded-full"
-                style={{ background: 'var(--rays-accent)', animationDelay: "0.4s" }}
-              />
+              <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: '#ffffff' }} />
+              <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: '#888888', animationDelay: '0.2s' }} />
+              <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: '#ffffff', animationDelay: '0.4s' }} />
             </div>
           </div>
         </div>
@@ -198,35 +185,26 @@ export default function AuthGate() {
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden p-6" style={{ background: 'var(--rays-bg-primary)' }}>
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(50% 50% at 50% 100%, rgba(0, 212, 255, 0.15) 0%, transparent 72%)",
-        }}
-      />
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[380px] w-[380px] rounded-full blur-3xl" style={{ background: 'rgba(124, 58, 237, 0.1)' }} />
-      <div className="pointer-events-none absolute -bottom-40 -left-32 h-[420px] w-[420px] rounded-full blur-3xl" style={{ background: 'rgba(0, 212, 255, 0.08)' }} />
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden p-6" style={{ background: '#000000' }}>
 
-      <section className="relative z-10 w-full max-w-xl rays-panel-elevated p-7 sm:p-10">
+      <section className="relative z-10 w-full max-w-xl p-7 sm:p-10 rounded-[10px]" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex h-[74px] w-[74px] shrink-0 items-center justify-center rounded-lg" style={{ background: 'var(--rays-bg-tertiary)', border: '1px solid var(--rays-border)' }}>
-              <span className="rays-gradient-text font-mono text-xl font-bold">R</span>
+            <div className="flex h-[74px] w-[74px] shrink-0 items-center justify-center rounded-[10px]" style={{ background: '#000000', border: '1px solid #383838' }}>
+              <span className="font-bold text-xl" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>R</span>
             </div>
             <div>
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: 'var(--rays-accent)' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>
                 Secure instance
               </p>
-              <h1 className="mt-1 font-syne text-2xl font-semibold leading-tight sm:text-[26px]" style={{ color: 'var(--rays-text-primary)' }}>
+              <h1 className="mt-1 text-2xl font-semibold leading-tight sm:text-[26px]" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
                 {isSetupMode ? "Create your admin login" : "Sign in to continue"}
               </h1>
             </div>
           </div>
         </div>
 
-        <p className="font-syne text-base sm:text-lg" style={{ color: 'var(--rays-text-secondary)' }}>
+        <p className="text-base sm:text-lg" style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>
           {isSetupMode
             ? "One-time setup for this deployment. You will use the same username and password on future visits."
             : "This deployment is protected. Enter your credentials to open the app."}
@@ -234,7 +212,7 @@ export default function AuthGate() {
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div className="space-y-2">
-            <label htmlFor="username" className="block font-syne text-sm font-medium" style={{ color: 'var(--rays-text-primary)' }}>
+            <label htmlFor="username" className="block text-sm font-medium" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
               Username
             </label>
             <input
@@ -243,13 +221,14 @@ export default function AuthGate() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               placeholder="your-admin-user"
-              className="w-full rays-input font-syne text-sm"
+              className="w-full rays-input text-sm"
+              style={{ fontFamily: "'Space Mono', monospace" }}
               disabled={isSubmitting}
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="password" className="block font-syne text-sm font-medium" style={{ color: 'var(--rays-text-primary)' }}>
+            <label htmlFor="password" className="block text-sm font-medium" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
               Password
             </label>
             <input
@@ -259,14 +238,15 @@ export default function AuthGate() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="At least 6 characters"
-              className="w-full rays-input font-syne text-sm"
+              className="w-full rays-input text-sm"
+              style={{ fontFamily: "'Space Mono', monospace" }}
               disabled={isSubmitting}
             />
           </div>
 
           {isSetupMode ? (
             <div className="space-y-2">
-              <label htmlFor="confirmPassword" className="block font-syne text-sm font-medium" style={{ color: 'var(--rays-text-primary)' }}>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium" style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
                 Confirm password
               </label>
               <input
@@ -276,20 +256,21 @@ export default function AuthGate() {
                 value={confirmPassword}
                 onChange={(event) => setConfirmPassword(event.target.value)}
                 placeholder="Re-enter your password"
-                className="w-full rays-input font-syne text-sm"
+                className="w-full rays-input text-sm"
+                style={{ fontFamily: "'Space Mono', monospace" }}
                 disabled={isSubmitting}
               />
             </div>
           ) : null}
 
           {error ? (
-            <div className="rounded-lg px-4 py-3 font-syne text-sm" style={{ background: 'rgba(255, 68, 102, 0.1)', border: '1px solid rgba(255, 68, 102, 0.3)', color: 'var(--rays-error)' }}>
+            <div className="rounded-[10px] px-4 py-3 text-sm" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid #383838', color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>
               {error}
             </div>
           ) : null}
 
           {!isSetupMode && status.configured ? (
-            <p className="font-syne text-sm" style={{ color: 'var(--rays-text-muted)' }}>
+            <p className="text-sm" style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>
               Setup is complete for this instance. Use the username and password you configured.
             </p>
           ) : null}
@@ -297,7 +278,8 @@ export default function AuthGate() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rays-btn-primary font-syne text-xs font-semibold py-3 rounded-full disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full text-xs font-semibold py-3 rounded-[10px] disabled:cursor-not-allowed disabled:opacity-60"
+            style={{ background: '#ffffff', color: '#000000', fontFamily: "'Space Mono', monospace" }}
           >
             {isSubmitting
               ? isSetupMode

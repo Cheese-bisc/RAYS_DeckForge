@@ -64,7 +64,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                             {/* Index Circle */}
                             <div className="ml-0 mb-[12px]">
                                 <div
-                                    className={`w-[84.1px] h-[83.7px] rounded-full flex items-center justify-center border border-[#EBEBEB] ${idx === 0 ? 'bg-[#BEF4FE]' : 'bg-white'
+                                    className={`w-[84.1px] h-[83.7px] rounded-full flex items-center justify-center border border-[#EBEBEB] ${idx === 0 ? 'bg-[#BEF4FE]' : 'bg-card'
                                         }`}
 
                                     style={{
@@ -83,7 +83,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                             {/* Content Card */}
                             <div
-                                className={`h-[353.9px] p-[43px] rounded-[10px] border border-[#EBEBEB] ${idx === 1 ? 'bg-[#BEF4FE]' : 'bg-white'
+                                className={`h-[353.9px] p-[43px] rounded-[10px] border border-[#EBEBEB] ${idx === 1 ? 'bg-[#BEF4FE]' : 'bg-card'
                                     }`}
 
                                 style={{

@@ -141,7 +141,7 @@ const dynamicSlideLayout: React.FC<SlideLayoutProps> = ({ data: slideData }) => 
                       {b.body}
                     </p>
                   </div>
-                  <div className="w-12 h-12 rounded-full text-white flex items-center justify-center text-[16px]  shadow-[0_12px_30px_rgba(0,0,0,0.12)]" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)', color: 'var(--primary-text, #FFFFFF)' }}>
+                  <div className="w-12 h-12 rounded-full text-foreground flex items-center justify-center text-[16px]  shadow-[0_12px_30px_rgba(0,0,0,0.12)]" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)', color: 'var(--primary-text, #FFFFFF)' }}>
                     {b.numberText}
                   </div>
                 </li>

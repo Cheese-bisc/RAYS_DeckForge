@@ -81,7 +81,7 @@ const DataAnalysisListSlide = ({ data }: { data: Partial<SchemaType> }) => {
             <div key={`${item.title}-${index}`}>
               <div className="flex items-center gap-[14px]">
                 <div
-                  className="flex h-[55px] w-[55px] items-center justify-center rounded-full bg-[#157CFF] text-white"
+                  className="flex h-[55px] w-[55px] items-center justify-center rounded-full bg-[#157CFF] text-foreground"
                   style={{
                     backgroundColor: "var(--primary-color,#157CFF)",
                     color: "var(--primary-text,#ffffff)",

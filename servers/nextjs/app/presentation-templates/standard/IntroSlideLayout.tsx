@@ -143,7 +143,7 @@ const dynamicSlideLayout: React.FC<LayoutProps> = ({ data: slideData }) => {
                             {slideData?.introCard?.enabled ? (
                                 <div className="mt-10 inline-flex items-center gap-4 border px-5 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.08)] min-w-[400px]" style={{ backgroundColor: 'var(--card-color, #FFFFFF)', borderColor: 'var(--stroke, #E5E7EB)' }}>
                                     <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)' }}>
-                                        <span className="text-white text-[22px] font-bold tracking-wide" style={{ color: 'var(--primary-text, #FFFFFF)' }}>{slideData?.introCard?.initials}</span>
+                                        <span className="text-foreground text-[22px] font-bold tracking-wide" style={{ color: 'var(--primary-text, #FFFFFF)' }}>{slideData?.introCard?.initials}</span>
                                     </div>
                                     <div className="leading-tight">
                                         <div className="text-[22px] font-semibold" style={{ fontFamily: 'Playfair Display', color: 'var(--background-text, #111827)' }}>{slideData?.introCard?.name}</div>

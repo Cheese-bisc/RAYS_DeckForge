@@ -45,7 +45,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
     const isManualModelProvider = MANUAL_MODEL_PROVIDERS.has(llmConfig.LLM || "");
 
     const handleProviderChange = (provider: string) => {
-        setLlmConfig(prev => ({
+        setLlmConfig((prev: LLMConfig) => ({
             ...prev,
             LLM: provider
         }));
@@ -53,7 +53,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
         setAvailableModels([]);
         setModelsChecked(false);
         if (currentModelField) {
-            setLlmConfig(prev => ({
+            setLlmConfig((prev: LLMConfig) => ({
                 ...prev,
                 [currentModelField]: ''
             }));
@@ -205,7 +205,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
                 if (normalizedModels.length > 0 && currentModelField) {
                     if (llmConfig[currentModelField] && normalizedModels.includes(llmConfig[currentModelField])) {
-                        setLlmConfig(prev => ({
+                        setLlmConfig((prev: LLMConfig) => ({
                             ...prev,
                             [currentModelField]: llmConfig[currentModelField]
                         }));
@@ -222,7 +222,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     : normalizedModels[0];
 
                     const nextModel = normalizedModels.includes(preferredDefault) ? preferredDefault : normalizedModels[0];
-                    setLlmConfig(prev => ({
+                    setLlmConfig((prev: LLMConfig) => ({
                         ...prev,
                         [currentModelField]: nextModel
                     }));
@@ -247,7 +247,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
         if (llmConfig.IMAGE_PROVIDER === "dall-e-3") {
             return (
                 <div className="w-full ">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                         DALL·E 3 Image Quality
                     </label>
                     <div className="">
@@ -255,7 +255,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                             ...prev,
                             DALL_E_3_QUALITY: value
                         }))}>
-                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between">
+                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -273,20 +273,20 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
         if (llmConfig.IMAGE_PROVIDER === "gpt-image-1.5") {
             return (
                 <div className="w-full">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                         GPT Image 1.5 Quality
                     </label>
                     <div className="">
                         <Select
                             value={llmConfig.GPT_IMAGE_1_5_QUALITY || 'low'}
-                            onValueChange={(value) => setLlmConfig((prev) => ({
+                            onValueChange={(value: string) => setLlmConfig((prev: LLMConfig) => ({
                                 ...prev,
                                 GPT_IMAGE_1_5_QUALITY: value
                             }))}
                         >
                             <SelectTrigger
 
-                                className="w-full h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between">
+                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -379,48 +379,48 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
     }, [llmConfig.LLM, modelsChecked, modelsLoading]);
 
     return (
-        <div className='w-full max-w-[660px] font-syne pb-10'>
-            <p className='px-2.5 py-0.5 w-fit text-[#7A5AF8] rounded-[50px]  border border-[#EDEEEF] text-[10px] font-medium mb-5 font-syne'>DECKFORGE</p>
+        <div className='w-full max-w-[660px] pb-10' style={{ fontFamily: "'Space Mono', monospace" }}>
+            <p className='px-2.5 py-0.5 w-fit rounded-[10px] text-[10px] font-medium mb-5' style={{ color: '#888888', border: '1px solid #383838' }}>DECKFORGE</p>
             <div className=''>
 
-                <h2 className='mb-4 text-black text-[26px] font-normal font-unbounded '>Choose your content providers</h2>
-                <p className='text-[#000000CC] text-xl font-normal font-syne'>Select the AI engines that will generate your slide text and visuals.</p>
+                <h2 className='mb-4 text-[26px] font-normal' style={{ color: '#ffffff' }}>Choose your content providers</h2>
+                <p className='text-xl font-normal' style={{ color: '#888888' }}>Select the AI engines that will generate your slide text and visuals.</p>
             </div>
-            <div className='flex items-center gap-2 bg-[#F0F3F9B2] rounded-[8px]  px-6 py-2.5 my-[54px]'>
-                <Info className='w-4 h-4 fill-[#003399] stroke-white' />
-                <p className='text-sm text-[#5F6062] font-medium'>Runs locally on your device. Your API keys and generation setup stay on your machine.</p>
+            <div className='flex items-center gap-2 rounded-[10px] px-6 py-2.5 my-[54px]' style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
+                <Info className='w-4 h-4' style={{ color: '#888888' }} />
+                <p className='text-sm font-medium' style={{ color: '#888888' }}>Runs locally on your device. Your API keys and generation setup stay on your machine.</p>
             </div>
 
             {/* Text Provider */}
-            <div className='p-3 border border-[#EDEEEF] rounded-[11px] bg-white '>
+            <div className='p-3 rounded-[10px]' style={{ border: '1px solid #383838', background: '#1d1d1d' }}>
                 <div className="flex items-center gap-[24.3px]  mb-[42px]">
-                    <div className='w-[74px] h-[74px] rounded-[4px] pt-[16.8px] pr-[17.15px] pb-[17.2px] pl-[16.85px] flex items-center justify-center'
-                        style={{ backgroundColor: '#4C55541A' }}
+                    <div className='w-[74px] h-[74px] rounded-[10px] pt-[16.8px] pr-[17.15px] pb-[17.2px] pl-[16.85px] flex items-center justify-center'
+                        style={{ backgroundColor: '#000000', border: '1px solid #383838' }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <path d="M20 6.6665V33.3332" stroke="#4C5554" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M6.66666 11.6665V8.33317C6.66666 7.89114 6.84225 7.46722 7.15481 7.15466C7.46737 6.8421 7.8913 6.6665 8.33332 6.6665H31.6667C32.1087 6.6665 32.5326 6.8421 32.8452 7.15466C33.1577 7.46722 33.3333 7.89114 33.3333 8.33317V11.6665" stroke="#4C5554" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M15 33.3335H25" stroke="#4C5554" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M20 6.6665V33.3332" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M6.66666 11.6665V8.33317C6.66666 7.89114 6.84225 7.46722 7.15481 7.15466C7.46737 6.8421 7.8913 6.6665 8.33332 6.6665H31.6667C32.1087 6.6665 32.5326 6.8421 32.8452 7.15466C33.1577 7.46722 33.3333 7.89114 33.3333 8.33317V11.6665" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M15 33.3335H25" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
                     <div className='w-full'>
 
-                        <h3 className="text-xl font-normal text-[#191919] pb-1.5">Text Generation Settings</h3>
-                        <p className=" text-sm  text-gray-500">
+                        <h3 className="text-xl font-normal pb-1.5" style={{ color: '#ffffff' }}>Text Generation Settings</h3>
+                        <p className=" text-sm" style={{ color: '#888888' }}>
                             Choosing where text content comes from
                         </p>
                     </div>
                 </div>
 
                 <div className='flex items-center gap-2.5 my-[30px]'>
-                    <div className='w-full h-[1px] bg-[#E1E1E5]' />
-                    <p className='text-xs font-normal text-[#999999]'>OR</p>
-                    <div className='w-full h-[1px] bg-[#E1E1E5]' />
+                    <div className='w-full h-[1px]' style={{ background: '#383838' }} />
+                    <p className='text-xs font-normal' style={{ color: '#888888' }}>OR</p>
+                    <div className='w-full h-[1px]' style={{ background: '#383838' }} />
                 </div>
                 <div className='flex flex-col items-start gap-4 '>
                     <div className="flex flex-col justify-start w-full ">
 
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-foreground mb-2">
                             Select Text Provider
                         </label>
                         <Popover
@@ -432,17 +432,17 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     variant="outline"
                                     role="combobox"
                                     aria-expanded={openProviderSelect}
-                                    className=" h-12 px-4 py-4 outline-none border border-[#E8E8E9] rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between"
+                                    className=" h-12 px-4 py-4 outline-none border rounded-[10px] transition-colors hover:border-border justify-between" style={{ borderColor: '#383838' }}
                                 >
                                     <div className="flex gap-3 items-center">
-                                        <span className="text-sm font-medium text-gray-900">
+                                        <span className="text-sm font-medium text-foreground">
                                             {llmConfig.LLM
                                                 ? LLM_PROVIDERS[llmConfig.LLM]
                                                     ?.label || llmConfig.LLM
                                                 : "Select text provider"}
                                         </span>
                                     </div>
-                                    <ChevronUp className="w-4 h-4 text-gray-500" />
+                                    <ChevronUp className="w-4 h-4 text-muted-foreground" />
                                 </Button>
                             </PopoverTrigger>
                             <PopoverContent
@@ -456,7 +456,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                         <CommandEmpty>No provider found.</CommandEmpty>
                                         <CommandGroup >
                                             {Object.values(LLM_PROVIDERS).map(
-                                                (provider, index) => (
+                                                (provider: any, index: number) => (
                                                     <CommandItem
                                                         key={index}
                                                         value={provider.value}
@@ -473,11 +473,11 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                         <div className="flex gap-3 items-center">
                                                             <div className="flex flex-col space-y-1 flex-1">
                                                                 <div className="flex items-center justify-between gap-2">
-                                                                    <span className="text-sm font-medium text-gray-900 capitalize">
+                                                                    <span className="text-sm font-medium text-foreground capitalize">
                                                                         {provider.label}
                                                                     </span>
                                                                 </div>
-                                                                <span className="text-xs text-gray-600 leading-relaxed">
+                                                                <span className="text-xs text-foreground leading-relaxed">
                                                                     {provider.description}
                                                                 </span>
                                                             </div>
@@ -498,40 +498,40 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     {!useCustomOllamaUrl ? (
                                         <button
                                             type="button"
-                                            onClick={() => setLlmConfig(prev => ({
+                                            onClick={() => setLlmConfig((prev: LLMConfig) => ({
                                                 ...prev,
                                                 USE_CUSTOM_URL: true,
                                                 OLLAMA_URL: prev.OLLAMA_URL || 'http://localhost:11434'
                                             }))}
-                                            className="py-2.5 bg-[#EDEEEF] px-3.5 w-fit rounded-[48px] text-xs font-semibold text-[#101323] transition-all duration-200 border border-[#EDEEEF] hover:bg-[#E8F0FF]/90 focus:ring-2 focus:ring-blue-500/20"
+                                            className="py-2.5 px-3.5 w-fit rounded-[10px] text-xs font-semibold transition-all duration-200" style={{ background: '#1d1d1d', color: '#ffffff', border: '1px solid #383838' }}
                                         >
                                             Use Ollama URL
                                         </button>
                                     ) : (
                                         <>
-                                            <label className="block text-sm font-medium capitalize text-gray-700 mb-2">
+                                            <label className="block text-sm font-medium capitalize text-foreground mb-2">
                                                 Ollama URL
                                             </label>
                                             <div className="relative">
                                                 <input
                                                     type="text"
                                                     value={currentOllamaUrl}
-                                                    onChange={(e) => setLlmConfig(prev => ({
+                                                    onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                                         ...prev,
                                                         OLLAMA_URL: e.target.value
                                                     }))}
-                                                    className="w-full px-2 py-3 outline-none border  border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                    className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                                     placeholder="http://localhost:11434"
                                                 />
                                             </div>
                                             <button
                                                 type="button"
-                                                onClick={() => setLlmConfig(prev => ({
+                                                onClick={() => setLlmConfig((prev: LLMConfig) => ({
                                                     ...prev,
                                                     USE_CUSTOM_URL: false,
                                                     OLLAMA_URL: 'http://localhost:11434'
                                                 }))}
-                                                className="mt-2 text-xs font-medium text-[#4B5563] underline underline-offset-2"
+                                                className="mt-2 text-xs font-medium underline underline-offset-2" style={{ color: '#888888' }}
                                             >
                                                 Use default Ollama URL
                                             </button>
@@ -542,29 +542,29 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                 <>
                                     <div className='flex items-center justify-between mb-2'>
 
-                                        <label className="block text-sm font-medium capitalize text-gray-700 ">
+                                        <label className="block text-sm font-medium capitalize text-foreground ">
                                             {providerApiKeyLabel}
                                         </label>
-                                        {llmConfig.LLM && LLM_PROVIDERS[llmConfig.LLM!]?.getApiKeyUrl && <a href={LLM_PROVIDERS[llmConfig.LLM!]?.getApiKeyUrl || ""} target='_blank' className='text-[#666666] text-xs font-normal flex items-center gap-1'>Get API Key <ArrowUpRight className='w-3.5 h-3.5' /></a>}
+                                        {llmConfig.LLM && LLM_PROVIDERS[llmConfig.LLM!]?.getApiKeyUrl && <a href={LLM_PROVIDERS[llmConfig.LLM!]?.getApiKeyUrl || ""} target='_blank' className='text-xs font-normal flex items-center gap-1' style={{ color: '#888888' }}>Get API Key <ArrowUpRight className='w-3.5 h-3.5' /></a>}
                                     </div>
 
                                     <div className="relative">
                                         <input
                                             type={showApiKey ? 'text' : 'password'}
                                             value={currentApiKey}
-                                            onChange={(e) => setLlmConfig(prev => ({
+                                            onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                                 ...prev,
                                                 [currentApiKeyField]: e.target.value
                                             }))}
-                                            className="w-full px-2 py-3 outline-none border  border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                             placeholder={`Enter your ${providerApiKeyLabel}`}
                                         />
                                         <button
                                             type="button"
                                             onClick={() => setShowApiKey((prev) => !prev)}
-                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-white px-2 py-1 cursor-pointer'
+                                            className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
                                         >
-                                            {showApiKey ? <Eye className='w-4 h-4 text-gray-500' /> : <EyeOff className='w-4 h-4 text-gray-500' />}
+                                            {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                         </button>
                                     </div>
                                 </>
@@ -573,11 +573,11 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                 <input
                                     type="text"
                                     value={llmConfig.CUSTOM_LLM_URL}
-                                    onChange={(e) => setLlmConfig(prev => ({
+                                    onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                         ...prev,
                                         CUSTOM_LLM_URL: e.target.value
                                     }))}
-                                    className="w-full mt-2 px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                    className="w-full mt-2 px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                     placeholder="OpenAI-compatible URL"
                                 />
                             )}
@@ -586,31 +586,31 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     <input
                                         type="text"
                                         value={llmConfig.VERTEX_PROJECT || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             VERTEX_PROJECT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="GCP project (optional if API key used)"
                                     />
                                     <input
                                         type="text"
                                         value={llmConfig.VERTEX_LOCATION || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             VERTEX_LOCATION: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="GCP location (optional)"
                                     />
                                     <input
                                         type="text"
                                         value={llmConfig.VERTEX_BASE_URL || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             VERTEX_BASE_URL: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="Vertex base URL (optional)"
                                     />
                                 </div>
@@ -620,41 +620,41 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     <input
                                         type="text"
                                         value={llmConfig.AZURE_OPENAI_ENDPOINT || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             AZURE_OPENAI_ENDPOINT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="Azure endpoint (https://...openai.azure.com)"
                                     />
                                     <input
                                         type="text"
                                         value={llmConfig.AZURE_OPENAI_BASE_URL || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             AZURE_OPENAI_BASE_URL: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="Azure base URL (optional alternative)"
                                     />
                                     <input
                                         type="text"
                                         value={llmConfig.AZURE_OPENAI_API_VERSION || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             AZURE_OPENAI_API_VERSION: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="API version (e.g. 2024-10-21)"
                                     />
                                     <input
                                         type="text"
                                         value={llmConfig.AZURE_OPENAI_DEPLOYMENT || ''}
-                                        onChange={(e) => setLlmConfig(prev => ({
+                                        onChange={(e) => setLlmConfig((prev: LLMConfig) => ({
                                             ...prev,
                                             AZURE_OPENAI_DEPLOYMENT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                         placeholder="Deployment name (optional)"
                                     />
                                 </div>
@@ -675,10 +675,8 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     (llmConfig.LLM === 'anthropic' && !currentApiKey) ||
                                     (llmConfig.LLM === 'custom' && !llmConfig.CUSTOM_LLM_URL)
                                 }
-                                className={`mt-4 py-2.5 bg-[#EDEEEF] disabled:opacity-50 disabled:cursor-not-allowed px-3.5 w-full  rounded-[48px] text-xs font-semibold text-[#101323] transition-all duration-200 border ${modelsLoading
-                                    ? " border-gray-300 cursor-not-allowed text-gray-500"
-                                    : " border-[#EDEEEF] text-[#101323] hover:bg-[#EDEEEF]/90 focus:ring-2 focus:ring-blue-500/20"
-                                    }`}
+                                className={`mt-4 py-2.5 disabled:opacity-50 disabled:cursor-not-allowed px-3.5 w-full rounded-[10px] text-xs font-semibold transition-all duration-200`}
+                                style={{ background: modelsLoading ? '#000000' : '#ffffff', color: modelsLoading ? '#888888' : '#000000', border: '1px solid #383838' }}
                             >
                                 {modelsLoading ? (
                                     <span className="flex items-center justify-center gap-2">
@@ -700,7 +698,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     {!isManualModelProvider && llmConfig.LLM !== 'chatgpt' && llmConfig.LLM !== 'codex' && modelsChecked && availableModels.length > 0 && (
                         <div className="w-full">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-foreground mb-2">
                                     {llmConfig.LLM === 'ollama' ? 'Choose a supported model' : `Select ${LLM_PROVIDERS[llmConfig.LLM!]?.label} Model`}
                                 </label>
                                 <div className="w-full">
@@ -713,9 +711,9 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                 variant="outline"
                                                 role="combobox"
                                                 aria-expanded={openModelSelect}
-                                                className="w-full h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between"
+                                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between"
                                             >
-                                                <span className="text-sm truncate font-medium text-gray-900">
+                                                <span className="text-sm truncate font-medium text-foreground">
                                                     {
                                                         currentModel
                                                             ? availableModels.find(model => model === currentModel) || currentModel
@@ -724,7 +722,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                     }
                                                 </span>
 
-                                                <ChevronUp className="w-4 h-4 text-gray-500" />
+                                                <ChevronUp className="w-4 h-4 text-muted-foreground" />
                                             </Button>
                                         </PopoverTrigger>
                                         <PopoverContent
@@ -743,7 +741,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                                 value={model}
                                                                 onSelect={(value) => {
                                                                     if (currentModelField) {
-                                                                        setLlmConfig(prev => ({
+                                                                        setLlmConfig((prev: LLMConfig) => ({
                                                                             ...prev,
                                                                             [currentModelField]: value
                                                                         }));
@@ -762,7 +760,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                                 <div className="flex gap-3 items-center">
                                                                     <div className="flex flex-col space-y-1 flex-1">
                                                                         <div className="flex items-center justify-between gap-2">
-                                                                            <span className="text-sm font-medium text-gray-900">
+                                                                            <span className="text-sm font-medium text-foreground">
                                                                                 {model}
                                                                             </span>
                                                                         </div>
@@ -781,7 +779,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     )}
                     {isManualModelProvider && (
                         <div className="w-full">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium text-foreground mb-2">
                                 Enter {LLM_PROVIDERS[llmConfig.LLM!]?.label} Model
                             </label>
                             <input
@@ -795,7 +793,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                         }));
                                     }
                                 }}
-                                className="w-full h-12 px-4 py-3 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                className="w-full h-12 px-4 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                 placeholder={llmConfig.LLM === 'vertex' ? 'e.g. gemini-2.5-flash' : 'e.g. gpt-4.1'}
                             />
                         </div>
@@ -803,13 +801,13 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                 </div>
             </div>
             {/* Image Provider */}
-            <div className={`p-3 border border-[#EDEEEF] rounded-[11px] relative mt-5 bg-white ${llmConfig.DISABLE_IMAGE_GENERATION ? "bg-[#F9FAFB]" : ""}`}>
+            <div className={`p-3 rounded-[10px] relative mt-5`} style={{ border: '1px solid #383838', background: llmConfig.DISABLE_IMAGE_GENERATION ? '#000000' : '#1d1d1d' }}>
                 <ToolTip content="Enable/Disable Image Generation" className='flex justify-end items-center absolute top-3 right-3'>
                     <div className='flex justify-end items-center'>
                         <Switch
                             checked={!llmConfig.DISABLE_IMAGE_GENERATION}
-                            className='data-[state=checked]:bg-[#4791FF] h-[22px] w-[36px] data-[state=unchecked]:bg-[#E2E0E1]'
-                            onCheckedChange={(checked) => setLlmConfig(prev => ({
+                            className='data-[state=checked]:bg-[#ffffff] h-[22px] w-[36px] data-[state=unchecked]:bg-[#383838]'
+                            onCheckedChange={(checked: boolean) => setLlmConfig((prev: LLMConfig) => ({
                                 ...prev,
                                 DISABLE_IMAGE_GENERATION: !checked
                             }))}
@@ -818,15 +816,15 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
                 </ToolTip>
                 <div className={` flex items-center gap-6 ${llmConfig.DISABLE_IMAGE_GENERATION ? "" : "mb-[42px]"}`}>
-                    <div className='w-[74px] h-[74px] px-[13.5px] py-[14.2px] rounded-[4px] flex items-center justify-center'
-                        style={{ backgroundColor: '#F4F3FF' }}
+                    <div className='w-[74px] h-[74px] px-[13.5px] py-[14.2px] rounded-[10px] flex items-center justify-center'
+                        style={{ backgroundColor: '#000000', border: '1px solid #383838' }}
                     >
                         <img src="/image-markup.svg" className='w-full h-full object-cover' alt='image-markup' />
                     </div>
                     <div>
 
-                        <h3 className="text-xl font-normal text-[#191919] ">Image Generation Settings</h3>
-                        <p className=" text-sm  text-gray-500">
+                        <h3 className="text-xl font-normal" style={{ color: '#ffffff' }}>Image Generation Settings</h3>
+                        <p className="text-sm" style={{ color: '#888888' }}>
                             Choosing where images come from
                         </p>
                     </div>
@@ -835,7 +833,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     <div className='flex flex-col gap-4'>
                         {/* Image Provider Selection */}
                         <div className="w-full">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium text-foreground mb-2">
                                 Select Image Provider
                             </label>
                             <div className="w-full">
@@ -849,17 +847,17 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             variant="outline"
                                             role="combobox"
                                             aria-expanded={openImageProviderSelect}
-                                            className=" w-full h-12 px-4 py-4 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-gray-400 justify-between"
+                                            className=" w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between"
                                         >
                                             <div className="flex gap-3 items-center">
-                                                <span className="text-sm font-medium capitalize text-gray-900">
+                                                <span className="text-sm font-medium capitalize text-foreground">
                                                     {llmConfig.IMAGE_PROVIDER
                                                         ? IMAGE_PROVIDERS[llmConfig.IMAGE_PROVIDER]
                                                             ?.label || llmConfig.IMAGE_PROVIDER
                                                         : 'Select Image Provider'}
                                                 </span>
                                             </div>
-                                            <ChevronUp className="w-4 h-4 text-gray-500" />
+                                            <ChevronUp className="w-4 h-4 text-muted-foreground" />
                                         </Button>
                                     </PopoverTrigger>
                                     <PopoverContent
@@ -873,7 +871,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                 <CommandEmpty>No provider found.</CommandEmpty>
                                                 <CommandGroup>
                                                     {Object.values(IMAGE_PROVIDERS).map(
-                                                        (provider, index) => (
+                                                        (provider: any, index: number) => (
                                                             <CommandItem
                                                                 key={index}
                                                                 value={provider.value}
@@ -896,11 +894,11 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                                 <div className="flex gap-3 items-center">
                                                                     <div className="flex flex-col space-y-1 flex-1">
                                                                         <div className="flex items-center justify-between gap-2">
-                                                                            <span className="text-sm font-medium text-gray-900 capitalize">
+                                                                            <span className="text-sm font-medium text-foreground capitalize">
                                                                                 {provider.label}
                                                                             </span>
                                                                         </div>
-                                                                        <span className="text-xs text-gray-600 leading-relaxed">
+                                                                        <span className="text-xs text-foreground leading-relaxed">
                                                                             {provider.description}
                                                                         </span>
                                                                     </div>
@@ -931,14 +929,14 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     return (
                                         <div className=" space-y-4 w-full">
                                             <div className=''>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                <label className="block text-sm font-medium text-foreground mb-2">
                                                     ComfyUI Server URL
                                                 </label>
                                                 <div className="relative">
                                                     <input
                                                         type="text"
                                                         placeholder="http://192.168.1.7:8188"
-                                                        className="w-full px-4 py-2.5 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                        className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                                         value={llmConfig.COMFYUI_URL || ""}
                                                         onChange={(e) => {
                                                             setLlmConfig(prev => ({
@@ -960,19 +958,19 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                     <div className="w-full ">
                                         <div className='flex items-center justify-between mb-2'>
 
-                                            <label className="block text-sm font-medium text-gray-700">
+                                            <label className="block text-sm font-medium text-foreground">
                                                 {provider.apiKeyFieldLabel}
                                             </label>
-                                            {provider.getApiKeyUrl && <a href={provider.getApiKeyUrl || ""} target='_blank' className='text-[#666666] text-xs font-normal flex items-center gap-1'>Get API Key <ArrowUpRight className='w-3.5 h-3.5' /></a>}
+                                            {provider.getApiKeyUrl && <a href={provider.getApiKeyUrl || ""} target='_blank' className='text-xs font-normal flex items-center gap-1' style={{ color: '#888888' }}>Get API Key <ArrowUpRight className='w-3.5 h-3.5' /></a>}
                                         </div>
                                         <div className="relative">
                                             <input
                                                 type={showApiKey ? 'text' : 'password'}
                                                 placeholder={`Enter your ${provider.apiKeyFieldLabel}`}
-                                                className="w-full px-4 py-2.5 h-12 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                className="w-full px-4 py-2.5 h-12 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                                                 value={getFieldValue(provider.apiKeyField)}
                                                 onChange={(e) => {
-                                                    setLlmConfig((prev) => ({
+                                                    setLlmConfig((prev: LLMConfig) => ({
                                                         ...prev,
                                                         [provider.apiKeyField as keyof LLMConfig]: e.target.value
                                                     }))
@@ -983,9 +981,9 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             <button
                                                 type="button"
                                                 onClick={() => setShowApiKey((prev) => !prev)}
-                                                className='absolute right-2 top-1/2 -translate-y-1/2 bg-white px-2 py-1 cursor-pointer'
+                                                className='absolute right-2 top-1/2 -translate-y-1/2 bg-card px-2 py-1 cursor-pointer'
                                             >
-                                                {showApiKey ? <Eye className='w-4 h-4 text-gray-500' /> : <EyeOff className='w-4 h-4 text-gray-500' />}
+                                                {showApiKey ? <Eye className='w-4 h-4 text-muted-foreground' /> : <EyeOff className='w-4 h-4 text-muted-foreground' />}
                                             </button>
                                         </div>
 
@@ -1001,13 +999,13 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                         {renderQualitySelector(llmConfig)}
                     </div>
                     {llmConfig.IMAGE_PROVIDER === "comfyui" && <div className='w-full'>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-foreground mb-2">
                             Workflow JSON
                         </label>
                         <div className="relative">
                             <textarea
                                 placeholder='Paste your ComfyUI workflow JSON here (export via "Export (API)" in ComfyUI)'
-                                className="w-full px-4 py-2.5 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors font-mono text-xs"
+                                className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors font-mono text-xs"
                                 rows={3}
                                 value={llmConfig.COMFYUI_WORKFLOW || ""}
                                 onChange={(e) => {
@@ -1029,21 +1027,21 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     onClick={() => {
                         setStep(currentStep - 1);
                     }}
-                    className='border border-[#EDEEEF] rounded-[53px] px-4 py-1 h-[36px]'>
-                    <ChevronLeft className='w-4 h-4 text-gray-500' />
+                    className='rounded-[10px] px-4 py-1 h-[36px]' style={{ border: '1px solid #383838', color: '#888888' }}>
+                    <ChevronLeft className='w-4 h-4' />
                 </button>
                 <button
 
                     disabled={savingConfig}
                     onClick={handleSaveConfig}
-                    className='border font-syne border-[#EDEEEF] bg-[#7C51F8]  rounded-[58px] px-5 py-2.5 text-white text-xs  font-semibold'>
+                    className='rounded-[10px] px-5 py-2.5 text-xs font-semibold' style={{ background: '#ffffff', color: '#000000' }}>
                     Continue to Finish
                 </button>
             </div>
             {/* Download Progress Modal */}
             {showDownloadModal && downloadingModel && (
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-2xl max-w-md w-full p-6 relative">
+                    <div className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl max-w-md w-full p-6 relative">
                         {/* Modal Content */}
                         <div className="text-center">
                             {/* Icon */}
@@ -1056,25 +1054,25 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            <h3 className="text-lg font-semibold text-foreground mb-2">
                                 {downloadingModel.done ? "Download Complete!" : "Downloading Model"}
                             </h3>
 
                             {/* Model Name */}
-                            <p className="text-sm text-gray-600 mb-6">
+                            <p className="text-sm text-foreground mb-6">
                                 {llmConfig.OLLAMA_MODEL}
                             </p>
 
                             {/* Progress Bar */}
                             {downloadProgress > 0 && (
                                 <div className="mb-4">
-                                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                                    <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
                                         <div
                                             className="bg-blue-600 h-3 rounded-full transition-all duration-300 ease-out"
                                             style={{ width: `${downloadProgress}%` }}
                                         />
                                     </div>
-                                    <p className="text-sm text-gray-600 mt-2">
+                                    <p className="text-sm text-foreground mt-2">
                                         {downloadProgress}% Complete
                                     </p>
                                 </div>
@@ -1092,7 +1090,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
                             {/* Status Message */}
                             {downloadingModel.status && downloadingModel.status !== "pulled" && (
-                                <div className="text-xs text-gray-500">
+                                <div className="text-xs text-muted-foreground">
                                     {downloadingModel.status === "downloading" && "Downloading model files..."}
                                     {downloadingModel.status === "verifying" && "Verifying model integrity..."}
                                     {downloadingModel.status === "pulling" && "Pulling model from registry..."}
@@ -1101,8 +1099,8 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
                             {/* Download Info */}
                             {downloadingModel.downloaded && downloadingModel.size && (
-                                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                                    <div className="flex justify-between text-xs text-gray-600">
+                                <div className="mt-4 p-3 bg-muted rounded-lg">
+                                    <div className="flex justify-between text-xs text-foreground">
                                         <span>Downloaded: {(downloadingModel.downloaded / 1024 / 1024).toFixed(1)} MB</span>
                                         <span>Total: {(downloadingModel.size / 1024 / 1024).toFixed(1)} MB</span>
                                     </div>

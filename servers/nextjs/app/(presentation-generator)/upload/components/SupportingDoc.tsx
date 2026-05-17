@@ -166,14 +166,14 @@ const SupportingDoc = ({
     return (
         <div className="space-y-2" data-testid="attachments-uploader">
             <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-600 font-syne">
+                <p className="text-sm text-foreground font-syne">
                     {hasFiles ? `${filteredFiles.length} attachment${filteredFiles.length > 1 ? 's' : ''}` : ''}
                 </p>
                 {hasFiles && <button
                     type="button"
                     onClick={handleClearFiles}
                     disabled={!hasFiles}
-                    className={`text-sm font-medium font-syne ${!hasFiles ? 'cursor-not-allowed text-gray-400' : 'text-red-600 hover:text-red-700'}`}
+                    className={`text-sm font-medium font-syne ${!hasFiles ? 'cursor-not-allowed text-muted-foreground' : 'text-red-600 hover:text-red-700'}`}
                     data-testid="attachments-clear-button"
                     aria-disabled={!hasFiles}
                 >
@@ -182,7 +182,7 @@ const SupportingDoc = ({
             </div>
 
             <label
-                className={`mt-1 block cursor-pointer rounded-lg border-2 border-dashed px-4 py-6 text-center transition-colors ${isDragging ? 'border-[#5146E5] bg-[#5146E5]/5' : 'border-gray-200 hover:border-[#5146E5]'}`}
+                className={`mt-1 block cursor-pointer rounded-lg border-2 border-dashed px-4 py-6 text-center transition-colors ${isDragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary'}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -196,12 +196,12 @@ const SupportingDoc = ({
                     data-testid="file-upload-input"
                 />
                 <div className="flex flex-col items-center gap-2">
-                    <div className='w-[42px] h-[42px] flex justify-center items-center rounded-full bg-[#EBE9FE]' >
-                        <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-white'>
+                    <div className='w-[42px] h-[42px] flex justify-center items-center rounded-full bg-primary/15' >
+                        <div className='w-[22px] h-[22px] rounded-full bg-primary flex items-center justify-center text-foreground'>
                             <Plus className='w-3 h-3' />
                         </div>
                     </div>
-                    <p className='text-[#808080] text-sm  font-normal'>(Office docs, spreadsheets, images, PDF/TXT)</p>
+                    <p className='text-muted-foreground text-sm  font-normal'>(Office docs, spreadsheets, images, PDF/TXT)</p>
                 </div>
             </label>
 
@@ -211,22 +211,22 @@ const SupportingDoc = ({
                         {filteredFiles.map((file, idx) => (
                             <li
                                 key={`${file.name}-${idx}`}
-                                className="flex items-center gap-3 rounded-md border border-gray-200 px-3 py-2"
+                                className="flex items-center gap-3 rounded-md border border-border px-3 py-2"
                                 data-testid="attached-file-item"
                             >
                                 {previewUrls[idx] ? (
                                     <img src={previewUrls[idx] as string} alt="Preview" className="h-10 w-10 flex-none rounded object-cover" />
                                 ) : (
-                                    <div className="flex h-10 w-10 flex-none items-center justify-center rounded bg-gray-100 text-gray-600">
+                                    <div className="flex h-10 w-10 flex-none items-center justify-center rounded bg-muted text-foreground">
                                         <File className="h-5 w-5" />
                                     </div>
                                 )}
 
                                 <div className="min-w-0 flex-1">
-                                    <p className="truncate text-sm font-medium text-gray-900 font-syne" title={file.name}>
+                                    <p className="truncate text-sm font-medium text-foreground font-syne" title={file.name}>
                                         {file.name}
                                     </p>
-                                    <p className="text-xs text-gray-500 font-syne">{formatFileSize(file.size)}</p>
+                                    <p className="text-xs text-muted-foreground font-syne">{formatFileSize(file.size)}</p>
                                 </div>
 
                                 <button

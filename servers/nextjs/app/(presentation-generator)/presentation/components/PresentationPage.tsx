@@ -149,14 +149,15 @@ const PresentationPage: React.FC<PresentationPageProps> = ({
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100 font-syne">
+      <div className="flex flex-col items-center justify-center h-screen" style={{ background: '#000000', fontFamily: "'Space Mono', monospace" }}>
         <div
-          className="bg-white border border-red-300 text-red-700 px-6 py-8 rounded-lg shadow-lg flex flex-col items-center"
+          className="px-6 py-8 rounded-[10px] flex flex-col items-center"
           role="alert"
+          style={{ background: '#1d1d1d', border: '1px solid #383838' }}
         >
-          <AlertCircle className="w-16 h-16 mb-4 text-red-500" />
-          <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-          <p className="text-center mb-4">
+          <AlertCircle className="w-16 h-16 mb-4" style={{ color: '#888888' }} />
+          <h2 className="text-xl font-semibold mb-2" style={{ color: '#ffffff' }}>Something went wrong</h2>
+          <p className="text-center mb-4" style={{ color: '#888888' }}>
             We couldn't load your presentation. Please try again.
           </p>
           <div className="flex gap-2 justify-center items-center">
@@ -168,10 +169,10 @@ const PresentationPage: React.FC<PresentationPageProps> = ({
   }
 
   return (
-    <div className="h-screen overflow-hidden font-syne">
+    <div className="h-screen overflow-hidden" style={{ fontFamily: "'Space Mono', monospace" }}>
       <div
         style={{
-          background: "#EDEEEF",
+          background: "#000000",
         }}
         id="presentation-slides-wrapper"
         className="relative flex h-full flex-col overflow-hidden"
@@ -201,7 +202,7 @@ const PresentationPage: React.FC<PresentationPageProps> = ({
                       {Array.from({ length: 2 }).map((_, index) => (
                         <Skeleton
                           key={index}
-                          className="aspect-video bg-gray-400 my-4 w-full mx-auto "
+                          className="aspect-video bg-secondary my-4 w-full mx-auto "
                         />
                       ))}
                     </div>

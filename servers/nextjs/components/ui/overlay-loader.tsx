@@ -45,8 +45,8 @@ export const OverlayLoader = ({
         >
             <div
                 className={cn(
-                    "flex flex-col items-center justify-center px-6 pt-6 pb-10 rounded-xl bg-white shadow-2xl relative min-h-[347px]",
-                    "min-w-[280px] sm:min-w-[447px] border border-white/10 transition-all duration-400 ease-out",
+                    "flex flex-col items-center justify-center px-6 pt-6 pb-10 rounded-xl bg-card shadow-2xl relative min-h-[347px]",
+                    "min-w-[280px] sm:min-w-[447px] border border-border/10 transition-all duration-400 ease-out",
                     isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90",
                     className
                 )}

@@ -83,13 +83,13 @@ const COLORS = ['#4169E1', '#1D8CF8', '#7B9FFF', '#4ECDC4', '#45B7D1', '#10B981'
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-sm font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-sm font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-xs" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -441,7 +441,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex flex-col p-0 font-['Albert_Sans']"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex flex-col p-0 font-['Albert_Sans']"
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -453,7 +453,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                     {/* Left Content Area: Title + Chart */}
                     <div className="flex-[0.65] flex flex-col mr-[40px]">
-                        <h1 className="text-[42.7px] text-black mb-[40px] tracking-[-1.6px]  font-bold"
+                        <h1 className="text-[42.7px] text-foreground mb-[40px] tracking-[-1.6px]  font-bold"
 
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
@@ -499,11 +499,11 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                         {metrics?.map((item, index) => (
                             <React.Fragment key={index}>
                                 <div className="flex flex-col items-center py-6">
-                                    <span className="text-[16px] text-black mb-1"
+                                    <span className="text-[16px] text-foreground mb-1"
 
                                         style={{ color: 'var(--background-text,#000000)' }}
                                     >{item.heading}</span>
-                                    <span className="text-[36px] font-bold text-black leading-none mb-1"
+                                    <span className="text-[36px] font-bold text-foreground leading-none mb-1"
 
                                         style={{ color: 'var(--background-text,#000000)' }}
                                     >{item.value}</span>

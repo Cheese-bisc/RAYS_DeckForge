@@ -67,13 +67,13 @@ const MissionVisionSlide = ({ data }: { data: Partial<SchemaType> }) => {
             style={{ backgroundColor: "var(--primary-color,#15342D)" }}
           >
             <p
-              className="text-[20px] font-semibold tracking-[2.074px] text-white"
+              className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
               style={{ color: "var(--primary-text,#edf2f1)" }}
             >
               {data.topleftTextBlockLabel}
             </p>
             <p
-              className="mt-[26px] text-[28px] font-normal  text-white"
+              className="mt-[26px] text-[28px] font-normal  text-foreground"
               style={{ color: "var(--primary-text,#edf2f1)" }}
             >
               {data.topleftTextBlockBody}
@@ -85,20 +85,20 @@ const MissionVisionSlide = ({ data }: { data: Partial<SchemaType> }) => {
             style={{ backgroundColor: "var(--primary-color,#15342D)" }}
           >
             <p
-              className="text-[20px] font-semibold tracking-[2.074px] text-white"
+              className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
               style={{ color: "var(--primary-text,#edf2f1)" }}
             >
               {data.bottomleftTextBlockLabel}
             </p>
             <p
-              className="mt-[24px] text-[28px] font-normal  text-white"
+              className="mt-[24px] text-[28px] font-normal  text-foreground"
               style={{ color: "var(--primary-text,#edf2f1)" }}
             >
               {data.bottomleftTextBlockBody}
             </p>
           </div>
           <div
-            className="h-full w-full overflow-hidden bg-white"
+            className="h-full w-full overflow-hidden bg-card"
             style={{ backgroundColor: "var(--card-color,#ffffff)" }}
           >
             {data.image?.__image_url__ && (

@@ -2,7 +2,7 @@ import React from 'react'
 
 const OnBoardingHeader = ({ currentStep, setStep }: { currentStep: number, setStep: (step: number) => void }) => {
     return (
-        <div className='sticky top-8 z-20 flex items-center font-syne justify-end gap-1 mt-7 mb-[52px]'>
+        <div className='sticky top-8 z-20 flex items-center justify-end gap-1 mt-7 mb-[52px]' style={{ fontFamily: "'Space Mono', monospace" }}>
 
             <div className='flex items-center gap-1'>
                 <div className='flex items-center gap-1 cursor-pointer'
@@ -12,13 +12,19 @@ const OnBoardingHeader = ({ currentStep, setStep }: { currentStep: number, setSt
                         }
                     }}
                 >
-                    <div className={`${currentStep === 1 ? 'bg-[#010100] text-white' : 'border border-[#ECECEF] text-[#494A4D]'} px-2.5 h-7 w-7  text-xs font-medium rounded-full flex items-center justify-center `}>
+                    <div className={`px-2.5 h-7 w-7 text-xs font-medium rounded-full flex items-center justify-center`}
+                        style={{
+                            background: currentStep === 1 ? '#ffffff' : 'transparent',
+                            color: currentStep === 1 ? '#000000' : '#888888',
+                            border: currentStep === 1 ? 'none' : '1px solid #383838',
+                        }}
+                    >
                         1
                     </div>
-                    <p className='text-[#010000] text-xs '>Select Mode</p>
+                    <p className='text-xs' style={{ color: currentStep === 1 ? '#ffffff' : '#888888' }}>Select Mode</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="1" viewBox="0 0 22 1" fill="none">
-                    <path d="M0 0.5H21.5" stroke="#ECECEF" />
+                    <path d="M0 0.5H21.5" stroke="#383838" />
                 </svg>
                 <div className='flex items-center gap-1 cursor-pointer'
                     onClick={() => {
@@ -27,19 +33,31 @@ const OnBoardingHeader = ({ currentStep, setStep }: { currentStep: number, setSt
                         }
                     }}
                 >
-                    <div className={`${currentStep === 2 ? 'bg-[#010100] text-white' : 'border border-[#ECECEF] text-[#494A4D]'} px-2.5 h-7 w-7  text-xs font-medium rounded-full flex items-center justify-center `}>
+                    <div className={`px-2.5 h-7 w-7 text-xs font-medium rounded-full flex items-center justify-center`}
+                        style={{
+                            background: currentStep === 2 ? '#ffffff' : 'transparent',
+                            color: currentStep === 2 ? '#000000' : '#888888',
+                            border: currentStep === 2 ? 'none' : '1px solid #383838',
+                        }}
+                    >
                         2
                     </div>
-                    <p className='text-[#010000] text-xs '>Choose Providers</p>
+                    <p className='text-xs' style={{ color: currentStep === 2 ? '#ffffff' : '#888888' }}>Choose Providers</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="1" viewBox="0 0 22 1" fill="none">
-                    <path d="M0 0.5H21.5" stroke="#ECECEF" />
+                    <path d="M0 0.5H21.5" stroke="#383838" />
                 </svg>
                 <div className='flex items-center gap-1'>
-                    <div className={`${currentStep === 3 ? 'bg-[#010100] text-white' : 'border border-[#ECECEF] text-[#494A4D]'} px-2.5 h-7 w-7  text-xs font-medium rounded-full flex items-center justify-center `}>
+                    <div className={`px-2.5 h-7 w-7 text-xs font-medium rounded-full flex items-center justify-center`}
+                        style={{
+                            background: currentStep === 3 ? '#ffffff' : 'transparent',
+                            color: currentStep === 3 ? '#000000' : '#888888',
+                            border: currentStep === 3 ? 'none' : '1px solid #383838',
+                        }}
+                    >
                         3
                     </div>
-                    <p className='text-[#010000] text-xs '>Finish Setup</p>
+                    <p className='text-xs' style={{ color: currentStep === 3 ? '#ffffff' : '#888888' }}>Finish Setup</p>
                 </div>
             </div>
         </div>

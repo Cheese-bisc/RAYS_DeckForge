@@ -169,9 +169,9 @@ const PresentationPage = ({ presentation_id, exportCookie }: PresentationPagePro
   return (
     <div className="flex overflow-hidden flex-col">
       {error ? (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+        <div className="flex flex-col items-center justify-center h-screen bg-muted">
           <div
-            className="bg-white border border-red-300 text-red-700 px-6 py-8 rounded-lg shadow-lg flex flex-col items-center"
+            className="bg-card border border-red-300 text-red-700 px-6 py-8 rounded-lg shadow-lg flex flex-col items-center"
             role="alert"
           >
             <AlertCircle className="w-16 h-16 mb-4 text-red-500" />
@@ -183,7 +183,7 @@ const PresentationPage = ({ presentation_id, exportCookie }: PresentationPagePro
               Please check your internet connection or try again later.
             </p>
             <Button
-              className="mt-4 bg-red-500 text-white hover:bg-red-600 focus:ring-4 focus:ring-red-300"
+              className="mt-4 bg-red-500 text-foreground hover:bg-red-600 focus:ring-4 focus:ring-red-300"
               onClick={() => {
                 window.location.reload();
               }}
@@ -205,7 +205,7 @@ const PresentationPage = ({ presentation_id, exportCookie }: PresentationPagePro
                   {Array.from({ length: 2 }).map((_, index) => (
                     <Skeleton
                       key={index}
-                      className="aspect-video bg-gray-400 my-4 w-full mx-auto max-w-[1280px]"
+                      className="aspect-video bg-secondary my-4 w-full mx-auto max-w-[1280px]"
                     />
                   ))}
                 </div>

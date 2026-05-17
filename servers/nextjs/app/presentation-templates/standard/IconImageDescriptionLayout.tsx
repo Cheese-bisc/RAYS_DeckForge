@@ -163,10 +163,10 @@ const dynamicSlideLayout: React.FC<SlideLayoutProps> = ({ data: slideData }) => 
               </div>
 
               <div className="min-w-0">
-                <div className="text-white text-[28px] leading-[34px] font-semibold" style={{ fontFamily: "Playfair Display", color: 'var(--primary-text, #FFFFFF)' }}>
+                <div className="text-foreground text-[28px] leading-[34px] font-semibold" style={{ fontFamily: "Playfair Display", color: 'var(--primary-text, #FFFFFF)' }}>
                   {slideData?.card?.heading}
                 </div>
-                <p className="mt-3 text-white/95 text-[16px] leading-[28px]" style={{ fontFamily: "Playfair Display", color: 'var(--primary-text, #FFFFFF)' }}>
+                <p className="mt-3 text-foreground/95 text-[16px] leading-[28px]" style={{ fontFamily: "Playfair Display", color: 'var(--primary-text, #FFFFFF)' }}>
                   {slideData?.card?.body}
                 </p>
 

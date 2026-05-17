@@ -83,7 +83,7 @@ const MetricsSlideLayout: React.FC<MetricsSlideLayoutProps> = ({ data: slideData
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden flex flex-col"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden flex flex-col"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -126,7 +126,7 @@ const MetricsSlideLayout: React.FC<MetricsSlideLayoutProps> = ({ data: slideData
                     <div className="space-y-12">
                         {/* Title */}
                         <div className="text-center">
-                            <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">
+                            <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">
                                 {slideData?.title || 'Company Traction'}
                             </h1>
                         </div>
@@ -138,7 +138,7 @@ const MetricsSlideLayout: React.FC<MetricsSlideLayoutProps> = ({ data: slideData
                                 {metrics.map((metric, index) => (
                                     <div key={index} className={`text-center space-y-4 ${getItemClasses(metrics.length)}`}>
                                         {/* Label */}
-                                        <div className="text-sm text-gray-600 font-medium" style={{ color: "var(--background-text,#ffffff)" }}>
+                                        <div className="text-sm text-foreground font-medium" style={{ color: "var(--background-text,#ffffff)" }}>
                                             {metric.label}
                                         </div>
 
@@ -153,7 +153,7 @@ const MetricsSlideLayout: React.FC<MetricsSlideLayoutProps> = ({ data: slideData
                                             style={{ background: "var(--primary-color,#9333ea)" }}
 
                                         >
-                                            <p style={{ color: "var(--primary-text,#ffffff)" }} className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                                            <p style={{ color: "var(--primary-text,#ffffff)" }} className="text-xs sm:text-sm text-foreground leading-relaxed">
                                                 {metric.description}
                                             </p>
                                         </div>

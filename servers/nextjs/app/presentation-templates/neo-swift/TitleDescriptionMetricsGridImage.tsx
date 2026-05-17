@@ -60,7 +60,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                 href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex flex-col  justify-center "
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex flex-col  justify-center "
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -71,7 +71,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                     {/* Left Side Content */}
                     <div className="flex flex-col basis-1/2">
                         <div className="mb-[24px]">
-                            <h1 className="text-[42.7px] text-black  font-bold leading-[1.1] tracking-[-1.6px] whitespace-pre-line"
+                            <h1 className="text-[42.7px] text-foreground  font-bold leading-[1.1] tracking-[-1.6px] whitespace-pre-line"
 
                                 style={{ color: 'var(--background-text,#000000)' }}
                             >
@@ -79,7 +79,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                             </h1>
                         </div>
                         <div className="mb-[40px]">
-                            <p className="text-[16px] text-black  leading-[1.6]"
+                            <p className="text-[16px] text-foreground  leading-[1.6]"
 
                                 style={{ color: 'var(--background-text,#000000)' }}
                             >
@@ -96,7 +96,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                                     style={{ width: '230px', height: '130px', backgroundColor: 'var(--primary-color,#BEF4FE)', borderColor: 'var(--stroke,#EBEBEB)' }}
                                 >
                                     <div className="flex items-center justify-between mb-1">
-                                        <div className="bg-white rounded-[10px] w-[48px] h-[50px] flex items-center justify-center border-[0.7px] border-[#EBEBEB]"
+                                        <div className="bg-card rounded-[10px] w-[48px] h-[50px] flex items-center justify-center border-[0.7px] border-[#EBEBEB]"
 
                                             style={{ backgroundColor: 'var(--card-color,#FFFFFF)' }}
                                         >
@@ -116,7 +116,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                                             >
                                                 {metric.label}
                                             </span>
-                                            <span className="text-[36px] text-black  leading-[1]"
+                                            <span className="text-[36px] text-foreground  leading-[1]"
 
                                                 style={{ color: 'var(--primary-text,#000000)' }}
                                             >

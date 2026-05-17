@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { Switch } from '../ui/switch';
 import confetti from 'canvas-confetti';
 
-const CONFETTI_COLORS = ['#ff00c5', '#f3ff00', '#9500d0', '#00d2f2', '#00ea9b', '#ff7f36'];
+const CONFETTI_COLORS = ['#ffffff', '#888888', '#383838', '#1d1d1d'];
 
 function fireRealisticConfetti() {
     confetti({
@@ -72,33 +72,33 @@ const FinalStep = () => {
         router.push('/upload')
     }
     return (
-        <div className='fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center'>
+        <div className='fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center' style={{ background: '#000000' }}>
             <div className='flex flex-col items-center justify-center'>
 
-                <img src="/final_onboarding.png" alt="RAYS DeckForge" className='w-[118px] h-[98px]  object-contain' />
-                <h1 className='text-black text-[30px] font-normal font-unbounded py-2.5'>Welcome on board!</h1>
-                <p className='text-[#000000CC] text-xl font-normal font-syne'>You’re all set. Let’s create your first presentation.</p>
+                <img src="/final_onboarding.png" alt="RAYS DeckForge" className='w-[118px] h-[98px] object-contain' />
+                <h1 className='text-[30px] font-normal py-2.5' style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>Welcome on board!</h1>
+                <p className='text-xl font-normal' style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>You're all set. Let's create your first presentation.</p>
 
                 {trackingEnabled !== null && (
-                    <div className='flex items-center gap-3 mt-8 px-5 py-3.5 rounded-[10px] border border-[#EDEEEF] bg-white'>
+                    <div className='flex items-center gap-3 mt-8 px-5 py-3.5 rounded-[10px]' style={{ border: '1px solid #383838', background: '#1d1d1d' }}>
                         <div>
-                            <p className='text-sm font-medium text-[#191919] font-syne'>Usage analytics</p>
-                            <p className='text-[11px] text-[#9CA3AF] font-syne leading-tight mt-0.5'>Help improve RAYS DeckForge by sharing anonymous usage data.</p>
+                            <p className='text-sm font-medium' style={{ color: '#ffffff', fontFamily: "'Space Mono', monospace" }}>Usage analytics</p>
+                            <p className='text-[11px] leading-tight mt-0.5' style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>Help improve RAYS DeckForge by sharing anonymous usage data.</p>
                         </div>
                         <Switch
                             checked={trackingEnabled}
                             onCheckedChange={handleTrackingToggle}
-                            className='data-[state=checked]:bg-[#7C51F8]'
+                            className='data-[state=checked]:bg-[#ffffff]'
                         />
                     </div>
                 )}
 
-                <button onClick={handleGoToUpload} className='bg-[#7C51F8] px-[23px] mt-8 py-[15px]  rounded-[70px] text-white text-lg font-syne font-semibold'>My First Presentation 🚀</button>
-                <button onClick={fireRealisticConfetti} className='mt-3 flex items-center gap-1.5 text-sm text-[#7A5AF8] font-syne font-medium hover:underline'>
+                <button onClick={handleGoToUpload} className='px-[23px] mt-8 py-[15px] rounded-[10px] text-lg font-semibold' style={{ background: '#ffffff', color: '#000000', fontFamily: "'Space Mono', monospace" }}>My First Presentation 🚀</button>
+                <button onClick={fireRealisticConfetti} className='mt-3 flex items-center gap-1.5 text-sm font-medium hover:underline' style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>
                     <PartyPopper className='w-4 h-4' /> Celebrate again!
                 </button>
             </div>
-            <button onClick={handleGoToDashboard} className='absolute uppercase bottom-20 text-[#7A5AF8] flex items-center gap-2 right-10  text-xs font-normal font-syne'>Go to your dashboard <ArrowRight className='w-4 h-4 text-[#7A5AF8]' /></button>
+            <button onClick={handleGoToDashboard} className='absolute uppercase bottom-20 flex items-center gap-2 right-10 text-xs font-normal' style={{ color: '#888888', fontFamily: "'Space Mono', monospace" }}>Go to your dashboard <ArrowRight className='w-4 h-4' style={{ color: '#888888' }} /></button>
         </div>
     )
 }

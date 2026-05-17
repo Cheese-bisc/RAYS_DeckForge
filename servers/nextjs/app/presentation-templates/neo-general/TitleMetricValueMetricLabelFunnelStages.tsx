@@ -94,7 +94,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                                 {/* Funnel Data Bar */}
                                 <div
-                                    className="h-[94px] flex items-center px-8 justify-between text-white"
+                                    className="h-[94px] flex items-center px-8 justify-between text-foreground"
                                     style={{
                                         backgroundColor: `var(--primary-color,#9134EB)`,
                                         width: barWidths[index % barWidths.length],

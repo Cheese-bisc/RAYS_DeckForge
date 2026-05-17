@@ -79,7 +79,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
             <div
-                className="bg-white/95 backdrop-blur-sm border rounded-lg shadow-lg px-3 py-2"
+                className="bg-card/95 backdrop-blur-sm border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',

@@ -92,7 +92,7 @@ const BusinessChallengesCardsSlide = ({ data }: { data: Partial<SchemaType> }) =
 
           <div className="mt-[72px] w-[360px]">
             <p
-              className="text-[20px] font-semibold tracking-[2.074px] text-white"
+              className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
               style={{ color: "var(--primary-color,#15342D)" }}
             >
               {taglineLabel}
@@ -110,7 +110,7 @@ const BusinessChallengesCardsSlide = ({ data }: { data: Partial<SchemaType> }) =
           <img
             src={heroImage.__image_url__}
             alt={heroImage.__image_prompt__}
-            className="absolute right-0 top-[72px] h-[350px] w-[770px] object-cover bg-white"
+            className="absolute right-0 top-[72px] h-[350px] w-[770px] object-cover bg-card"
           />
         )}
 
@@ -126,7 +126,7 @@ const BusinessChallengesCardsSlide = ({ data }: { data: Partial<SchemaType> }) =
               }}
             >
               <p
-                className="text-[20px] font-semibold tracking-[2.074px] text-white"
+                className="text-[20px] font-semibold tracking-[2.074px] text-foreground"
                 style={{
                   color: card.dark
                     ? "var(--primary-text,#edf2f1)"
@@ -136,7 +136,7 @@ const BusinessChallengesCardsSlide = ({ data }: { data: Partial<SchemaType> }) =
                 {card.heading}
               </p>
               <p
-                className="mt-[18px] text-[28px] font-normal  text-white"
+                className="mt-[18px] text-[28px] font-normal  text-foreground"
                 style={{
                   color: card.dark
                     ? "var(--primary-text,#edf2f1)"

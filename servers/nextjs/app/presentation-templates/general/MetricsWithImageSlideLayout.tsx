@@ -60,7 +60,7 @@ const MetricsWithImageSlideLayout: React.FC<MetricsWithImageSlideLayoutProps> = 
             />
 
             <div
-                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white relative z-20 mx-auto overflow-hidden"
+                className="w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card relative z-20 mx-auto overflow-hidden"
                 style={{
                     fontFamily: 'var(--heading-font-family,Poppins)',
                     background: "var(--background-color,#ffffff)"
@@ -109,12 +109,12 @@ const MetricsWithImageSlideLayout: React.FC<MetricsWithImageSlideLayoutProps> = 
                     {/* Right Section - Content and Metrics */}
                     <div className="flex-1 flex flex-col justify-center pl-8 space-y-6">
                         {/* Title */}
-                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        <h1 style={{ color: "var(--background-text,#111827)" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                             {slideData?.title || 'Competitive Advantage'}
                         </h1>
 
                         {/* Description */}
-                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        <p style={{ color: "var(--background-text,#4b5563)" }} className="text-base sm:text-lg text-foreground leading-relaxed">
                             {slideData?.description || 'Ginyard International Co. stands out by offering custom digital solutions tailored to client needs, alongside long-term support to ensure lasting relationships and continuous adaptation.'}
                         </p>
 
@@ -122,7 +122,7 @@ const MetricsWithImageSlideLayout: React.FC<MetricsWithImageSlideLayoutProps> = 
                         <div className="grid grid-cols-2 gap-6">
                             {metrics.map((metric, index) => (
                                 <div key={index} className="text-center space-y-2">
-                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-sm text-gray-600 font-medium">
+                                    <div style={{ color: "var(--background-text,#4b5563)" }} className="text-sm text-foreground font-medium">
                                         {metric.label}
                                     </div>
                                     <div style={{ color: "var(--primary-color,#9333ea)" }} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-purple-600">

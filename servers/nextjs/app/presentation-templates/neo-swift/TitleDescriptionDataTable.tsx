@@ -43,13 +43,13 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                     {/* Header Section */}
                     <div className="flex justify-between items-start mb-[40px]">
-                        <h1 className="text-[42.7px] text-black  font-bold leading-none uppercase tracking-[-1.6px]"
+                        <h1 className="text-[42.7px] text-foreground  font-bold leading-none uppercase tracking-[-1.6px]"
 
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
                             {title}
                         </h1>
-                        <p className="text-[16px] text-black leading-[1.6] max-w-[510px] text-left"
+                        <p className="text-[16px] text-foreground leading-[1.6] max-w-[510px] text-left"
 
                             style={{ color: 'var(--background-text,#000000)' }}
                         >
@@ -76,7 +76,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                 {table?.columns?.map((column, index) => (
                                     <div
                                         key={index}
-                                        className="px-6 text-[21.4px] text-black font-normal text-center"
+                                        className="px-6 text-[21.4px] text-foreground font-normal text-center"
                                         style={{ color: 'var(--primary-text,#000000)' }}
                                     >
                                         {column}
@@ -97,7 +97,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                                         {row.map((cell, cellIndex) => (
                                             <div
                                                 key={cellIndex}
-                                                className="px-6 text-[20.3px] text-black text-center whitespace-pre-line leading-[1.4]"
+                                                className="px-6 text-[20.3px] text-foreground text-center whitespace-pre-line leading-[1.4]"
                                                 style={{ color: 'var(--background-text,#000000)' }}
                                             >
                                                 {cell}

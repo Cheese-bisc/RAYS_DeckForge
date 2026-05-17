@@ -150,18 +150,18 @@ const dynamicSlideLayout: React.FC<SlideLayoutProps> = ({ data: slideData }) => 
               <div key={idx} className="rounded-md shadow-sm px-5 py-4" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)', color: 'var(--primary-text, #FFFFFF)' }}>
                 <div className="flex items-start gap-4">
                   <div className="flex items-baseline shrink-0">
-                    <span className="text-white  text-[48px] leading-none" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
+                    <span className="text-foreground  text-[48px] leading-none" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
                       {card.number}
                     </span>
-                    <span className="ml-1 text-white  text-[24px] leading-none" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
+                    <span className="ml-1 text-foreground  text-[24px] leading-none" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
                       {card.numberSymbol}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-white  text-[24px]" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
+                    <h3 className="text-foreground  text-[24px]" style={{ color: 'var(--primary-text, #FFFFFF)' }}>
                       {card.subtitle}
                     </h3>
-                    <p className="mt-1 text-white/95  text-[16px] leading-[1.55]" style={{ color: 'var(--primary-text, #FFFFFF)' }}  >
+                    <p className="mt-1 text-foreground/95  text-[16px] leading-[1.55]" style={{ color: 'var(--primary-text, #FFFFFF)' }}  >
                       {card.body}
                     </p>
                   </div>

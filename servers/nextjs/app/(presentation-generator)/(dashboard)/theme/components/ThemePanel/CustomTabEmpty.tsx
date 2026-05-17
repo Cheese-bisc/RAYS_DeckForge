@@ -17,16 +17,16 @@ const CustomTabEmpty = () => {
                     style={{
                         background: 'linear-gradient(90deg, #F00 5.21%, #FF8A00 16.48%, #FFE600 27.74%, #14FF00 39.35%, #00A3FF 49.37%, #0500FF 61.18%, #AD00FF 72.26%, #FF00C7 83.53%, #F00 94.61%), #FFF'
                     }}
-                ><div className='w-[26px] h-[26px] rounded-full bg-white flex items-center justify-center'>
+                ><div className='w-[26px] h-[26px] rounded-full bg-card flex items-center justify-center'>
 
                         <Plus className='w-4 h-4 text-[#A2A0A1]' />
                     </div>
                 </div>
             </div>
-            <div className='px-5 py-4 bg-white flex items-center gap-4 border-t border-[#EDEEEF]'>
+            <div className='px-5 py-4 bg-card flex items-center gap-4 border-t border-[#EDEEEF]'>
                 <div className='bg-[#7A5AF8] w-[45px] h-[45px] rounded-lg p-2 flex items-center justify-center'>
 
-                    <Sparkles className='w-6 h-6 text-white' />
+                    <Sparkles className='w-6 h-6 text-foreground' />
                 </div>
                 <div>
                     <h4 className='text-[#191919] text-sm font-semibold '>Build Theme</h4>

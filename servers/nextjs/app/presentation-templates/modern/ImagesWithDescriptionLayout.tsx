@@ -147,7 +147,7 @@ const ImagesWithDescriptionSlideLayout: React.FC<ImagesWithDescriptionSlideLayou
                 style={{ minHeight: 380, backgroundColor: 'var(--card-color, #F5F8FE)' }}
               >
                 {/* Image full width */}
-                <div className="relative w-full h-40 mb-4 rounded-md overflow-hidden bg-white">
+                <div className="relative w-full h-40 mb-4 rounded-md overflow-hidden bg-card">
                   {member.image.__image_url__ && (
                     <img
                       src={member.image.__image_url__}

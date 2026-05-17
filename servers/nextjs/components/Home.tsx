@@ -50,16 +50,7 @@ export default function Home() {
 
   return (
 
-    <div className="flex min-h-screen relative" style={{ background: 'var(--rays-bg-primary)' }}>
-      <div
-        className="fixed z-0 -bottom-[14.5rem] left-0 w-full h-full pointer-events-none"
-        aria-hidden
-        style={{
-          height: "341px",
-          borderRadius: '1440px',
-          background: 'radial-gradient(5.92% 104.69% at 50% 100%, rgba(0, 212, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 100%), radial-gradient(50% 50% at 50% 50%, rgba(0, 212, 255, 0.4) 0%, rgba(0, 212, 255, 0.00) 100%)',
-        }}
-      />
+    <div className="flex min-h-screen relative" style={{ background: '#000000' }}>
       <OnBoardingSlidebar step={step} />
       <main className="w-full pl-20 pr-8 max-w-[1440px] mx-auto relative z-10">
 

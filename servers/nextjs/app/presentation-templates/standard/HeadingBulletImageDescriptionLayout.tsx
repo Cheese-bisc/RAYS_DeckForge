@@ -102,7 +102,7 @@ const dynamicSlideLayout: React.FC<SlideLayoutProps> = ({ data: slideData }) => 
                 <div className="h-[2px] w-[220px] rounded-full" style={{ backgroundColor: 'var(--background-text, #111827)' }}></div>
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-[88px] bg-gradient-to-t from-black/20 to-transparent z-[1]"></div>
+            <div className="absolute bottom-0 left-0 w-full h-[88px] bg-gradient-to-t from-background/20 to-transparent z-[1]"></div>
           </div>
 
           <div className="relative px-12 pt-16">
@@ -118,7 +118,7 @@ const dynamicSlideLayout: React.FC<SlideLayoutProps> = ({ data: slideData }) => 
               <div className="grid grid-flow-col auto-cols-max gap-6">
                 {cards.map((card, idx) => (
                   <div key={idx} className="flex flex-col items-center">
-                    <div className="w-[240px] h-[64px] rounded-sm text-white flex items-center justify-center  text-[22px]" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)', color: 'var(--primary-text, #FFFFFF)' }}>
+                    <div className="w-[240px] h-[64px] rounded-sm text-foreground flex items-center justify-center  text-[22px]" style={{ backgroundColor: 'var(--primary-color, #1B8C2D)', color: 'var(--primary-text, #FFFFFF)' }}>
                       {card.title}
                     </div>
                     <p className="mt-6 text-center text-[16px] leading-[28px]  max-w-[240px]" style={{ color: 'var(--background-text, #6B7280)' }}>

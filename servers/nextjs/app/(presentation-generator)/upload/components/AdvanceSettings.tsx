@@ -13,7 +13,7 @@ interface ConfigurationSelectsProps {
 }
 
 const toggleClassName =
-    'h-[22px] w-[36px] border-0 bg-[#D8D8DD] data-[state=checked]:bg-[#7A5AF8] ';
+    'h-[22px] w-[36px] border-0 data-[state=checked]:bg-white data-[state=unchecked]:bg-[#383838] ';
 
 const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) => {
     const [openAdvanced, setOpenAdvanced] = useState(false);
@@ -88,7 +88,8 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                         title="Advanced settings"
                         type="button"
                         onClick={handleOpenAdvanced}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E4E5E8] bg-white text-[#1C1C27] shadow-sm transition hover:bg-[#F7F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5141E5]/25"
+                        className="flex h-10 w-10 items-center justify-center rounded-[10px] transition"
+                        style={{ background: '#1d1d1d', border: '1px solid #383838', color: '#ffffff' }}
                         data-testid="advanced-settings-button"
                     >
                         <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden="true" />
@@ -113,40 +114,41 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                             type="button"
                             onClick={handleCloseAdvanced}
                             aria-label="Close advanced settings"
-                            className="absolute -top-[62px] right-2 flex h-[50px] w-[50px] items-center justify-center rounded-full border border-[#E7E7EC] bg-white text-[#2C2B35] shadow-sm transition hover:bg-[#F8F8FB]"
+                            className="absolute -top-[62px] right-2 flex h-[50px] w-[50px] items-center justify-center rounded-[10px] transition"
+                            style={{ background: '#1d1d1d', border: '1px solid #383838', color: '#ffffff' }}
                         >
                             <X className="h-3.5 w-3.5" />
                         </button>
 
-                        <div className="overflow-hidden rounded-[24px] border border-[#E7E9F2] bg-[#F3F3F6] shadow-[0_24px_80px_rgba(15,23,42,0.20)]">
-                            <div className="flex items-start justify-between gap-4 bg-[#F8F8FA] px-6 py-[22px] ">
+                        <div className="overflow-hidden rounded-[10px]" style={{ background: '#1d1d1d', border: '1px solid #383838' }}>
+                            <div className="flex items-start justify-between gap-4 px-6 py-[22px]" style={{ background: '#000000' }}>
                                 <div>
-                                    <h2 className="font-syne text-lg font-semibold leading-none text-[#191919]">
+                                    <h2 className="text-lg font-semibold leading-none" style={{ color: '#ffffff' }}>
                                         Advanced Settings
                                     </h2>
-                                    <p className="mt-1 text-sm text-[#808080]">Adjust Presentation Behavior</p>
+                                    <p className="mt-1 text-sm" style={{ color: '#888888' }}>Adjust Presentation Behavior</p>
                                 </div>
 
                                 <Button
                                     type="button"
                                     onClick={handleSaveAdvanced}
                                     style={{
-                                        background:
-                                            'linear-gradient(270deg, #D5CAFC 2.4%, #E3D2EB 27.88%, #F4DCD3 69.23%, #FDE4C2 100%)',
+                                        background: '#ffffff',
+                                        color: '#000000',
                                     }}
-                                    className=" rounded-full px-[28px]  py-[10px] font-syne text-xs font-semibold text-[#1E1D2B] shadow-none hover:opacity-95"
+                                    className="rounded-[10px] px-[28px] py-[10px] text-xs font-semibold shadow-none hover:opacity-95"
                                 >
                                     Save
                                 </Button>
                             </div>
 
-                            <div className="bg-[#ECE8F6] px-6  py-5">
+                            <div className="bg-muted px-6  py-5">
                                 <div className="flex items-start gap-2">
-                                    <Pencil className="mt-[3px] h-3.5 w-3.5 text-[#1C1B24]" />
+                                    <Pencil className="mt-[3px] h-3.5 w-3.5 text-foreground" />
                                     <div className="w-full">
                                         <label
                                             htmlFor="advanced-instructions"
-                                            className="block font-syne text-sm font-semibold leading-none text-[#1F1D2A]"
+                                            className="block font-syne text-sm font-semibold leading-none text-foreground"
                                         >
                                             Write instructions
                                         </label>
@@ -159,7 +161,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                                 setAdvancedDraft((prev) => ({ ...prev, instructions: event.target.value }))
                                             }
                                             placeholder="Guide the AI: define audience, tone, key points, or constraints."
-                                            className="mt-1 min-h-[64px] resize-none border-0 bg-transparent p-0 text-sm leading-[1.3] text-[#242430] shadow-none placeholder:text-[#7C7B87] focus-visible:ring-0 focus-visible:ring-offset-0"
+                                            className="mt-1 min-h-[64px] resize-none border-0 bg-transparent p-0 text-sm leading-[1.3] text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
                                         />
                                     </div>
                                 </div>
@@ -167,7 +169,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
 
                             <div className="space-y-4 px-6 pb-5 pt-3.5 ">
                                 <div className="flex items-center justify-between gap-3">
-                                    <label className="font-syne text-sm font-semibold leading-none text-[#1F1D2A]">Tone</label>
+                                    <label className="font-syne text-sm font-semibold leading-none text-foreground">Tone</label>
                                     <Select
                                         value={advancedDraft.tone}
                                         onValueChange={(value) =>
@@ -175,7 +177,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                         }
 
                                     >
-                                        <SelectTrigger className="p-2.5 w-[120px] rounded-xl border-[#DBDBE1] bg-white font-syne text-sm font-medium capitalize text-[#2C2B37] shadow-none focus:ring-0 focus-visible:ring-0">
+                                        <SelectTrigger className="p-2.5 w-[120px] rounded-xl border-border bg-card font-syne text-sm font-medium capitalize text-foreground shadow-none focus:ring-0 focus-visible:ring-0">
                                             <SelectValue placeholder="Select tone" />
                                         </SelectTrigger>
                                         <SelectContent className="z-[120] font-syne">
@@ -189,14 +191,14 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                 </div>
 
                                 <div className="flex items-center justify-between gap-3">
-                                    <label className="font-syne text-sm font-semibold leading-none text-[#1F1D2A]">Verbosity</label>
+                                    <label className="font-syne text-sm font-semibold leading-none text-foreground">Verbosity</label>
                                     <Select
                                         value={advancedDraft.verbosity}
                                         onValueChange={(value) =>
                                             setAdvancedDraft((prev) => ({ ...prev, verbosity: value as VerbosityType }))
                                         }
                                     >
-                                        <SelectTrigger className="p-2.5 w-[120px] rounded-xl border-[#DBDBE1] bg-white font-syne text-sm font-medium capitalize text-[#2C2B37] shadow-none focus:ring-0 focus-visible:ring-0">
+                                        <SelectTrigger className="p-2.5 w-[120px] rounded-xl border-border bg-card font-syne text-sm font-medium capitalize text-foreground shadow-none focus:ring-0 focus-visible:ring-0">
                                             <SelectValue placeholder="Select verbosity" />
                                         </SelectTrigger>
                                         <SelectContent className="z-[120] font-syne">
@@ -210,7 +212,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                 </div>
 
                                 <div className="flex items-center justify-between gap-3">
-                                    <label className="font-syne text-sm font-semibold leading-none text-[#1F1D2A]">
+                                    <label className="font-syne text-sm font-semibold leading-none text-foreground">
                                         Include Table of Content
                                     </label>
                                     <Switch
@@ -223,7 +225,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                 </div>
 
                                 <div className="flex items-center justify-between gap-3">
-                                    <label className="font-syne text-sm font-semibold leading-none text-[#1F1D2A]">Title Slide</label>
+                                    <label className="font-syne text-sm font-semibold leading-none text-foreground">Title Slide</label>
                                     <Switch
                                         checked={advancedDraft.includeTitleSlide}
                                         onCheckedChange={(checked) =>
@@ -234,7 +236,7 @@ const AdvanceSettings = ({ config, onConfigChange }: ConfigurationSelectsProps) 
                                 </div>
 
                                 <div className="flex items-center justify-between gap-3">
-                                    <label className="font-syne text-sm font-semibold leading-none text-[#1F1D2A]">Web Search</label>
+                                    <label className="font-syne text-sm font-semibold leading-none text-foreground">Web Search</label>
                                     <Switch
                                         checked={advancedDraft.webSearch}
                                         onCheckedChange={(checked) =>

@@ -796,9 +796,9 @@ const ThemePanel: React.FC = () => {
         tabIndex={0}
       >
 
-        <div className="border-2 border-dashed  border-gray-300 rounded-lg p-6 text-center">
+        <div className="border-2 border-dashed  border-border rounded-lg p-6 text-center">
           {isLogoUploading ? (
-            <div className="flex flex-col items-center justify-center py-6 text-gray-500">
+            <div className="flex flex-col items-center justify-center py-6 text-muted-foreground">
               <Loader2 className="h-6 w-6 animate-spin mb-2" />
               <p className="text-sm">Uploading logo...</p>
             </div>
@@ -824,14 +824,14 @@ const ThemePanel: React.FC = () => {
           ) : (
             <>
               <div className='w-[42px] h-[42px] mx-auto flex justify-center items-center rounded-full bg-[#EBE9FE]' >
-                <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-white'>
+                <div className='w-[22px] h-[22px] rounded-full bg-[#7A5AF8] flex items-center justify-center text-foreground'>
                   <Plus className='w-3 h-3' />
                 </div>
               </div>
               <div className="mt-2">
                 <label htmlFor="logo-upload" className="cursor-pointer">
                   <span className="text-blue-600 hover:text-blue-500">Click to upload</span>
-                  <span className="text-gray-500"> or drag and drop</span>
+                  <span className="text-muted-foreground"> or drag and drop</span>
                 </label>
                 <input
                   id="logo-upload"
@@ -875,7 +875,7 @@ const ThemePanel: React.FC = () => {
         <Link
           href="/theme?tab=new-theme"
           onClick={() => {}}
-          className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-black text-sm font-semibold font-syne shadow-sm hover:shadow-md"
+          className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-foreground text-sm font-semibold font-syne shadow-sm hover:shadow-md"
           aria-label="Create new theme"
           style={{
             borderRadius: "48px",
@@ -1040,12 +1040,12 @@ const ThemePanel: React.FC = () => {
                 }
               }}
               // ref={previewContainerRef}
-              className=" w-full p-3 bg-gray-50">
+              className=" w-full p-3 bg-muted">
               <div className="space-y-4">
                 <div
                   ref={slideContainerRef}
                   style={{ backgroundColor: 'var(--page-background-color)' }}
-                  className="overflow-y-auto overflow-x-hidden custom_scrollbar space-y-4 h-[90vh] rounded-lg shadow-lg border bg-white"
+                  className="overflow-y-auto overflow-x-hidden custom_scrollbar space-y-4 h-[90vh] rounded-lg shadow-lg border bg-card"
                 >
                   {template && template.map((layout) => {
                     const {

@@ -82,11 +82,12 @@ const SlideCountSelect: React.FC<{
                     name="slides"
                     data-testid="slides-select"
                     aria-expanded={open}
-                    className=" overflow-hidden font-syne font-medium  text-[#191919]  focus-visible:ring-[#5146E5]/30 flex justify-between items-center gap-2 h-[34px] rounded-full px-3.5 ring-1 ring-inset ring-slate-200 shadow-sm"
+                    className="overflow-hidden font-medium flex justify-between items-center gap-2 h-[34px] rounded-[10px] px-3.5"
+                    style={{ color: '#ffffff', border: '1px solid #383838' }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M4.0835 12.25H9.91683" stroke="black" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M11.6665 1.75H2.33317C1.68884 1.75 1.1665 2.27233 1.1665 2.91667V8.75C1.1665 9.39433 1.68884 9.91667 2.33317 9.91667H11.6665C12.3108 9.91667 12.8332 9.39433 12.8332 8.75V2.91667C12.8332 2.27233 12.3108 1.75 11.6665 1.75Z" stroke="black" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M4.0835 12.25H9.91683" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M11.6665 1.75H2.33317C1.68884 1.75 1.1665 2.27233 1.1665 2.91667V8.75C1.1665 9.39433 1.68884 9.91667 2.33317 9.91667H11.6665C12.3108 9.91667 12.8332 9.39433 12.8332 8.75V2.91667C12.8332 2.27233 12.3108 1.75 11.6665 1.75Z" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     <span className="flex flex-1 items-center gap-2.5">
                         <span className="text-xs font-medium ">{displayLabel}</span>
@@ -96,7 +97,7 @@ const SlideCountSelect: React.FC<{
             </PopoverTrigger>
             <PopoverContent className="w-[140px] p-0 font-syne" align="end">
                 <div
-                    className="sticky top-0 z-10 bg-white p-2 border-b"
+                    className="sticky top-0 z-10 bg-card p-2 border-b"
                     onMouseDown={(e) => e.stopPropagation()}
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={(e) => e.stopPropagation()}
@@ -174,7 +175,8 @@ const LanguageSelect: React.FC<{
                 name="language"
                 data-testid="language-select"
                 aria-expanded={open}
-                className="w-[125px] flex items-center gap-2 overflow-hidden  font-syne font-semibold  text-[#191919] h-10 rounded-full px-3.5 ring-1 ring-inset ring-slate-200 shadow-sm"
+                className="w-[125px] flex items-center gap-2 overflow-hidden font-semibold h-10 rounded-[10px] px-3.5"
+                style={{ color: '#ffffff', border: '1px solid #383838' }}
             >
                 <Languages className="w-3.5 h-3.5" />
                 <span className="w-[40px] text-left">

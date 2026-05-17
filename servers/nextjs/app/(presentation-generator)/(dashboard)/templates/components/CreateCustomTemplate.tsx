@@ -16,16 +16,16 @@ const CreateCustomTemplate = () => {
                     style={{
                         background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #FFF'
                     }}
-                ><div className='w-[26px] h-[26px] rounded-full bg-white flex items-center justify-center'>
+                ><div className='w-[26px] h-[26px] rounded-full bg-card flex items-center justify-center'>
 
                         <Plus className='w-4 h-4 text-[#A2A0A1]' />
                     </div>
                 </div>
             </div>
-            <div className='px-5 py-4 bg-white flex items-center gap-4 overflow-hidden border-t  border-[#EDEEEF]'>
+            <div className='px-5 py-4 bg-card flex items-center gap-4 overflow-hidden border-t  border-[#EDEEEF]'>
                 <div className='bg-[#7A5AF8] w-[45px] h-[45px] rounded-lg p-2 flex items-center justify-center'>
 
-                    <Sparkles className='w-6 h-6 text-white' />
+                    <Sparkles className='w-6 h-6 text-foreground' />
                 </div>
                 <div>
                     <h4 className='text-[#191919] text-sm font-semibold '>Build Template</h4>

@@ -56,7 +56,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex items-center justify-between gap-10 px-28 py-20"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex items-center justify-between gap-10 px-28 py-20"
 
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
@@ -71,14 +71,14 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                     />
 
                     {/* Main Title */}
-                    <h1 className="text-[42.7px] text-black  font-bold leading-tight mb-8 tracking-[-1.6px]"
+                    <h1 className="text-[42.7px] text-foreground  font-bold leading-tight mb-8 tracking-[-1.6px]"
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
                         {title}
                     </h1>
 
                     {/* Main Description */}
-                    <p className="text-[16px] text-black  leading-[28.5px] max-w-[475px]"
+                    <p className="text-[16px] text-foreground  leading-[28.5px] max-w-[475px]"
                         style={{ color: 'var(--background-text,#000000)' }}
                     >
                         {description}
@@ -105,12 +105,12 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
 
                             {/* Item Text Content */}
                             <div className="flex flex-col justify-center">
-                                <h3 className="text-[21.3px] text-black  font-bold leading-[25.6px]"
+                                <h3 className="text-[21.3px] text-foreground  font-bold leading-[25.6px]"
                                     style={{ color: 'var(--background-text,#000000)' }}
                                 >
                                     {item.heading}
                                 </h3>
-                                <p className="text-[16px] text-black  leading-[19.2px] mt-1 max-w-[243px]"
+                                <p className="text-[16px] text-foreground  leading-[19.2px] mt-1 max-w-[243px]"
                                     style={{ color: 'var(--background-text,#000000)' }}
                                 >
                                     {item.itemDescription}

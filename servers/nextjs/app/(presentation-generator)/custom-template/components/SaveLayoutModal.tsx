@@ -88,7 +88,7 @@ export const SaveLayoutModal: React.FC<SaveLayoutModalProps> = ({
           </div>
           <div className="grid gap-2">
             <Label htmlFor="description" className="text-sm font-medium">
-              Description <span className="text-gray-400">(optional)</span>
+              Description <span className="text-muted-foreground">(optional)</span>
             </Label>
             <Textarea
               id="description"
@@ -102,7 +102,7 @@ export const SaveLayoutModal: React.FC<SaveLayoutModalProps> = ({
 
           </div>
           {isSaving && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="10s" repeatCount="indefinite" /></path><circle cx="12" cy="12" r="10" /></svg>
               <span>Saving your template. This may take a moment…</span>
             </div>

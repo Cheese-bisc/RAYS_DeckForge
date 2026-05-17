@@ -119,7 +119,7 @@ const MarketOpportunitySlide = ({ data }: { data: Partial<SchemaType> }) => {
               }}
             >
               <p
-                className="pt-[24px] text-center text-[24px] font-normal  text-white"
+                className="pt-[24px] text-center text-[24px] font-normal  text-foreground"
                 style={{ color: "var(--primary-text,#ffffff)" }}
               >
                 {value}

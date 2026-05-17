@@ -83,13 +83,13 @@ const CHART_COLORS = ['#244CD9', '#6A89E6', '#4169E1', '#7B9FFF', '#EC4899', '#1
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg px-3 py-2"
+            <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg px-3 py-2"
                 style={{
                     backgroundColor: 'var(--card-color, #ffffff)',
                     borderColor: 'var(--stroke, #e5e7eb)',
                 }}
             >
-                <p className="text-sm font-semibold text-gray-800 mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
+                <p className="text-sm font-semibold text-foreground mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-xs" style={{ color: 'var(--background-text, #111827)' }}>
                         {entry.name}: <span className="font-medium">{entry.value?.toLocaleString()}</span>
@@ -410,7 +410,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex flex-col p-10 "
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex flex-col p-10 "
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
                     fontFamily: 'var(--body-font-family,Montserrat)',
@@ -430,7 +430,7 @@ const dynamicSlideLayout: React.FC<{ data: Partial<z.infer<typeof Schema>> }> = 
                 <div className=" flex-1 flex gap-8 justify-center  px-4">
                     {comparisonCards?.map((card, idx) => {
                         return (
-                            <div key={idx} className="flex-1  bg-white border border-[#F0F0F2] rounded-lg p-4 flex flex-col relative"
+                            <div key={idx} className="flex-1  bg-card border border-[#F0F0F2] rounded-lg p-4 flex flex-col relative"
                                 style={{ backgroundColor: 'var(--card-color,#FFFFFF)', borderColor: 'var(--stroke,#F0F0F2)' }}
                             >
 

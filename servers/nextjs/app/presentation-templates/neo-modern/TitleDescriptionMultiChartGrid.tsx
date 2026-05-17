@@ -112,7 +112,7 @@ interface MultiChartGridSlideLayoutProps {
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-white/95 backdrop-blur-sm border rounded-lg shadow-lg px-3 py-2" style={{ backgroundColor: 'var(--card-color, #ffffff)', borderColor: 'var(--stroke, #e5e7eb)' }}>
+            <div className="bg-card/95 backdrop-blur-sm border rounded-lg shadow-lg px-3 py-2" style={{ backgroundColor: 'var(--card-color, #ffffff)', borderColor: 'var(--stroke, #e5e7eb)' }}>
                 <p className="text-[10px] font-semibold mb-1" style={{ color: 'var(--background-text, #111827)' }}>{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-[9px]" style={{ color: 'var(--background-text, #111827)' }}>
@@ -426,7 +426,7 @@ const MiniChartRenderer: React.FC<{
             );
 
         default:
-            return <div className="flex items-center justify-center h-full text-gray-400 text-sm">Unsupported chart type</div>;
+            return <div className="flex items-center justify-center h-full text-muted-foreground text-sm">Unsupported chart type</div>;
     }
 };
 
@@ -461,7 +461,7 @@ const TitleDescriptionMultiChartGridLayout: React.FC<MultiChartGridSlideLayoutPr
         <>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
             <div
-                className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex font-normal"
+                className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex font-normal"
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
                     fontFamily: 'var(--body-font-family,Montserrat)',

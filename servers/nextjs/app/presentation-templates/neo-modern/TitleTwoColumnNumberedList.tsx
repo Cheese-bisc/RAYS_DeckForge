@@ -35,7 +35,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                 href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
                 rel="stylesheet"
             />
-            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-white z-20 mx-auto overflow-hidden flex items-center px-[85px]"
+            <div className="relative w-full rounded-sm max-w-[1280px] shadow-lg max-h-[720px] aspect-video bg-card z-20 mx-auto overflow-hidden flex items-center px-[85px]"
                 style={{
                     backgroundColor: 'var(--background-color,#FFFFFF)',
                     fontFamily: 'var(--body-font-family,Montserrat)',
@@ -46,7 +46,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                 <div className="flex w-full items-center justify-between">
                     {/* Left Section: Title */}
                     <div className="w-[40%] flex-shrink-0">
-                        <h1 style={{ color: "var(--background-text,#002BB2)" }} className="text-[42.7px] font-bold text-gray-900">
+                        <h1 style={{ color: "var(--background-text,#002BB2)" }} className="text-[42.7px] font-bold text-foreground">
                             {title?.split(' ').reduce((acc, curr, i) => i === 1 ? acc + ' ' + curr + '\n' : acc + ' ' + curr, '').trim()}
                         </h1>
                     </div>
@@ -63,7 +63,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                                         <div className="flex-shrink-0 w-[53.3px] h-[53.3px] rounded-full bg-[#1F4CD9] flex items-center justify-center"
                                             style={{ backgroundColor: 'var(--card-color,#1F4CD9)' }}
                                         >
-                                            <span className="text-white  font-bold text-[17.2px] leading-none">
+                                            <span className="text-foreground  font-bold text-[17.2px] leading-none">
                                                 {idx + 1}
                                             </span>
                                         </div>
@@ -94,7 +94,7 @@ const dynamicSlideLayout = ({ data }: { data: Partial<z.infer<typeof Schema>> })
                                         <div className="flex-shrink-0 w-[53.3px] h-[53.3px] rounded-full bg-[#1F4CD9] flex items-center justify-center"
                                             style={{ backgroundColor: 'var(--card-color,#1F4CD9)' }}
                                         >
-                                            <span className="text-white  text-[17.2px] leading-none font-bold"
+                                            <span className="text-foreground  text-[17.2px] leading-none font-bold"
                                                 style={{ color: 'var(--background-text,#FFFFFF)' }}
                                             >
                                                 {idx + 6}

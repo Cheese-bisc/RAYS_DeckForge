@@ -224,11 +224,11 @@ const DocumentsPreviewPage: React.FC = () => {
     if (!isOpen) return null;
 
     return (
-      <div className={`border-r border-gray-200 fixed xl:relative w-full z-50 xl:z-auto
-        transition-all duration-300 bg-white ease-in-out max-w-[200px] md:max-w-[300px] h-[85vh] rounded-md p-5`}>
+      <div className={`border-r border-border fixed xl:relative w-full z-50 xl:z-auto
+        transition-all duration-300 bg-card ease-in-out max-w-[200px] md:max-w-[300px] h-[85vh] rounded-md p-5`}>
         <X
           onClick={() => setIsOpen(false)}
-          className="text-black mb-4 ml-auto mr-0 cursor-pointer hover:text-gray-600"
+          className="text-foreground mb-4 ml-auto mr-0 cursor-pointer hover:text-foreground"
           size={20}
         />
 
@@ -244,7 +244,7 @@ const DocumentsPreviewPage: React.FC = () => {
                     } flex p-2 rounded-sm gap-2 items-center cursor-pointer`}
                 >
                   <img
-                    className="h-6 w-6 border border-gray-200"
+                    className="h-6 w-6 border border-border"
                     src={getIconFromFile(key)}
                     alt="Document icon"
                   />
@@ -261,7 +261,7 @@ const DocumentsPreviewPage: React.FC = () => {
   };
 
   return (
-    <div className={`bg-white/90 min-h-screen flex flex-col w-full`}>
+    <div className={`bg-card/90 min-h-screen flex flex-col w-full`}>
       <OverlayLoader
         show={showLoading.show}
         text={showLoading.message}
@@ -275,9 +275,9 @@ const DocumentsPreviewPage: React.FC = () => {
             <ToolTip content="Open Panel">
               <Button
                 onClick={() => setIsOpen(true)}
-                className="bg-[#5146E5] text-white p-3 shadow-lg"
+                className="bg-[#5146E5] text-foreground p-3 shadow-lg"
               >
-                <PanelRightOpen className="text-white" size={20} />
+                <PanelRightOpen className="text-foreground" size={20} />
               </Button>
             </ToolTip>
           </div>
@@ -285,7 +285,7 @@ const DocumentsPreviewPage: React.FC = () => {
 
         {renderSidebar()}
 
-        <div className="bg-white w-full mx-2 sm:mx-4 h-[calc(100vh-100px)] custom_scrollbar rounded-md overflow-y-auto py-6 pl-6">
+        <div className="bg-card w-full mx-2 sm:mx-4 h-[calc(100vh-100px)] custom_scrollbar rounded-md overflow-y-auto py-6 pl-6">
           {renderDocumentContent()}
         </div>
 
@@ -294,7 +294,7 @@ const DocumentsPreviewPage: React.FC = () => {
             onClick={handleCreatePresentation}
             className="flex items-center gap-2 px-8 py-6 rounded-sm text-md bg-[#5146E5] hover:bg-[#5146E5]/90"
           >
-            <span className="text-white font-semibold">Next</span>
+            <span className="text-foreground font-semibold">Next</span>
             <ChevronRight />
           </Button>
         </div>

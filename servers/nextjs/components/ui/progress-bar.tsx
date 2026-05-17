@@ -50,7 +50,7 @@ export const ProgressBar = ({ duration, onComplete }: ProgressBarProps) => {
                 {/* <span>Processing...</span> */}
                 <span className='font-inter text-[#191919]/80 text-end font-medium text-xs'>{Math.round(progress)}%</span>
             </div>
-            <div className="w-full bg-white/40 rounded-full h-2 overflow-hidden">
+            <div className="w-full bg-card/40 rounded-full h-2 overflow-hidden">
                 <div
                     className="h-full bg-gradient-to-r from-[#9034EA] via-[#5146E5] to-[#9034EA] rounded-full animate-gradient transition-all duration-300 ease-out"
                     style={{

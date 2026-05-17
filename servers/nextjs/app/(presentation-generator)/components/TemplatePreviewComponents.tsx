@@ -22,7 +22,7 @@ export function TemplatePreviewStage({ children }: { children: React.ReactNode }
 
 export const LayoutsBadge = memo(function LayoutsBadge({ count }: { count: number }) {
     return (
-        <span className="text-xs font-syne absolute top-3.5 left-4 z-40 inline-flex items-center rounded-full bg-[#333333] px-3 py-1 font-semibold text-white">
+        <span className="text-xs font-syne absolute top-3.5 left-4 z-40 inline-flex items-center rounded-full bg-[#333333] px-3 py-1 font-semibold text-foreground">
             Layouts-{count}
         </span>
     );
@@ -107,7 +107,7 @@ export const CustomTemplatePreview = memo(function CustomTemplatePreview({
                         key={`${templateId}-loading-${index}`}
                         className="relative w-full aspect-video flex items-center justify-center"
                     >
-                        <Loader2 className="h-4 w-4 animate-spin text-slate-300" />
+                        <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                     </div>
                 ))
             ) : (

@@ -36,7 +36,7 @@ const Toaster = ({ icons, ...props }: ToasterProps) => {
   const defaultIcons: NonNullable<ToasterProps["icons"]> = {
     success: <BadgeCheck aria-hidden="true" />,
     error: <ShieldAlert aria-hidden="true" />,
-    info: <Info className="fill-[#1880F6] stroke-white" />,
+    info: <Info className="fill-[#1880F6] stroke-foreground" />,
     warning: <ShieldAlert aria-hidden="true" />,
     loading: <Loader2 aria-hidden="true" className="animate-spin" />,
     close: <span aria-hidden="true">Got it!</span>,
@@ -243,9 +243,9 @@ const Toaster = ({ icons, ...props }: ToasterProps) => {
             toast: "group toast",
             description: "group-[.toast]:text-muted-foreground",
             actionButton:
-              "group-[.toast]:rounded-2xl group-[.toast]:border group-[.toast]:border-slate-200 group-[.toast]:bg-white group-[.toast]:text-slate-900 hover:group-[.toast]:bg-slate-50",
+              "group-[.toast]:rounded-2xl group-[.toast]:border group-[.toast]:border-border group-[.toast]:bg-card group-[.toast]:text-foreground hover:group-[.toast]:bg-muted",
             cancelButton:
-              "group-[.toast]:rounded-2xl group-[.toast]:border group-[.toast]:border-slate-200 group-[.toast]:bg-white group-[.toast]:text-slate-700 hover:group-[.toast]:bg-slate-50",
+              "group-[.toast]:rounded-2xl group-[.toast]:border group-[.toast]:border-border group-[.toast]:bg-card group-[.toast]:text-foreground hover:group-[.toast]:bg-muted",
           },
         }}
         {...props}
