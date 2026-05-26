@@ -98,12 +98,25 @@ export const changeProvider = (
 };
 
 export const checkIfSelectedOllamaModelIsPulled = async (ollamaModel: string) => {
+  if (!ollamaModel) return false;
   try {
     const response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/available'));
+    if (!response.ok) return false;
     const models = await response.json();
-    const pulledModels = models.map((model: any) => model.name);
-    console.log("[checkIfSelectedOllamaModelIsPulled] checking:", ollamaModel, "against:", pulledModels);
-    return pulledModels.includes(ollamaModel);
+    const availableModelNames: string[] = models.map((model: any) => model.name || "");
+    console.log("[checkIfSelectedOllamaModelIsPulled] checking:", ollamaModel, "against available:", availableModelNames);
+
+    // Normalize tags: e.g. "llama3:latest" -> "llama3"
+    const normalize = (name: string) => name.toLowerCase().trim().split(':')[0];
+    const targetNorm = normalize(ollamaModel);
+
+    return availableModelNames.some((name: string) => {
+      const cleanName = name.trim();
+      return (
+        cleanName.toLowerCase() === ollamaModel.toLowerCase().trim() ||
+        normalize(cleanName) === targetNorm
+      );
+    });
   } catch (error) {
     console.error('Error checking if selected Ollama model is pulled:', error);
     return false;

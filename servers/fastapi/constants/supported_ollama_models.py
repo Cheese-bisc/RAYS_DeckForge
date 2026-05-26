@@ -202,7 +202,6 @@ SUPPORTED_GEMMA4_MODELS = {
         value="gemma4:31b",
         size="20GB",
     ),
-
     # e2b variants
     "gemma4:e2b-it-q4_K_M": OllamaModelMetadata(
         label="Gemma 4:e2b-it-q4_K_M",
@@ -219,7 +218,6 @@ SUPPORTED_GEMMA4_MODELS = {
         value="gemma4:e2b-it-bf16",
         size="10GB",
     ),
-
     # e4b variants
     "gemma4:e4b-it-q4_K_M": OllamaModelMetadata(
         label="Gemma 4:e4b-it-q4_K_M",
@@ -236,7 +234,6 @@ SUPPORTED_GEMMA4_MODELS = {
         value="gemma4:e4b-it-bf16",
         size="16GB",
     ),
-
     # 26b variants
     "gemma4:26b-a4b-it-q4_K_M": OllamaModelMetadata(
         label="Gemma 4:26b-a4b-it-q4_K_M",
@@ -248,7 +245,6 @@ SUPPORTED_GEMMA4_MODELS = {
         value="gemma4:26b-a4b-it-q8_0",
         size="28GB",
     ),
-
     # 31b variants
     "gemma4:31b-it-q4_K_M": OllamaModelMetadata(
         label="Gemma 4:31b-it-q4_K_M",
@@ -264,7 +260,7 @@ SUPPORTED_GEMMA4_MODELS = {
         label="Gemma 4:31b-it-bf16",
         value="gemma4:31b-it-bf16",
         size="63GB",
-    )
+    ),
 }
 
 SUPPORTED_QWEN35_MODELS = {
@@ -302,6 +298,12 @@ SUPPORTED_QWEN35_MODELS = {
         label="Qwen 3.5:122b",
         value="qwen3.5:122b",
         size="81GB",
+    ),
+}
+
+SUPPORTED_GRANITE_MODELS = {
+    "grannite4.1:3b": OllamaModelMetadata(
+        label="Granite 4.1:3b", value="granite4.1:3b", size="2.1GB"
     )
 }
 
@@ -313,4 +315,5 @@ SUPPORTED_OLLAMA_MODELS = {
     **SUPPORTED_GPT_OSS_MODELS,
     **SUPPORTED_GEMMA4_MODELS,
     **SUPPORTED_QWEN35_MODELS,
+    **SUPPORTED_GRANITE_MODELS,
 }

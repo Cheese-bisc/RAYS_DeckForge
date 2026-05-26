@@ -42,13 +42,13 @@ export default function OllamaConfig({
   const fetchOllamaModels = async () => {
     try {
       setOllamaModelsLoading(true);
-      const response = await fetch(getApiUrl("/api/v1/ppt/ollama/models/available"));
+      const response = await fetch(getApiUrl("/api/v1/ppt/ollama/models/supported"));
 
       if (response.ok) {
         const data = await response.json();
         const mappedData = data.map((model: any) => ({
-          label: model.name,
-          value: model.name,
+          label: model.label || model.name || model.value,
+          value: model.value || model.name,
           size: model.size || "Unknown size",
         }));
         console.log(mappedData);

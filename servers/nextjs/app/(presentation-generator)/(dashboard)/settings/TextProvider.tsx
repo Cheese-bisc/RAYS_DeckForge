@@ -169,7 +169,7 @@ const TextProvider = ({
                     }),
                 });
             } else if (selectedProvider === 'ollama') {
-                response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/available'));
+                response = await fetch(getApiUrl('/api/v1/ppt/ollama/models/supported'));
             } else {
                 response = await fetch(getApiUrl('/api/v1/ppt/openai/models/available'), {
                     method: 'POST',

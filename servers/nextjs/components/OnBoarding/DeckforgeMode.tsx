@@ -15,6 +15,7 @@ import { Select, SelectItem, SelectContent, SelectValue, SelectTrigger } from '.
 import { usePathname } from 'next/navigation';
 import { handleSaveLLMConfig } from '@/utils/storeHelpers';
 import { getApiUrl } from '@/utils/api';
+import { checkIfSelectedOllamaModelIsPulled } from '@/utils/providerUtils';
 
 const MANUAL_MODEL_PROVIDERS = new Set(["vertex", "azure"]);
 
@@ -185,7 +186,10 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                 const data = await response.json();
                 const normalizedModels: string[] = llmConfig.LLM === 'ollama'
                     ? Array.isArray(data)
-                        ? data.map((model: { value?: string; label?: string }) => model.value || model.label || '').filter(Boolean)
+                        ? data.map((model: any) => {
+                            if (typeof model === 'string') return model;
+                            return model?.name || model?.value || model?.label || '';
+                        }).filter(Boolean)
                         : []
                     : Array.isArray(data)
                         ? data
@@ -246,7 +250,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                             ...prev,
                             DALL_E_3_QUALITY: value
                         }))}>
-                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between">
+                            <SelectTrigger className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground hover:border-[#ffffff] justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -277,7 +281,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                         >
                             <SelectTrigger
 
-                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between">
+                                className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground hover:border-[#ffffff] justify-between">
                                 <SelectValue placeholder="Select a quality" />
                             </SelectTrigger>
                             <SelectContent>
@@ -311,6 +315,124 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
             return false;
         }
     };
+
+    const [pullState, setPullState] = useState<{
+        isPulling: boolean;
+        downloaded: number | null;
+        total: number | null;
+        percentage: number;
+        statusText: string;
+        error: string | null;
+    }>({
+        isPulling: false,
+        downloaded: null,
+        total: null,
+        percentage: 0,
+        statusText: '',
+        error: null
+    });
+
+    const formatBytes = (bytes: number | null): string => {
+        if (bytes === null) return "0 B";
+        if (bytes === 0) return "0 B";
+        const k = 1024;
+        const sizes = ["B", "KB", "MB", "GB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    };
+
+    const startOllamaModelPull = async (modelName: string) => {
+        setPullState({
+            isPulling: true,
+            downloaded: null,
+            total: null,
+            percentage: 0,
+            statusText: 'Initializing download...',
+            error: null
+        });
+
+        try {
+            const triggerUrl = getApiUrl(`/api/v1/ppt/ollama/model/pull?model=${encodeURIComponent(modelName)}`);
+            const triggerRes = await fetch(triggerUrl);
+            if (!triggerRes.ok) {
+                throw new Error(`Failed to initiate pull request: ${triggerRes.statusText}`);
+            }
+
+            const pollInterval = setInterval(async () => {
+                try {
+                    const statusRes = await fetch(triggerUrl);
+                    if (!statusRes.ok) {
+                        clearInterval(pollInterval);
+                        setPullState(prev => ({
+                            ...prev,
+                            isPulling: false,
+                            error: 'Failed to poll model status from Ollama server.'
+                        }));
+                        toast.error('Ollama connection lost.');
+                        return;
+                    }
+
+                    const statusData = await statusRes.json();
+                    
+                    if (statusData.status === 'error' || statusData.error) {
+                        clearInterval(pollInterval);
+                        setPullState(prev => ({
+                            ...prev,
+                            isPulling: false,
+                            statusText: 'Error occurred',
+                            error: statusData.error || 'Failed to download model.'
+                        }));
+                        toast.error(`Download failed: ${statusData.error || 'Unknown error'}`);
+                        return;
+                    }
+
+                    const size = statusData.size || null;
+                    const downloaded = statusData.downloaded || null;
+                    const percentage = size && downloaded ? Math.round((downloaded / size) * 100) : 0;
+                    
+                    setPullState(prev => ({
+                        ...prev,
+                        downloaded,
+                        total: size,
+                        percentage,
+                        statusText: statusData.status || 'Pulling model layers...'
+                    }));
+
+                    if (statusData.done || statusData.status === 'pulled') {
+                        clearInterval(pollInterval);
+                        
+                        try {
+                            setSavingConfig(true);
+                            await handleSaveLLMConfig(llmConfig, { skipImages: true });
+                            toast.info("Model pulled & configuration saved successfully!");
+                            setStep(3);
+                        } catch (saveError) {
+                            toast.error("Model pulled, but failed to save configuration settings.");
+                        } finally {
+                            setSavingConfig(false);
+                            setPullState(prev => ({ ...prev, isPulling: false }));
+                        }
+                    }
+                } catch (pollErr) {
+                    clearInterval(pollInterval);
+                    setPullState(prev => ({
+                        ...prev,
+                        isPulling: false,
+                        error: 'Connection interrupted while polling progress.'
+                    }));
+                }
+            }, 1500);
+
+        } catch (error: any) {
+            setPullState(prev => ({
+                ...prev,
+                isPulling: false,
+                error: error.message || 'Failed to pull model.'
+            }));
+            toast.error(error.message || 'Failed to initiate Ollama pull.');
+        }
+    };
+
     const handleSaveConfig = async () => {
         console.log("[handleSaveConfig] Starting save with config:", llmConfig);
         try {
@@ -321,12 +443,27 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                     return;
                 }
             }
-            setSavingConfig(true);
 
+            if (llmConfig.LLM === 'ollama') {
+                if (!llmConfig.OLLAMA_MODEL) {
+                    toast.error("Please select a supported Ollama model to continue");
+                    return;
+                }
+                
+                setSavingConfig(true);
+                const isPulled = await checkIfSelectedOllamaModelIsPulled(llmConfig.OLLAMA_MODEL);
+                setSavingConfig(false);
+
+                if (!isPulled) {
+                    console.log("[handleSaveConfig] Ollama model not installed, starting pull flow for:", llmConfig.OLLAMA_MODEL);
+                    await startOllamaModelPull(llmConfig.OLLAMA_MODEL);
+                    return;
+                }
+            }
+
+            setSavingConfig(true);
             console.log("[handleSaveConfig] Calling handleSaveLLMConfig...");
             await handleSaveLLMConfig(llmConfig, { skipImages: true });
-
-
 
             console.log("[handleSaveConfig] Save successful, moving to Step 3");
             toast.info("Configuration saved successfully");
@@ -350,6 +487,45 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
 
     return (
         <div className='w-full max-w-[660px] pb-10' style={{ fontFamily: "'Space Mono', monospace" }}>
+            {pullState.isPulling && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm">
+                    <div className="w-full max-w-md p-8 rounded-[10px] bg-[#1d1d1d] border border-[#383838] shadow-2xl">
+                        <div className="text-center mb-6">
+                            <h3 className="text-xl font-medium tracking-wide text-white mb-2" style={{ fontFamily: "'Space Mono', monospace" }}>
+                                Downloading Ollama Model
+                            </h3>
+                            <p className="text-xs text-[#888888] font-mono tracking-wider uppercase">
+                                {llmConfig.OLLAMA_MODEL}
+                            </p>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="relative w-full h-2 rounded-full bg-[#0d0d0d] border border-[#383838] overflow-hidden">
+                                <div 
+                                    className="h-full bg-white transition-all duration-300 ease-out"
+                                    style={{ width: `${pullState.percentage}%` }}
+                                />
+                            </div>
+
+                            <div className="flex items-center justify-between text-xs font-mono text-[#888888]">
+                                <span className="capitalize">{pullState.statusText}</span>
+                                <span>{pullState.percentage}%</span>
+                            </div>
+
+                            {pullState.downloaded !== null && pullState.total !== null && (
+                                <div className="text-center text-xs font-mono text-[#888888] border-t border-[#383838] pt-3 mt-2">
+                                    {formatBytes(pullState.downloaded)} / {formatBytes(pullState.total)}
+                                </div>
+                            )}
+
+                            <div className="flex items-center justify-center gap-2 text-xs font-mono text-[#888888] mt-4">
+                                <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                                <span>Do not close RAYS DeckForge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             <p className='px-2.5 py-0.5 w-fit rounded-[10px] text-[10px] font-medium mb-5' style={{ color: '#888888', border: '1px solid #383838' }}>DECKFORGE</p>
             <div className=''>
 
@@ -490,7 +666,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                         ...prev,
                                                         OLLAMA_URL: e.target.value
                                                     }))}
-                                                    className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                    className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                     placeholder="http://localhost:11434"
                                                 />
                                             </div>
@@ -526,7 +702,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                 ...prev,
                                                 [currentApiKeyField]: e.target.value
                                             }))}
-                                            className="w-full px-2 py-3 outline-none border  border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                            className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                             placeholder={`Enter your ${providerApiKeyLabel}`}
                                         />
                                         <button
@@ -547,7 +723,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                         ...prev,
                                         CUSTOM_LLM_URL: e.target.value
                                     }))}
-                                    className="w-full mt-2 px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                    className="w-full mt-2 px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                     placeholder="OpenAI-compatible URL"
                                 />
                             )}
@@ -560,7 +736,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             VERTEX_PROJECT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="GCP project (optional if API key used)"
                                     />
                                     <input
@@ -570,7 +746,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             VERTEX_LOCATION: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="GCP location (optional)"
                                     />
                                     <input
@@ -580,7 +756,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             VERTEX_BASE_URL: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="Vertex base URL (optional)"
                                     />
                                 </div>
@@ -594,7 +770,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             AZURE_OPENAI_ENDPOINT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="Azure endpoint (https://...openai.azure.com)"
                                     />
                                     <input
@@ -604,7 +780,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             AZURE_OPENAI_BASE_URL: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="Azure base URL (optional alternative)"
                                     />
                                     <input
@@ -614,7 +790,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             AZURE_OPENAI_API_VERSION: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="API version (e.g. 2024-10-21)"
                                     />
                                     <input
@@ -624,7 +800,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             ...prev,
                                             AZURE_OPENAI_DEPLOYMENT: e.target.value
                                         }))}
-                                        className="w-full px-2 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                        className="w-full px-2 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                         placeholder="Deployment name (optional)"
                                     />
                                 </div>
@@ -681,7 +857,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                 variant="outline"
                                                 role="combobox"
                                                 aria-expanded={openModelSelect}
-                                                className="w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between"
+                                                className="w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground hover:border-[#ffffff] justify-between"
                                             >
                                                 <span className="text-sm truncate font-medium text-foreground">
                                                     {
@@ -763,7 +939,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                         }));
                                     }
                                 }}
-                                className="w-full h-12 px-4 py-3 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                className="w-full h-12 px-4 py-3 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                 placeholder={llmConfig.LLM === 'vertex' ? 'e.g. gemini-2.5-flash' : 'e.g. gpt-4.1'}
                             />
                         </div>
@@ -817,7 +993,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             variant="outline"
                                             role="combobox"
                                             aria-expanded={openImageProviderSelect}
-                                            className=" w-full h-12 px-4 py-4 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors hover:border-border justify-between"
+                                            className=" w-full h-12 px-4 py-4 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground hover:border-[#ffffff] justify-between"
                                         >
                                             <div className="flex gap-3 items-center">
                                                 <span className="text-sm font-medium capitalize text-foreground">
@@ -906,7 +1082,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                                     <input
                                                         type="text"
                                                         placeholder="http://192.168.1.7:8188"
-                                                        className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                        className="w-full px-4 py-2.5 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                         value={llmConfig.COMFYUI_URL || ""}
                                                         onChange={(e) => {
                                                             setLlmConfig(prev => ({
@@ -937,7 +1113,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                                             <input
                                                 type={showApiKey ? 'text' : 'password'}
                                                 placeholder={`Enter your ${provider.apiKeyFieldLabel}`}
-                                                className="w-full px-4 py-2.5 h-12 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                                                className="w-full px-4 py-2.5 h-12 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground"
                                                 value={getFieldValue(provider.apiKeyField)}
                                                 onChange={(e) => {
                                                     setLlmConfig((prev: LLMConfig) => ({
@@ -975,7 +1151,7 @@ const DeckforgeMode = ({ currentStep, setStep }: { currentStep: number, setStep:
                         <div className="relative">
                             <textarea
                                 placeholder='Paste your ComfyUI workflow JSON here (export via "Export (API)" in ComfyUI)'
-                                className="w-full px-4 py-2.5 outline-none border border-border rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors font-mono text-xs"
+                                className="w-full px-4 py-2.5 outline-none border border-[#383838] rounded-lg focus:ring-2 focus:ring-ring/30 focus:border-[#ffffff] transition-colors bg-transparent text-foreground font-mono text-xs"
                                 rows={3}
                                 value={llmConfig.COMFYUI_WORKFLOW || ""}
                                 onChange={(e) => {

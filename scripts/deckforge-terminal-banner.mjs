@@ -1,5 +1,5 @@
 /**
- * Docker / startup terminal banner for Presenton.
+ * Docker / startup terminal banner for DeckForge.
  * Renders a compact brand logo + startup status.
  */
 
@@ -95,17 +95,17 @@ export function printPresentonStartupBanner(opts = {}) {
   const title = [
     "",
     BOLD +
-      fgRgb(
-        138,
-        99,
-        255,
-        "   O P E N  S O U R C E  A I  P R E S E N T A T I O N  G E N E R A T O R"
-      ),
+    fgRgb(
+      138,
+      99,
+      255,
+      "   O P E N  S O U R C E  A I  P R E S E N T A T I O N  G E N E R A T O R"
+    ),
     "   " +
-      accent("LOVE THE PROJECT?  ") +
-      brand("STAR US ON GITHUB: ") +
-      BOLD +
-      fgRgb(224, 218, 255, "https://github.com/rays/deckforge"),
+    accent("LOVE THE PROJECT?  ") +
+    brand("STAR US ON GITHUB: ") +
+    BOLD +
+    fgRgb(224, 218, 255, "https://github.com/rays/deckforge"),
     muted("   ─────────────────────────────────────────────────────────"),
     "",
   ].join("\n");

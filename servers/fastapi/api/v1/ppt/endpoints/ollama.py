@@ -69,7 +69,7 @@ async def pull_model(
         if (
             saved_model_status["status"] == "error"
             or saved_model_status["status"] == "pulled"
-            or saved_pull_status.last_updated < (datetime.now() - timedelta(seconds=10))
+            or saved_pull_status.last_updated < (datetime.now() - timedelta(seconds=120))
         ):
             await session.delete(saved_pull_status)
         else:

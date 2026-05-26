@@ -14,6 +14,7 @@ import ModeSelectStep from "./OnBoarding/ModeSelectStep";
 import DeckforgeMode from "./OnBoarding/DeckforgeMode";
 import GenerationWithImage from "./OnBoarding/GenerationWithImage";
 import FinalStep from "./OnBoarding/FinalStep";
+import { checkIfSelectedOllamaModelIsPulled } from "@/utils/providerUtils";
 
 
 
@@ -32,6 +33,19 @@ export default function Home() {
       router.push("/upload");
     }
   }, [canChangeKeys, router]);
+
+  useEffect(() => {
+    if (config.llm_config?.LLM === 'ollama' && config.llm_config?.OLLAMA_MODEL) {
+      void (async () => {
+        const isPulled = await checkIfSelectedOllamaModelIsPulled(config.llm_config.OLLAMA_MODEL || "");
+        if (!isPulled) {
+          console.log("[Home] Pre-configured Ollama model not pulled, auto-transitioning to Step 2 for download");
+          setSelectedMode("deckforge");
+          setStep(2);
+        }
+      })();
+    }
+  }, [config.llm_config]);
 
   if (!canChangeKeys) {
     return null;
